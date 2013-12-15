@@ -49,7 +49,7 @@
 						
 							Also, why didn't he know that made-up tags exist and work with CSS. Are they uncommon?
 						</div><!--context-->
-					</div><!--post-->
+					</div><!--thread-->
 					<div class="reply">
 						<div class="context">
 							In my class, I was playing around and found out that CSS works with made-up tags.
@@ -95,7 +95,35 @@
 								</a><!--vote-->
 							</div>
 						</div><!--topic-->
-					</div><!--post-->
+					</div><!--reply-->
+					<div class="reply">
+						<div class="context">
+							I don't know what I'm doing at all.
+						</div><!--context-->
+						<hr class="topic-line">
+						<div class="row topic">
+							<div class="col-xs-1">
+								<img src="img/avatar_test.jpg" class="img-circle">
+							</div>
+							<div class="col-xs-9">
+								<p class="info">
+									<a href="" class="name"><strong>Vee Vee</strong></a>
+									<span class="date">14 Dec 13, 21:30</span>
+								</p>
+							</div>
+							<div class="col-xs-2 text-right">
+								<a href="" class="btn btn-danger btn-xs vote vote-down">
+									<span>-</span>
+								</a><!--vote-->
+								<span class="current-score">
+									-5
+								</span>
+								<a href="" class="btn btn-success btn-xs vote vote-up">
+									<span>+</span>
+								</a><!--vote-->
+							</div>
+						</div><!--topic-->
+					</div><!--reply-->
 			</div><!--content-->
 			<div class="col-md-3" id="sidebar">
 				<a type="button" class="create-btn btn btn-primary btn-lg btn-block">
