@@ -4,11 +4,11 @@
 	<meta charset="UTF-8">
 	<title>Board</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="css/bootstrap.min.css">
-	<link rel="stylesheet/less" type="text/css" href="css/style.less" />
-	<script src="js/jquery-1.9.1.js" type="text/javascript"></script>
-	<script src="js/bootstrap.min.js" type="text/javascript"></script>
-	<script src="js/less.js" type="text/javascript"></script>
+	<link rel="stylesheet" href="../css/bootstrap.min.css">
+	<link rel="stylesheet/less" type="text/css" href="../css/style.less" />
+	<script src="../js/jquery-1.9.1.js" type="text/javascript"></script>
+	<script src="../js/bootstrap.min.js" type="text/javascript"></script>
+	<script src="../js/less.js" type="text/javascript"></script>
 </head>
 <body>
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -20,14 +20,14 @@
 			<span class="icon-bar"></span>
 			<span class="icon-bar"></span>
 		</button>
-		<a class="navbar-brand" href="index.php">Webboard</a>
+		<a class="navbar-brand" href="index.php">Webboard (Admin)</a>
 	</div>
 
 	<!-- Collect the nav links, forms, and other content for toggling -->
 	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 		<ul class="nav navbar-nav">
-			<li class="active"><a href="index.php">Home</a></li>
-			<li><a href="#">Tags</a></li>
+			<li class="active"><a href="posts.php">Manage Posts & Topics</a></li>
+			<li><a href="tags.php">Manage Tags</a></li>
 			<li class="dropdown">
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
 				<ul class="dropdown-menu">

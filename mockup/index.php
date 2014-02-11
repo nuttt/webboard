@@ -37,7 +37,7 @@
 						<div class="col-xs-10">
 							<h4><a href="content.php">Why do we use this specific syntax for defining functions?</a></h4>
 							<p class="info">
-								<a href="" class="name"><strong>Nuttapon P</strong></a>
+								<a href="member_profile.php" class="name"><strong>Nuttapon P</strong></a>
 								<span class="date">14 Dec 13</span>
 								<a href="" class="tag">Maths</a>
 								<a href="" class="tag">Physics</a>
@@ -54,7 +54,7 @@
 						<div class="col-xs-10">
 							<h4><a href="">Why do we create functions as variables?</a></h4>
 							<p class="info">
-								<a href="" class="name"><strong>Nuttapon P</strong></a>
+								<a href="member_profile.php" class="name"><strong>Nuttapon P</strong></a>
 								<span class="date">14 Dec 13</span>
 								<a href="" class="tag">Computer</a>
 								<a href="" class="tag">JavaScript</a>
@@ -72,7 +72,7 @@
 						<div class="col-xs-10">
 							<h4><a href="">You have < 7 hours left to extend your streak??what does it means??</a></h4>
 							<p class="info">
-								<a href="" class="name"><strong>Nuttapon P</strong></a>
+								<a href="member_profile.php" class="name"><strong>Nuttapon P</strong></a>
 								<span class="date">14 Dec 13</span>
 								<a href="" class="tag">Computer Engineering</a>
 								<a href="" class="tag">Maths</a>
@@ -89,7 +89,7 @@
 						<div class="col-xs-10">
 							<h4><a href="">I wrote this code. It worked great. But the website says that it is incorrect.</a></h4>
 							<p class="info">
-								<a href="" class="name"><strong>Nuttapon P</strong></a>
+								<a href="member_profile.php" class="name"><strong>Nuttapon P</strong></a>
 								<span class="date">14 Dec 13</span>
 								<a href="" class="tag">Maths</a>
 								<a href="" class="tag">Physics</a>
@@ -106,7 +106,7 @@
 						<div class="col-xs-10">
 							<h4><a href="">Why do we create functions as variables?</a></h4>
 							<p class="info">
-								<a href="" class="name"><strong>Nuttapon P</strong></a>
+								<a href="member_profile.php" class="name"><strong>Nuttapon P</strong></a>
 								<span class="date">14 Dec 13</span>
 								<a href="" class="tag">Computer</a>
 								<a href="" class="tag">JavaScript</a>
@@ -124,7 +124,7 @@
 						<div class="col-xs-10">
 							<h4><a href="">Could someone help me on exercise 5?</a></h4>
 							<p class="info">
-								<a href="" class="name"><strong>Nuttapon P</strong></a>
+								<a href="member_profile.php" class="name"><strong>Nuttapon P</strong></a>
 								<span class="date">14 Dec 13</span>
 								<a href="" class="tag">Computer Engineering</a>
 								<a href="" class="tag">Maths</a>

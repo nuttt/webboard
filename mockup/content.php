@@ -9,7 +9,7 @@
 							<div class="col-xs-9">
 								<h4><a href="">Why do we use this specific syntax for defining functions?</a></h4>
 								<p class="info">
-									<a href="" class="name"><strong>Nuttapon P</strong></a>
+									<a href="member_profile.php" class="name"><strong>Nuttapon P</strong></a>
 									<span class="date">14 Dec 13, 15:35</span>
 									<a href="" class="tag">Maths</a>
 									<a href="" class="tag">Physics</a>
@@ -79,7 +79,7 @@
 							</div>
 							<div class="col-xs-9">
 								<p class="info">
-									<a href="" class="name"><strong>Nuttapon P</strong></a>
+									<a href="member_profile.php" class="name"><strong>Nuttapon P</strong></a>
 									<span class="date">14 Dec 13, 21:30</span>
 								</p>
 							</div>
@@ -107,7 +107,7 @@
 							</div>
 							<div class="col-xs-9">
 								<p class="info">
-									<a href="" class="name"><strong>Vee Vee</strong></a>
+									<a href="member_profile.php" class="name"><strong>Vee Vee</strong></a>
 									<span class="date">14 Dec 13, 21:30</span>
 								</p>
 							</div>
