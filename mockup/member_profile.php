@@ -7,10 +7,20 @@
 							<img src="img/avatar_test.jpg" class="img-circle">
 						</div>
 						<div class="col-xs-9">
+							<?php 
+							// Member can edit his own profile
+							// Mod can't edit anyone's profile
+							// Admin can edit everyone's profile
+							 ?>
 							<h4><a href="edit_profile.php">Nuttapon [Edit Profile]</a></h4>
 							<p class="info">
 								<a href="mailto:nuttt.p@gmail.com" class="name"><strong>nuttt.p@gmail.com</strong></a>
 								<span class="date">Joined since 14 Dec 13, 15:35</span>
+								<a href="edit_profile.php" class="tag yellow"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
+								<!-- for admin only -->
+								<a href="edit_profile.php" class="tag red"><span class="glyphicon glyphicon-trash"></span> Remove</a>
+								<!-- for admin only -->
+								<a href="admin/ban_user.php" class="tag orange"><span class="glyphicon glyphicon-remove"></span> Ban</a>
 							</p>
 						</div>
 					</div><!--topic-->
@@ -35,7 +45,6 @@
 						</table>
 					</div><!--context-->
 				</div><!--thread-->
-				<a name="topics"></a>
 				<br>
 				<div id="content-list">
 					<div class="list">
@@ -65,7 +74,7 @@
 								</div><!--btn-group-->
 							</span><!--text-right-->
 							<span class="text-left">
-								Topic posted by this member
+								<a name="topics"></a>Topic posted by this member
 							</span>
 							<div class="clear"></div>
 						</div><!--helper-->

@@ -6,24 +6,32 @@
 							<div class="col-xs-1">
 								<img src="img/avatar_test.jpg" class="img-circle">
 							</div>
-							<div class="col-xs-9">
+							<div class="col-xs-8">
 								<h4><a href="">Why do we use this specific syntax for defining functions?</a></h4>
 								<p class="info">
 									<a href="member_profile.php" class="name"><strong>Nuttapon P</strong></a>
 									<span class="date">14 Dec 13, 15:35</span>
 									<a href="" class="tag">Maths</a>
 									<a href="" class="tag">Physics</a>
+									<?php 
+									// Member can edit his own topic
+									// Mod can edit a topic of his tag
+									// Admin can edit everyone's topic
+									 ?>
+									<a href="edit_content.php" class="tag yellow"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
+									<a href="" class="tag red"><span class="glyphicon glyphicon-trash"></span> Remove</a>
+									<a href="" class="tag orange"><span class="glyphicon glyphicon-exclamation-sign"></span> Report</a>
 								</p>
 							</div>
-							<div class="col-xs-2 text-right">
+							<div class="col-xs-3 text-right">
 								<a href="" class="btn btn-danger btn-xs vote vote-down">
-									<span>-</span>
+									<span class="glyphicon glyphicon-thumbs-down"></span>
 								</a><!--vote-->
 								<span class="current-score">
 									20
 								</span>
 								<a href="" class="btn btn-success btn-xs vote vote-up">
-									<span>+</span>
+									<span class="glyphicon glyphicon-thumbs-up"></span>
 								</a><!--vote-->
 							</div>
 						</div><!--topic-->
@@ -77,21 +85,28 @@
 							<div class="col-xs-1">
 								<img src="img/avatar_test.jpg" class="img-circle">
 							</div>
-							<div class="col-xs-9">
+							<div class="col-xs-8">
 								<p class="info">
 									<a href="member_profile.php" class="name"><strong>Nuttapon P</strong></a>
 									<span class="date">14 Dec 13, 21:30</span>
+									<?php 
+									// Member can edit his own post
+									// Mod can edit a post of his tag
+									// Admin can edit everyone's post
+									 ?>
+									<a href="edit_post.php" class="tag yellow"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
+									<a href="" class="tag red"><span class="glyphicon glyphicon-trash"></span> Remove</a>
 								</p>
 							</div>
-							<div class="col-xs-2 text-right">
+							<div class="col-xs-3 text-right">
 								<a href="" class="btn btn-danger btn-xs vote vote-down">
-									<span>-</span>
+									<span class="glyphicon glyphicon-thumbs-down"></span>
 								</a><!--vote-->
 								<span class="current-score">
-									20
+									5
 								</span>
 								<a href="" class="btn btn-success btn-xs vote vote-up">
-									<span>+</span>
+									<span class="glyphicon glyphicon-thumbs-up"></span>
 								</a><!--vote-->
 							</div>
 						</div><!--topic-->
@@ -105,21 +120,22 @@
 							<div class="col-xs-1">
 								<img src="img/avatar_test.jpg" class="img-circle">
 							</div>
-							<div class="col-xs-9">
+							<div class="col-xs-8">
 								<p class="info">
 									<a href="member_profile.php" class="name"><strong>Vee Vee</strong></a>
 									<span class="date">14 Dec 13, 21:30</span>
+									<a href="" class="tag orange"><span class="glyphicon glyphicon-exclamation-sign"></span> Report</a>
 								</p>
 							</div>
-							<div class="col-xs-2 text-right">
+							<div class="col-xs-3 text-right">
 								<a href="" class="btn btn-danger btn-xs vote vote-down">
-									<span>-</span>
+									<span class="glyphicon glyphicon-thumbs-down"></span>
 								</a><!--vote-->
 								<span class="current-score">
-									-5
+									-8
 								</span>
 								<a href="" class="btn btn-success btn-xs vote vote-up">
-									<span>+</span>
+									<span class="glyphicon glyphicon-thumbs-up"></span>
 								</a><!--vote-->
 							</div>
 						</div><!--topic-->

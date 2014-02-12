@@ -70,12 +70,15 @@
 @blue: #7dc0d8;
 body{
 	font-size: 135%;
+	padding-top: 80px;
+}
+.red{
+	color: red;
 }
 .right{
 	float: right;
 }
 #body{
-	margin-top: 80px;
 	margin-bottom: 30px;
 }
 #content-list{
@@ -168,6 +171,33 @@ body{
 			background-color: #e4f7f9;
 			text-decoration: none;
 		}
+		&.yellow{
+			background-color: #FAF9EF;
+			border-color: #ECEADA;
+			color: #C09F35;
+			&:hover{
+				background-color: #FAF7D7;
+				color: darken(#C09F35,5%);
+			}
+		}
+		&.red{
+			background-color: #FDF4F4;
+			border-color: #FAE2E2;
+			color: #D3747C;
+			&:hover{
+				background-color: #FFECEC;
+				color: #C03540;
+			}
+		}
+		&.orange{
+			background-color: #FFF8F0;
+			border-color: #F5EDE4;
+			color: #DD9450;
+			&:hover{
+				background-color: #FFF4E7;
+				color: #C03540;
+			}
+		}
 	}
 }
 
@@ -177,11 +207,14 @@ body{
 	border-radius: 5px;
 	padding: 20px;
 }
-.reply{
+.reply,.box{
 	border: 1px solid #eee;
 	border-radius: 5px;
 	padding: 20px;
 	margin: 30px 0;
+}
+.box{
+	margin-top: 0;
 }
 .post {
 	padding: 0 30px;

@@ -27,26 +27,25 @@
 	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 		<ul class="nav navbar-nav">
 			<li class="active"><a href="index.php">Home</a></li>
-			<li><a href="#">Tags</a></li>
+			<li><a href="new_topic.php">New Topic</a></li>
 			<li class="dropdown">
-				<a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown">Tags <b class="caret"></b></a>
 				<ul class="dropdown-menu">
-					<li><a href="signin.php">Sign in</a></li>
-					<li><a href="#">Another action</a></li>
-					<li><a href="#">Something else here</a></li>
-					<li class="divider"></li>
-					<li><a href="#">Separated link</a></li>
-					<li class="divider"></li>
-					<li><a href="#">One more separated link</a></li>
+					<li><a href="index.php">Computer</a></li>
+					<li><a href="index.php">Coding</a></li>
+					<li><a href="index.php">JavaScript</a></li>
+				</ul>
+			</li>
+			<li class="dropdown">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin Management <b class="caret"></b></a>
+				<ul class="dropdown-menu">
+					<li><a href="admin/index.php">Dashboard</a></li>
+					<li><a href="admin/manage_user.php">Users</a></li>
+					<li><a href="admin/manage_tag.php">Tags</a></li>
+					<li><a href="admin/manage_report.php">Reports</a></li>
 				</ul>
 			</li>
 		</ul>
-		<form class="navbar-form navbar-left" role="search">
-			<div class="form-group">
-				<input type="text" class="form-control" placeholder="Search">
-			</div>
-			<button type="submit" class="btn btn-default">Go</button>
-		</form>
 		<ul class="nav navbar-nav navbar-right">
 			<li class="dropdown">
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown">Nuttapon P <b class="caret"></b></a>
@@ -55,7 +54,7 @@
 					<li><a href="member_profile.php">View Profile</a></li>
 					<li><a href="member_profile.php#topics">View your posts</a></li>
 					<li class="divider"></li>
-					<li><a href="#">Admin</a></li>
+					<li><a href="admin">Admin</a></li>
 					<li><a href="#">Logout</a></li>
 				</ul>
 			</li>
