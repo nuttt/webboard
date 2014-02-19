@@ -1,0 +1,236 @@
+/*@import url(bootstrap.min.css);*/
+/*@import url(http://fonts.googleapis.com/css?family=Lato:300,400,500,700,900);*/
+.textshadow (dark, @alpha) {
+	text-shadow: 0px 1px 1px rgba(0, 0, 0, @alpha);
+}
+.textshadow (light, @alpha) {
+	text-shadow: 0px 1px 1px rgba(255, 255, 255, @alpha);
+}
+.textshadowtop (dark, @alpha) {
+	text-shadow: 0px -1px 1px rgba(0, 0, 0, @alpha);
+}
+.textshadowtop (light, @alpha) {
+	text-shadow: 0px -1px 1px rgba(255, 255, 255, @alpha);
+}
+.bgeffect{
+	-webkit-transition: background 0.3s ease;
+	-moz-transition: background 0.3s ease;
+	-ms-transition: background 0.3s ease;
+	-o-transition: background 0.3s ease;
+	transition: background 0.3s ease;
+}
+.noeffect{
+	-webkit-transition: all 0 ease;
+	-moz-transition: all 0 ease;
+	-ms-transition: all 0 ease;
+	-o-transition: all 0 ease;
+	transition: all 0 ease;
+}
+.effect (@text){
+	-webkit-transition: @text;
+	-moz-transition: @text;
+	-ms-transition: @text;
+	-o-transition: @text;
+	transition: @text;
+}
+.gradient (@color1, @color2, @default){
+	background: @default;
+	background: -moz-linear-gradient(top,  @color1 0%, @color2 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,@color1), color-stop(100%,@color2));
+	background: -webkit-linear-gradient(top,  @color1 0%,@color2 100%);
+	background: -o-linear-gradient(top,  @color1 0%,@color2 100%);
+	background: -ms-linear-gradient(top,  @color1 0%,@color2 100%);
+	background: linear-gradient(to bottom,  @color1 0%,@color2 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr="@{color1}", endColorstr="@{color2}",GradientType=0 );
+}
+.gradient (@color1, @color2){
+	background: @color1;
+	background: -moz-linear-gradient(top,  @color1 0%, @color2 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,@color1), color-stop(100%,@color2));
+	background: -webkit-linear-gradient(top,  @color1 0%,@color2 100%);
+	background: -o-linear-gradient(top,  @color1 0%,@color2 100%);
+	background: -ms-linear-gradient(top,  @color1 0%,@color2 100%);
+	background: linear-gradient(to bottom,  @color1 0%,@color2 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr="@{color1}", endColorstr="@{color2}",GradientType=0 );
+}
+.gradientdark (@color1, @color2, @p){
+	@icolor1: darken(@color1, @p);
+	@icolor2: darken(@color2, @p);
+	.gradient (darken(@color1, @p), darken(@color2, @p));
+}
+.innertop (dark, @alpha){
+	-webkit-box-shadow: inset 0px 1px 1px 0px rgba(0, 0, 0, @alpha);
+	box-shadow: inset 0px 1px 1px 0px rgba(0, 0, 0, @alpha);
+}
+.innertop (light, @alpha){
+	-webkit-box-shadow: inset 0px 1px 1px 0px rgba(255, 255, 255, @alpha);
+	box-shadow: inset 0px 1px 1px 0px rgba(255, 255, 255, @alpha);
+}
+@w: 30px;
+@blue: #7dc0d8;
+body{
+	font-size: 135%;
+	padding-top: 80px;
+}
+.red{
+	color: red;
+}
+.right{
+	float: right;
+}
+#body{
+	margin-bottom: 30px;
+}
+#content-list{
+	.list{
+		border: 1px solid #eee;
+		border-radius: 5px;
+		padding: 20px;
+	}
+	hr{
+		margin-right: 0 20px;
+	}
+	.text-left{
+		font-size: 150%;
+		display: inline-block;
+		margin: 2px 0;
+		font-weight: bold;
+		position: relative;
+		top: 2px;
+	}
+}
+.helper{
+
+}
+.comment{
+
+}
+.topic{
+	margin-bottom: 0;
+	h4{
+		font-weight: bold;
+		margin-top: 0;
+	}
+	.col-xs-2{
+		margin-top: 4px;
+		.btn{
+		}
+	}
+}
+.create-btn{
+	font-weight: bold;
+	span{
+		position: relative;
+		top: 2px;
+		padding-right: 5px;
+	}
+}
+.topic-line{
+	margin-top: 13px;
+}
+.pagination{
+	margin: 0;
+}
+#sidebar{
+	.replies{
+		font-size: 90%;
+		h4{
+			color: #428bca;
+			font-size: 120%;
+			font-weight: bold;
+		}
+	}
+}
+.info{
+	.name{
+		display: inline-block;
+		font-size: 90%;
+		background-color: #f7f8f8;
+		padding: 1px 8px;
+		position: relative;
+		top: 1px;
+	}
+	.date{
+		display: inline-block;
+		background-color: #f7f8f8;
+		borderx: 1px solid #eef0f0;
+		border-radius: 3px;
+		font-size: 80%;
+		padding: 3px 5px;
+		margin: 0;
+	}
+	.tag{
+		display: inline-block;
+		background-color: #eff9fa;
+		border: 1px solid #daeaec;
+		border-radius: 3px;
+		font-size: 80%;
+		padding: 2px 5px;
+		margin: 0;
+		&:hover{
+			background-color: #e4f7f9;
+			text-decoration: none;
+		}
+		&.yellow{
+			background-color: #FAF9EF;
+			border-color: #ECEADA;
+			color: #C09F35;
+			&:hover{
+				background-color: #FAF7D7;
+				color: darken(#C09F35,5%);
+			}
+		}
+		&.red{
+			background-color: #FDF4F4;
+			border-color: #FAE2E2;
+			color: #D3747C;
+			&:hover{
+				background-color: #FFECEC;
+				color: #C03540;
+			}
+		}
+		&.orange{
+			background-color: #FFF8F0;
+			border-color: #F5EDE4;
+			color: #DD9450;
+			&:hover{
+				background-color: #FFF4E7;
+				color: #C03540;
+			}
+		}
+	}
+}
+
+.thread{
+	border: 1px solid #eee;
+	background-color: #f9fcfe;
+	border-radius: 5px;
+	padding: 20px;
+}
+.reply,.box{
+	border: 1px solid #eee;
+	border-radius: 5px;
+	padding: 20px;
+	margin: 30px 0;
+}
+.box{
+	margin-top: 0;
+}
+.post {
+	padding: 0 30px;
+	border-bottom: 5px #bdc3c7 solid;
+}
+.vote{
+	font-size: 120%;
+	font-weight: bold;
+	padding: 0 7px;
+	line-height: 22px;
+}
+.current-score{
+	display: inline-block;
+	padding: 3px 8px;
+	position: relative;
+	top: 3px;
+	line-height: 33px;
+	font-size: 180%;
+}
