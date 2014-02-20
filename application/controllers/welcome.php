@@ -19,8 +19,8 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->load->model('Person');
-		var_dump(Person::test());
+		$this->load->model('Person_model');
+		var_dump(Person_model::test());
 		$data['test'] = '';
 		$this->load->view('welcome_message', $data);
 	}
