@@ -1,9 +1,13 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 class Auth extends CI_Controller {
 
+	var $header;
+	var $footer;
+
 	function __construct(){
 		parent::__construct();
 		session_start();
+		$this->header = get_header_data();
 	}
 
 	public function index(){
@@ -18,19 +22,20 @@ class Auth extends CI_Controller {
 			$person = $this->person_model->verify_person($this->input->post('email'), $this->input->post('password'));
 			if($person){
 				$_SESSION['person_id'] = $person->PERSON_ID;
-				redirect('/');
+				redirect($this->input->get('return'));
 			}
 		}
-		$data['header'] = $this->load->view('header', '', TRUE);
-		$data['footer'] = $this->load->view('footer', '', TRUE);
+		$data['return'] = $this->input->get('return');
+		$data['header'] = $this->load->view('header', $this->header, TRUE);
+		$data['footer'] = $this->load->view('footer', $this->footer, TRUE);
 		$this->load->view('auth/index', $data);
 	}
 
-	public function logout(){
+	public function signout(){
 		session_destroy();
-		$data['header'] = $this->load->view('header', '', TRUE);
-		$data['footer'] = $this->load->view('footer', '', TRUE);
-		$this->load->view('auth/index', $data);
+		$data['header'] = $this->load->view('header', $this->header, TRUE);
+		$data['footer'] = $this->load->view('footer', $this->footer, TRUE);
+		redirect($this->input->get('return'));
 	}
 
 }

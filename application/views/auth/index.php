@@ -1,7 +1,7 @@
 <?php echo $header; ?>
 		<div class="row">
 			<div class="col-md-4 col-md-offset-4" id="signin">
-				<?php echo form_open('auth', array('class' => 'form-signin')); ?>
+				<?php echo form_open('auth?return='.$return, array('class' => 'form-signin')); ?>
 				<h2 class="form-signin-heading">Please sign in</h2>
 					<?php if(validation_errors()): ?>
 						<div class="alert alert-danger">

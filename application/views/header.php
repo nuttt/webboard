@@ -46,21 +46,23 @@
 				</ul>
 			</li>
 		</ul>
-		<?php if(isset($user) && $user): // show this to logged in user only ?>
 			<ul class="nav navbar-nav navbar-right">
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $user->DISPLAY_NAME; ?> <b class="caret"></b></a>
-					<ul class="dropdown-menu">
-						<li><a href="edit_profile.php">Edit Profile</a></li>
-						<li><a href="member_profile.php">View Profile</a></li>
-						<li><a href="member_profile.php#topics">View your posts</a></li>
-						<li class="divider"></li>
-						<li><a href="admin">Admin</a></li>
-						<li><a href="<?php echo base_url('auth/logout'); ?>">Logout</a></li>
-					</ul>
-				</li>
+				<?php if(isset($user) && $user): // show this to logged in user only ?>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $user->DISPLAY_NAME; ?> <b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="edit_profile.php">Edit Profile</a></li>
+							<li><a href="member_profile.php">View Profile</a></li>
+							<li><a href="member_profile.php#topics">View your posts</a></li>
+							<li class="divider"></li>
+							<li><a href="admin">Admin</a></li>
+							<li><a href="<?php echo base_url('auth/signout?return='.uri_string()); ?>">Sign out</a></li>
+						</ul>
+					</li>
+				<?php else: ?>
+					<li><a href="<?php echo base_url('auth?return='.uri_string()); ?>">Sign in</a></li>
+				<?php endif; ?>
 			</ul>
-		<?php endif; ?>
 	</div><!-- /.navbar-collapse -->
 </nav>
 <div id="body">
