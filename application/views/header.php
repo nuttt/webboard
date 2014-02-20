@@ -39,26 +39,28 @@
 			<li class="dropdown">
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin Management <b class="caret"></b></a>
 				<ul class="dropdown-menu">
-					<li><a href="admin/index.php">Dashboard</a></li>
+					<li><a href="<?php echo base_url(); ?>">Dashboard</a></li>
 					<li><a href="admin/manage_user.php">Users</a></li>
 					<li><a href="admin/manage_tag.php">Tags</a></li>
 					<li><a href="admin/manage_report.php">Reports</a></li>
 				</ul>
 			</li>
 		</ul>
-		<ul class="nav navbar-nav navbar-right">
-			<li class="dropdown">
-				<a href="#" class="dropdown-toggle" data-toggle="dropdown">Nuttapon P <b class="caret"></b></a>
-				<ul class="dropdown-menu">
-					<li><a href="edit_profile.php">Edit Profile</a></li>
-					<li><a href="member_profile.php">View Profile</a></li>
-					<li><a href="member_profile.php#topics">View your posts</a></li>
-					<li class="divider"></li>
-					<li><a href="admin">Admin</a></li>
-					<li><a href="#">Logout</a></li>
-				</ul>
-			</li>
-		</ul>
+		<?php if(isset($user) && $user): // show this to logged in user only ?>
+			<ul class="nav navbar-nav navbar-right">
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $user->DISPLAY_NAME; ?> <b class="caret"></b></a>
+					<ul class="dropdown-menu">
+						<li><a href="edit_profile.php">Edit Profile</a></li>
+						<li><a href="member_profile.php">View Profile</a></li>
+						<li><a href="member_profile.php#topics">View your posts</a></li>
+						<li class="divider"></li>
+						<li><a href="admin">Admin</a></li>
+						<li><a href="<?php echo base_url('auth/logout'); ?>">Logout</a></li>
+					</ul>
+				</li>
+			</ul>
+		<?php endif; ?>
 	</div><!-- /.navbar-collapse -->
 </nav>
 <div id="body">

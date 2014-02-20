@@ -49,8 +49,8 @@ $active_group = 'default';
 $active_record = TRUE;
 
 $db['default']['hostname'] = '//nutttdb.c1unz50e6nmg.ap-southeast-1.rds.amazonaws.com/orcl';
-$db['default']['username'] = 'nuttt';
-$db['default']['password'] = 'rdsoracle';
+$db['default']['username'] = 'webboard';
+$db['default']['password'] = 'webboard';
 $db['default']['database'] = '';
 $db['default']['dbdriver'] = 'oci8';
 $db['default']['dbprefix'] = '';

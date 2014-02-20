@@ -1,13 +1,10 @@
 <?php
 class Person_model extends CI_Model {
 
-	var $title   = '';
-	var $content = '';
-	var $date    = '';
-
 	function __construct(){
 		// Call the Model constructor
 		parent::__construct();
+
 	}
 	
 	function test(){
@@ -17,26 +14,19 @@ class Person_model extends CI_Model {
 	}
 
 	public function verify_person($email, $password){
-		$query = $this->db->query("SELECT * FROM person WHERE email = '".$email."' AND password = '".sha1($password)."'");
-		return $query->num_rows() > 0;
+		$query = $this->db->query("SELECT * FROM person WHERE email = '".$email."' AND password = '".sha1($password)."' AND ROWNUM <= 1");
+		if($query->num_rows() > 0){
+			return $query->row();
+		}
+		return false;
 	}
 
-	// function insert_entry()
-	// {
-	// 	$this->title   = $_POST['title']; // please read the below note
-	// 	$this->content = $_POST['content'];
-	// 	$this->date    = time();
-
-	// 	$this->db->insert('entries', $this);
-	// }
-
-	// function update_entry()
-	// {
-	// 	$this->title   = $_POST['title'];
-	// 	$this->content = $_POST['content'];
-	// 	$this->date    = time();
-
-	// 	$this->db->update('entries', $this, array('id' => $_POST['id']));
-	// }
+	public function get_person($id){
+		$query = $this->db->query("SELECT * FROM person WHERE person_id = '".$id."' AND ROWNUM <= 1");
+		if($query->num_rows() > 0){
+			return $query->row();
+		}
+		return false;
+	}
 
 }
