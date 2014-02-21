@@ -1,0 +1,9 @@
+<?php
+
+
+class post_reply_model extends CI_Model {
+	function get_count_reply($post_id){
+		$query = $this->db->query("");
+		return $query->result();
+	}
+}
