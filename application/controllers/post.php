@@ -19,4 +19,11 @@ class Post extends CI_Controller {
 		$data['footer'] = $this->load->view('footer', $this->footer, TRUE);
 		$this->load->view('post/index', $data);
 	}
+
+	public function tag($tag_ID = "0"){
+		$data['posts'] = $this->post_model->get_topics_with_tag($tag_ID);
+		$data['header'] = $this->load->view('header', $this->header, TRUE);
+		$data['footer'] = $this->load->view('footer', $this->footer, TRUE);
+		$this->load->view('post/index', $data);
+	}
 }
