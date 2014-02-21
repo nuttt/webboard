@@ -21,48 +21,68 @@
 					</div><!--topic-->
 					<hr class="topic-line">
 					<div class="context">
-						<form class="form-horizontal" role="form">
+							<?php echo form_open('auth/signup', array('class' => 'form-horizontal', 'role' => 'form')) ?>
 							<div class="form-group">
-								<label for="inputEmail3" class="col-sm-4 control-label">Name</label>
+								<?php 
+									echo form_label('Name', 'name', array('class' => 'col-sm-4 control-label'));
+								 ?>
 								<div class="col-sm-8">
-									<input type="name" class="form-control" id="inputEmail3" placeholder="Name" value="Nuttapon Pattanavijit">
+									<?php  
+										echo form_input('name', set_value('name'), 'class="form-control" placeholder="Name"');
+									?> 	
+								</div>
+							</div><!--form-group-->
+
+							<div class="form-group">
+								<?php echo form_label('Email', 'email', array('class' => 'col-sm-4 control-label')) ?>
+								<div class="col-sm-8">
+									<?php echo form_input('email', set_value('email'), 'class="form-control" placeholder="Email"'); ?>
 								</div>
 							</div><!--form-group-->
 							<div class="form-group">
-								<label for="inputEmail3" class="col-sm-4 control-label">Email</label>
+								<?php echo form_label('Facebook', 'facebook', array('class' => 'col-sm-4 control-label')) ?>
 								<div class="col-sm-8">
-									<input type="email" class="form-control" id="inputEmail3" placeholder="Email" value="nuttt.p@gmail.com">
+									<?php echo form_input('facebook', set_value('facebook'), 'class="form-control" placeholder="Facebook"'); ?>
 								</div>
 							</div><!--form-group-->
 							<div class="form-group">
-								<label for="inputEmail3" class="col-sm-4 control-label">Birthdate</label>
+								<?php echo form_label('Twitter', 'twitter', array('class' => 'col-sm-4 control-label')) ?>
 								<div class="col-sm-8">
-									<input type="date" class="form-control" id="inputEmail3" placeholder="1992-11-01" value="1992-11-01">
+									<?php echo form_input('twitter', set_value('twitter'), 'class="form-control" placeholder="Twitter"'); ?>
 								</div>
 							</div><!--form-group-->
 							<div class="form-group">
-								<label for="inputEmail3" class="col-sm-4 control-label">Profile Picture</label>
+								<?php echo form_label('Birthdate', 'birthdate', array('class' => 'col-sm-4 control-label')) ?>
 								<div class="col-sm-8">
-									<input type="file">
+									<?php echo form_input(array('type' => 'date','name' => 'birthdate', 'class' => 'form-control', 'placeholder' => '1992-11-01', 'value' => '1992-11-01')); ?>
+								</div>
+							</div><!--form-group-->
+							<div class="form-group">
+								<?php echo form_label('Profile Picture', 'picture', array('class' => 'col-sm-4 control-label')) ?>
+								<div class="col-sm-8">
+									<?php echo form_input(array('type' => 'file', 'name' => 'picture', 'value' => '')) ?>
+									<!-- <input type="file"> -->	
 									<br>
 									<strong>Current Image:</strong>
 									<img src="img/avatar_test.jpg" class="img-circle">
 								</div>
 							</div><!--form-group-->
 							<div class="form-group">
-								<label for="inputEmail3" class="col-sm-4 control-label">New Password</label>
+								<?php echo form_label('Password', 'password', array('class' => 'col-sm-4 control-label')) ?>
 								<div class="col-sm-8">
-									<input type="password" class="form-control" id="inputEmail3" placeholder="123456">
+									<?php echo form_input(array('type' => 'password', 'name' => 'password', 'class' => 'form-control', 'placeholder' => 'Enter your password')) ?>
+									
 								</div>
 							</div><!--form-group-->
 							<div class="form-group">
-								<label for="inputEmail3" class="col-sm-4 control-label">Confirm new password</label>
+								<?php echo form_label('Confirm password', 'password2', array('class' => 'col-sm-4 control-label')) ?>
 								<div class="col-sm-8">
-									<input type="password" class="form-control" id="inputEmail3" placeholder="123456">
+									<?php echo form_input(array('type' => 'password','name' => 'password2', 'class' => 'form-control', 'placeholder' => '')) ?>
 								</div>
 							</div><!--form-group-->
 							<div class="form-group">
 								<div class="col-sm-offset-4 col-sm-8">
+
 									<button type="submit" class="btn btn-primary">Update Profile</button>
 								</div>
 							</div>
