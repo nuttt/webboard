@@ -10,6 +10,10 @@ class Auth extends CI_Controller {
 		$this->header = get_header_data();
 	}
 
+	public function signup(){
+		
+	}
+
 	public function index(){
 		if(isset($_SESSION['person_id'])){
 			redirect('/');
@@ -34,6 +38,12 @@ class Auth extends CI_Controller {
 	public function signout(){
 		session_destroy();
 		redirect($this->input->get('return'));
+	}
+	public function signup(){
+		$data['header'] = $this->load->view('header', $this->header, TRUE);
+		$data['footer'] = $this->load->view('footer', $this->footer, TRUE);
+		$this->load->view('auth/signup', $data);
+
 	}
 
 }
