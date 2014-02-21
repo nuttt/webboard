@@ -21,4 +21,12 @@ class tag_model extends CI_Model {
 		$query = $this->db->query("SELECT TAG.TAG_ID, TAG.NAME, count(*) as NUM FROM TAG INNER JOIN TOPIC_TAG ON TAG.TAG_ID = TOPIC_TAG.TAG_ID GROUP BY TAG.TAG_ID, TAG.NAME");
 		return $query->result();
 	}
+
+	function update_tag($tag_id, $new_name){
+		$query = $this->db->query("UPDATE TAG SET NAME = '".$new_name."' WHERE TAG_ID = ".$tag_id);
+	}
+
+	function add_tag($name){
+		$query = $this->db->query("INSERT INTO TAG (NAME) VALUES ('$name')");
+	}
 }
