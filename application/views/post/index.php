@@ -34,26 +34,23 @@
 						<div class="clear"></div>
 					</div><!--helper-->
 					<hr>
-					<?php  
-						foreach ($posts as $post):
-
-					?>
+					<?php foreach ($posts as $post): ?>
 						<div class="row topic">
 							<div class="col-xs-10">
-								<h4><a href="content.php"><?=$post->TITLE?></a></h4>
+								<h4><a href="<?=base_url()?>post/view/<?=$post->POST_ID?>"><?=$post->TITLE?></a></h4>
 								<p class="info">
-									<a href="member_profile.php" class="name"><strong><?=$post->DISPLAY_NAME?></strong></a>
+									<a href="<?=base_url()?>post/person/<?=$post->PERSON_ID?>" class="name"><strong><?=$post->DISPLAY_NAME?></strong></a>
 									<span class="date"><?=$post->TIME?></span>
 									<?php 
 										// var_dump($posts->TAGS);
 										foreach ($post->TAGS as $tag):
 									 ?>
-									<a href="" class="tag"><?php echo $tag->NAME; ?></a>
+									<a href="<?=base_url()?>post/tag/<?=$tag->TAG_ID?>" class="tag"><?php echo $tag->NAME; ?></a>
 									<?php endforeach; ?>
 								</p>
 							</div>
 							<div class="col-xs-2 text-right">
-								<a href="content.php" class="btn btn-primary btn-lg comment">
+								<a href="<?=base_url()?>post/view/<?=$post->POST_ID?>" class="btn btn-primary btn-lg comment">
 									<span><?php echo $post->COUNT_REPLY; ?> replies</span>
 								</a><!--comment-->
 							</div>
