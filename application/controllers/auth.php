@@ -6,7 +6,7 @@ class Auth extends CI_Controller {
 
 	function __construct(){
 		parent::__construct();
-		session_start();
+		// session_start();
 		$this->header = get_header_data();
 	}
 
@@ -36,7 +36,8 @@ class Auth extends CI_Controller {
 	}
 
 	public function signout(){
-		session_destroy();
+		// session_destroy();
+		$this->session->sess_destroy();
 		$data['header'] = $this->load->view('header', $this->header, TRUE);
 		$data['footer'] = $this->load->view('footer', $this->footer, TRUE);
 		redirect($this->input->get('return'));
