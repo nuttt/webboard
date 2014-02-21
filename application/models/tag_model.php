@@ -9,7 +9,10 @@ class tag_model extends CI_Model {
 
 	function get_name($tag_id) {
 		$query = $this->db->query("SELECT TAG_ID, NAME FROM TAG WHERE TAG_ID = ".$tag_id);
-		return $query->first_row()->NAME;
+		if($query->num_rows() > 0){
+			return $query->first_row()->NAME;
+		}
+		return false;
 	}
 
 	function get_tags(){
