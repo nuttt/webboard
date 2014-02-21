@@ -7,13 +7,17 @@ class tag_model extends CI_Model {
 		return $query->result();
 	}
 
-	function get_all() {
-		$query = $this->db->query("SELECT TAG_ID, NAME FROM TAG");
+	function get_name($tag_id) {
+		$query = $this->db->query("SELECT TAG_ID, NAME FROM TAG WHERE TAG_ID = ".$tag_id);
+		return $query->first_row()->NAME;
+
+	function get_tags(){
+		$query = $this->db->query("SELECT * FROM TAG");
 		return $query->result();
 	}
 
-	function get_Name($tag_id) {
-		$query = $this->db->query("SELECT TAG_ID, NAME FROM TAG WHERE TAG_ID = ".$tag_id);
-		return $query->first_row()->NAME;
+	function get_tags_with_topic_num(){
+		$query = $this->db->query("SELECT TAG.TAG_ID, TAG.NAME, count(*) as NUM FROM TAG INNER JOIN TOPIC_TAG ON TAG.TAG_ID = TOPIC_TAG.TAG_ID GROUP BY TAG.TAG_ID, TAG.NAME");
+		return $query->result();
 	}
 }

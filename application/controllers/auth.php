@@ -11,7 +11,10 @@ class Auth extends CI_Controller {
 	}
 
 	public function index(){
-		if(isset($_SESSION['person_id'])){
+		// if(isset($_SESSION['person_id'])){
+		// 	redirect('/');
+		// }
+		if($this->session->userdata('person_id')){
 			redirect('/');
 		}
 		$this->load->library('form_validation');
@@ -21,7 +24,8 @@ class Auth extends CI_Controller {
 		if($this->form_validation->run() != false){
 			$person = $this->person_model->verify_person($this->input->post('email'), $this->input->post('password'));
 			if($person){
-				$_SESSION['person_id'] = $person->PERSON_ID;
+				$this->session->set_userdata('person_id', $person->PERSON_ID);
+				// $_SESSION['person_id'] = $person->PERSON_ID;
 				redirect($this->input->get('return'));
 			}
 		}
