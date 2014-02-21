@@ -23,12 +23,26 @@ class Post extends CI_Controller {
 		$this->load->view('post/index', $data);
 	}
 
-	public function tag($tag_ID = "0"){
-		$data['posts'] = $this->post_model->get_topics_with_tag($tag_ID);
+	public function tag($tag_ID ="0"){
+		$data['Title'] = $this->tag_model->get_name($tag_ID);
+		if($data['Title'] == false) {
+			$data['Title'] = "All Topics";
+			$data['posts'] = $this->post_model->get_topics($tag_ID);
+		}
+		else $data['posts'] = $this->post_model->get_topics_with_tag($tag_ID);
+
 		$data['header'] = $this->load->view('header', $this->header, TRUE);
 		$data['footer'] = $this->load->view('footer', $this->footer, TRUE);
-		$data['Title'] = $this->tag_model->get_name($tag_ID);
 		$data['ListOfTag'] = $this->tag_model->get_tags();
 		$this->load->view('post/index', $data);
+	}
+
+	public function view($post_id) {
+		$data['post'] = $this->post_model->get_content($post_id);
+		
+
+		$data['header'] = $this->load->view('header', $this->header, TRUE);
+		$data['footer'] = $this->load->view('footer', $this->footer, TRUE);
+		$this->load->view('post/content', $data);
 	}
 }

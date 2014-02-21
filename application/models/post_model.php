@@ -29,7 +29,7 @@ class Post_model extends CI_Model {
 			"INNER JOIN POST_TOPIC ON POST.POST_ID = POST_TOPIC.POST_ID " .
 			"INNER JOIN PERSON ON PERSON.PERSON_ID = POST.PERSON_ID " .
 			"INNER JOIN TOPIC_TAG ON POST.POST_ID = TOPIC_TAG.TOPIC_ID AND TOPIC_TAG.TAG_ID = " . $tag_ID);
-		
+
 		$posts = $post_query->result();
 		foreach($posts as $post){
 			$post->TAGS = $this->tag_model->get_tag($post->POST_ID);
@@ -37,7 +37,13 @@ class Post_model extends CI_Model {
 		}
 		
 		return $posts;
-
 	}
 
+	function get_content($post_id) {
+		$post_query = $this->db->query("SELECT POST_TOPIC.TITLE, POST.CONTENT " .
+			"FROM POST " .
+			"INNER JOIN POST_TOPIC ON POST.POST_ID = POST_TOPIC.POST_ID AND POST.POST_ID = " . $post_id);
+
+		return $post_query->result();
+	}
 }
