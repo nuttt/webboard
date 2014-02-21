@@ -33,8 +33,6 @@ class Auth extends CI_Controller {
 
 	public function signout(){
 		session_destroy();
-		$data['header'] = $this->load->view('header', $this->header, TRUE);
-		$data['footer'] = $this->load->view('footer', $this->footer, TRUE);
 		redirect($this->input->get('return'));
 	}
 
