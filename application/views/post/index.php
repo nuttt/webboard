@@ -1,5 +1,5 @@
 <?php echo $header; ?>
-	<?php var_dump($posts); ?>
+<!--<pre><?php var_dump($posts); ?></pre>-->
 		<div class="row">
 			<div class="col-md-9" id="content-list">
 				<div class="list">
@@ -54,7 +54,7 @@
 							</div>
 							<div class="col-xs-2 text-right">
 								<a href="content.php" class="btn btn-primary btn-lg comment">
-									<span>3 replies</span>
+									<span><?php echo $post->COUNT_REPLY; ?> replies</span>
 								</a><!--comment-->
 							</div>
 						</div><!--topic-->
