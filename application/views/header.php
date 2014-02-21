@@ -11,6 +11,7 @@
 	<script src="<?php echo base_url('assets/js/less.js'); ?>" type="text/javascript"></script>
 </head>
 <body>
+<?php var_dump(get_tags_with_topic_num()); ?>
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
 	<!-- Brand and toggle get grouped for better mobile display -->
 	<div class="navbar-header">
@@ -22,7 +23,6 @@
 		</button>
 		<a class="navbar-brand" href="index.php">Webboard</a>
 	</div>
-
 	<!-- Collect the nav links, forms, and other content for toggling -->
 	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 		<ul class="nav navbar-nav">
@@ -31,9 +31,12 @@
 			<li class="dropdown">
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown">Tags <b class="caret"></b></a>
 				<ul class="dropdown-menu">
-					<li><a href="index.php">Computer</a></li>
-					<li><a href="index.php">Coding</a></li>
-					<li><a href="index.php">JavaScript</a></li>
+				<?php 
+					$tags = get_tags();
+					foreach($tags as $tag):
+				?>
+					<li><a href="topic/tag/<?php echo $tag->TAG_ID; ?>"><?php echo $tag->NAME; ?></a></li>
+				<?php endforeach; ?>
 				</ul>
 			</li>
 			<li class="dropdown">

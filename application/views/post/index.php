@@ -20,11 +20,12 @@
 									Tags <span class="caret"></span>
 								</button>
 								<ul class="dropdown-menu">
-									<li><a href="#">Computer</a></li>
-									<li><a href="#">Computer Engineering</a></li>
-									<li><a href="#">Coding</a></li>
-									<li><a href="#">Maths</a></li>
-									<li><a href="#">Physics</a></li>
+									<?php 
+										$tags = get_tags();
+										foreach($tags as $tag):
+									?>
+										<li><a href="post/tag/<?php echo $tag->TAG_ID; ?>"><?php echo $tag->NAME; ?></a></li>
+									<?php endforeach; ?>
 								</ul>
 							</div><!--btn-group-->
 						</span><!--text-right-->
@@ -96,9 +97,12 @@
 				</div>
 				<h3>Related Tags</h3>
 				<div class="list-group">
-					<a href="" class="list-group-item"><span class="badge">114</span> Computer</a>
-					<a href="" class="list-group-item"><span class="badge">20</span> Coding</a>
-					<a href="" class="list-group-item"><span class="badge">6</span> Programming</a>
+				<?php 
+					$tags2 = get_tags_with_topic_num();
+					foreach($tags2 as $tag):
+				?>
+					<a href="post/tag/<?php echo $tag->TAG_ID; ?>" class="list-group-item"><span class="badge"><?php echo $tag->NUM; ?></span> <?php echo $tag->NAME; ?></a>
+				<?php endforeach; ?>
 				</div>
 			</div><!--sidebar-->
 		</div><!--row-->

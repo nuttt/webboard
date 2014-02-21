@@ -6,11 +6,24 @@ function get_header_data(){
 }
 
 function get_user(){
-	if(isset($_SESSION['person_id'])){ // has logged in
-		$CI =& get_instance();
+	$CI =& get_instance();
+	$person_id = $CI->session->userdata('person_id');
+	if($person_id){ // has logged in
 		$CI->load->model('person_model');
-		return $CI->person_model->get_person($_SESSION['person_id']);
+		return $CI->person_model->get_person($person_id);
 	}
 	// hasn't logged in
 	return false;
+}
+
+function get_tags(){
+	$CI =& get_instance();
+	$CI->load->model('tag_model');
+	return $CI->tag_model->get_tags();	
+}
+
+function get_tags_with_topic_num(){
+	$CI =& get_instance();
+	$CI->load->model('tag_model');
+	return $CI->tag_model->get_tags_with_topic_num();	
 }

@@ -11,12 +11,15 @@ class Post extends CI_Controller {
 		//person_login();
 		$this->header = get_header_data();
 		$this->load->model('post_model');
+		$this->load->model('tag_model');
 	}
 
 	public function index(){
 		$data['posts'] = $this->post_model->get_topics();
 		$data['header'] = $this->load->view('header', $this->header, TRUE);
 		$data['footer'] = $this->load->view('footer', $this->footer, TRUE);
+		$data['Title'] = "All Topics";
+		$data['ListOfTag'] = $this->tag_model->get_tags();
 		$this->load->view('post/index', $data);
 	}
 
@@ -24,6 +27,8 @@ class Post extends CI_Controller {
 		$data['posts'] = $this->post_model->get_topics_with_tag($tag_ID);
 		$data['header'] = $this->load->view('header', $this->header, TRUE);
 		$data['footer'] = $this->load->view('footer', $this->footer, TRUE);
+		$data['Title'] = $this->tag_model->get_name($tag_ID);
+		$data['ListOfTag'] = $this->tag_model->get_tags();
 		$this->load->view('post/index', $data);
 	}
 }
