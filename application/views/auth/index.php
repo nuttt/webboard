@@ -1,4 +1,5 @@
 <?php echo $header; ?>
+<?php is_admin(); ?>
 		<div class="row">
 			<div class="col-md-4 col-md-offset-4" id="signin">
 				<?php echo form_open('auth?return='.$return, array('class' => 'form-signin')); ?>

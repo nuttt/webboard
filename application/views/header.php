@@ -38,6 +38,7 @@
 				<?php endforeach; ?>
 				</ul>
 			</li>
+			<?php if(is_admin()): ?>
 			<li class="dropdown">
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin Management <b class="caret"></b></a>
 				<ul class="dropdown-menu">
@@ -47,6 +48,7 @@
 					<li><a href="admin/manage_report.php">Reports</a></li>
 				</ul>
 			</li>
+			<?php endif; ?>
 		</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<?php if(isset($user) && $user): // show this to logged in user only ?>
