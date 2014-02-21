@@ -24,13 +24,13 @@
 										$tags = get_tags();
 										foreach($tags as $tag):
 									?>
-										<li><a href="post/tag/<?php echo $tag->TAG_ID; ?>"><?php echo $tag->NAME; ?></a></li>
+										<li><a href="<?=base_url()?>post/tag/<?php echo $tag->TAG_ID; ?>"><?php echo $tag->NAME; ?></a></li>
 									<?php endforeach; ?>
 								</ul>
 							</div><!--btn-group-->
 						</span><!--text-right-->
 						<span class="text-left">
-							All Topics
+							<?php echo $Title ?>
 						</span>
 						<div class="clear"></div>
 					</div><!--helper-->

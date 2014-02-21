@@ -11,7 +11,6 @@
 	<script src="<?php echo base_url('assets/js/less.js'); ?>" type="text/javascript"></script>
 </head>
 <body>
-<?php var_dump(get_tags_with_topic_num()); ?>
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
 	<!-- Brand and toggle get grouped for better mobile display -->
 	<div class="navbar-header">
