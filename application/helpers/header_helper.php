@@ -5,12 +5,37 @@ function get_header_data(){
 	return $data;
 }
 
+function get_person_id($CI){
+	return $CI->session->userdata('person_id');
+}
+
 function get_user(){
-	if(isset($_SESSION['person_id'])){ // has logged in
-		$CI =& get_instance();
+	$CI =& get_instance();
+	
+	if($person_id = get_person_id($CI)){ // has logged in
 		$CI->load->model('person_model');
-		return $CI->person_model->get_person($_SESSION['person_id']);
+		return $CI->person_model->get_person($person_id);
 	}
 	// hasn't logged in
+	return false;
+}
+
+function get_tags(){
+	$CI =& get_instance();
+	$CI->load->model('tag_model');
+	return $CI->tag_model->get_tags();	
+}
+
+function get_tags_with_topic_num(){
+	$CI =& get_instance();
+	$CI->load->model('tag_model');
+	return $CI->tag_model->get_tags_with_topic_num();	
+}
+
+function is_admin(){
+	$CI =& get_instance();
+	if($person_id = get_person_id($CI)){
+		return $CI->person_model->is_admin($person_id);
+	}
 	return false;
 }

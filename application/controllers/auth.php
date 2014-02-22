@@ -6,7 +6,7 @@ class Auth extends CI_Controller {
 
 	function __construct(){
 		parent::__construct();
-		session_start();
+		// session_start();
 		$this->header = get_header_data();
 	}
 
@@ -65,7 +65,10 @@ class Auth extends CI_Controller {
 	}
 
 	public function index(){
-		if(isset($_SESSION['person_id'])){
+		// if(isset($_SESSION['person_id'])){
+		// 	redirect('/');
+		// }
+		if($this->session->userdata('person_id')){
 			redirect('/');
 		}
 		$this->load->library('form_validation');
@@ -75,7 +78,8 @@ class Auth extends CI_Controller {
 		if($this->form_validation->run() != false){
 			$person = $this->person_model->verify_person($this->input->post('email'), $this->input->post('password'));
 			if($person){
-				$_SESSION['person_id'] = $person->PERSON_ID;
+				$this->session->set_userdata('person_id', $person->PERSON_ID);
+				// $_SESSION['person_id'] = $person->PERSON_ID;
 				redirect($this->input->get('return'));
 			}
 		}
@@ -86,11 +90,15 @@ class Auth extends CI_Controller {
 	}
 
 	public function signout(){
+
 		session_destroy();
 		redirect($this->input->get('return'));
 	}
 	public function signup(){
 
+
+		// session_destroy();
+		$this->session->sess_destroy();
 		$data['header'] = $this->load->view('header', $this->header, TRUE);
 		$data['footer'] = $this->load->view('footer', $this->footer, TRUE);
 		$this->load->view('auth/signup', $data);

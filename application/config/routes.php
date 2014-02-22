@@ -38,7 +38,7 @@
 |
 */
 
-$route['default_controller'] = "TopicList";
+$route['default_controller'] = "Post";
 $route['404_override'] = '';
 
 

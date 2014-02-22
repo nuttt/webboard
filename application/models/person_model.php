@@ -29,4 +29,13 @@ class Person_model extends CI_Model {
 		return false;
 	}
 
+	function is_admin($person_id){
+		$query = $this->db->query("SELECT 1 FROM person_admin");
+		return $query->num_rows() > 0;
+	}
+
+	function get_person_profile($id){
+		$query = $this->db->query("");
+	}
+
 }
