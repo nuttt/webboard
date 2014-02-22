@@ -40,7 +40,7 @@
 							<div class="col-xs-10">
 								<h4><a href="<?=base_url()?>post/view/<?=$post->POST_ID?>"><?=$post->TITLE?></a></h4>
 								<p class="info">
-									<a href="<?=base_url()?>post/person/<?=$post->PERSON_ID?>" class="name"><strong><?=$post->DISPLAY_NAME?></strong></a>
+									<a href="<?=base_url()?>person/<?=$post->PERSON_ID?>" class="name"><strong><?=$post->DISPLAY_NAME?></strong></a>
 									<span class="date"><?=$post->TIME?></span>
 									<?php 
 										// var_dump($posts->TAGS);

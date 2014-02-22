@@ -7,11 +7,11 @@ class Post extends CI_Controller {
 
 	function __construct(){
 		parent::__construct();
+		session_start();
 		//person_login();
 		$this->header = get_header_data();
 		$this->load->model('post_model');
 		$this->load->model('tag_model');
-		$this->load->model('post_reply_model');
 	}
 
 	public function index(){
@@ -38,9 +38,7 @@ class Post extends CI_Controller {
 	}
 
 	public function view($post_id) {
-		$data['post'] = $this->post_model->get_content($post_id);
-		$data['replies'] = $this->post_reply_model->get_post_reply($post_id);
-
+		$data['posts'] = $this->post_model->get_content($post_id);
 		$data['header'] = $this->load->view('header', $this->header, TRUE);
 		$data['footer'] = $this->load->view('footer', $this->footer, TRUE);
 		$this->load->view('post/content', $data);
