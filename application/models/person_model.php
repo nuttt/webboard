@@ -34,4 +34,8 @@ class Person_model extends CI_Model {
 		return $query->num_rows() > 0;
 	}
 
+	function get_person_profile($id){
+		$query = $this->db->query("");
+	}
+
 }

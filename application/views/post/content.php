@@ -9,7 +9,7 @@
 							<div class="col-xs-8">
 								<h4><a href="<?=base_url()?>post/view/<?=$post->POST_ID?>"><?php echo $post->TITLE; ?></a></h4>
 								<p class="info">
-									<a href="<?=base_url()?>person/<?=$post->PERSON_ID?>" class="name"><strong><?php echo $post->DISPLAY_NAME; ?></strong></a>
+									<a href="<?=base_url()?>person/profile/<?=$post->PERSON_ID?>" class="name"><strong><?php echo $post->DISPLAY_NAME; ?></strong></a>
 									<span class="date"><?php echo $post->TIME; ?></span>
 									<?php 
 										// var_dump($posts->TAGS);
@@ -58,7 +58,7 @@
 							</div>
 							<div class="col-xs-8">
 								<p class="info">
-									<a href="<?=base_url()?>person/<?=$post->PERSON_ID?>" class="name"><strong><?php echo $reply->DISPLAY_NAME; ?></strong></a>
+									<a href="<?=base_url()?>person/profile/<?=$post->PERSON_ID?>" class="name"><strong><?php echo $reply->DISPLAY_NAME; ?></strong></a>
 									<span class="date"><?php echo $reply->TIME; ?></span>
 									<?php 
 									// Member can edit his own post
