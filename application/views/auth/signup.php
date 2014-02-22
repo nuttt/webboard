@@ -9,7 +9,7 @@
 				<div class="thread">
 					<div class="row topic">
 						<div class="col-xs-1">
-							<img src="img/avatar_test.jpg" class="img-circle">
+							<!-- <img src="img/avatar_test.jpg" class="img-circle"> -->
 						</div>
 						<div class="col-xs-9">
 							<h4><a href="member_profile.php">Nuttapon</a></h4>
@@ -21,7 +21,7 @@
 					</div><!--topic-->
 					<hr class="topic-line">
 					<div class="context">
-							<?php echo form_open('auth/signup', array('class' => 'form-horizontal', 'role' => 'form')) ?>
+							<?php echo form_open_multipart('auth/signup', array('class' => 'form-horizontal', 'role' => 'form')) ?>
 							<div class="form-group">
 								<?php 
 									echo form_label('Name', 'name', array('class' => 'col-sm-4 control-label'));
@@ -64,7 +64,7 @@
 									<!-- <input type="file"> -->	
 									<br>
 									<strong>Current Image:</strong>
-									<img src="img/avatar_test.jpg" class="img-circle">
+									<!-- <img src="img/avatar_test.jpg" class="img-circle"> -->
 								</div>
 							</div><!--form-group-->
 							<div class="form-group">

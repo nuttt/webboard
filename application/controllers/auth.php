@@ -102,7 +102,7 @@ class Auth extends CI_Controller {
 		$data['header'] = $this->load->view('header', $this->header, TRUE);
 		$data['footer'] = $this->load->view('footer', $this->footer, TRUE);
 		$this->load->view('auth/signup', $data);
-
+		$this->load->model('signup');
 		$this->load->library('form_validation');
 
 		$this->form_validation->set_rules('name', 'Username', 'trim|required|min_length[5]|max_length[12]|xss_clean');
@@ -124,13 +124,16 @@ class Auth extends CI_Controller {
 			// $data['footer'] = $this->load->view('footer', $this->footer, TRUE);
 			// $this->load->view('topiclist', $data);
 			//var_dump($_POST);
-			$this->load->model('signup');
-			foreach ($map as $key => $value) {
-				# code...
-				$person[$value] = $_POST[$key];
+			$tmp = $this->signup->add_picture();
+			if(isset($tmp['upload_data'])){
+				foreach ($map as $key => $value) {
+					# code...
+					$person[$value] = $_POST[$key];
+				}
+				$person['AVATAR'] = $tmp['upload_data']['file_name'];
+				$co = $this->signup->add_person($person);
+				echo $co;
 			}
-			$co = $this->signup->add_person($person);
-			echo $co;
 			
 
 			// $person = array(
@@ -144,11 +147,11 @@ class Auth extends CI_Controller {
 			//redirect($this->input->get('return'));
 			
 		}
-		else{
-			
-		}
-
 
 	}
+		
+
+
+	
 
 }

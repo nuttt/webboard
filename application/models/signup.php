@@ -28,7 +28,29 @@ class Signup extends CI_Model{
 		$this->db->query($all);
 		$co = $this->db->count_all('PERSON');
 		$this->db->trans_complete();
+
 		
 		return  $co;
 	}
+	public function add_picture(){
+		$config['upload_path'] = './uploads/';
+		$config['allowed_types'] = 'gif|jpg|png';
+		$config['max_size']	= '100';
+		$config['max_width']  = '1024';
+		$config['max_height']  = '768';
+		$config['file_name'] = 'a';
+		$this->load->library('upload', $config);
+		if ( ! $this->upload->do_upload('picture')){
+			$error = array('error' => $this->upload->display_errors());
+
+			return $error;
+		}
+		else{
+			$data = array('upload_data' => $this->upload->data());
+
+			// $this->load->view('upload_success', $data);
+			return $data;
+		}
+	}
+	
 }
