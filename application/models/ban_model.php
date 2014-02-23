@@ -18,6 +18,11 @@ class Ban_model extends CI_Model {
 		return $query->result();
 	}
 
+	function get_user_bans($user_id){
+		$query = $this->db->query("SELECT ban_log.BAN_LOG_ID, to_char(ban_log.START_DATE,'DY DD-Mon-YYYY HH24:MI')AS START_DATE, to_char(ban_log.END_DATE,'DY DD-Mon-YYYY HH24:MI')AS END_DATE, person.PERSON_ID, person.DISPLAY_NAME, ban_log.ADMIN_ID, admin2.DISPLAY_NAME as ADMIN_NAME FROM ban_log INNER JOIN person ON person.person_id = ban_log.person_id INNER JOIN person admin2 ON admin2.person_id = ban_log.admin_id WHERE ban_log.person_id = $person_id");
+		return $query->result();
+	}
+
 	
 
 }

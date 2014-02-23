@@ -70,6 +70,7 @@
 					</li>
 				<?php else: ?>
 					<li><a href="<?php echo base_url('auth?return='.uri_string()); ?>">Sign in</a></li>
+					<li><a href="<?php echo base_url('auth/signup'); ?>">Sign up</a></li>
 				<?php endif; ?>
 			</ul>
 	</div><!-- /.navbar-collapse -->
