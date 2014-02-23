@@ -35,7 +35,14 @@ class Person_model extends CI_Model {
 	}
 
 	function get_person_profile($id){
-		$query = $this->db->query("");
+		$query = $this->db->query("SELECT P.PERSON_ID, P.DISPLAY_NAME, P.PASSWORD, 
+									CASE WHEN P.AVATAR IS NULL THEN 'DEFAULT' ELSE P.TWITTER END AS AVARTAR,
+									to_char(P.BIRTHDATE,'DD Month YYYY HH24:MI')AS BIRTHDATE,
+									CASE WHEN P.TWITTER IS NULL THEN '' ELSE P.TWITTER END AS TWITTER,
+									CASE WHEN P.FACEBOOK IS NULL THEN '' ELSE P.FACEBOOK END AS FACEBOOK,
+									P.EMAIL, to_char(P.JOINED_DATE,'DD Mon YYYY HH24:MI')AS JOINED_DATE
+									FROM PERSON P WHERE P.PERSON_ID=".$id);
+		return $query->first_row();
 	}
 
 }

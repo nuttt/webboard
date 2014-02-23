@@ -32,4 +32,15 @@ class tag_model extends CI_Model {
 	function add_tag($name){
 		$query = $this->db->query("INSERT INTO TAG (NAME) VALUES ('$name')");
 	}
+
+	function get_top_tag_used($person_id){
+		$topic_query = $this->db->query("SELECT * FROM (SELECT TAG.NAME, COUNT(*) AS NUM
+										FROM POST_TOPIC
+										INNER JOIN POST ON POST_TOPIC.POST_ID = POST_TOPIC.POST_ID AND POST.PERSON_ID = ".$person_id.
+										" INNER JOIN TOPIC_TAG ON TOPIC_TAG.TOPIC_ID = POST_TOPIC.POST_ID 
+										INNER JOIN TAG ON TAG.TAG_ID = TOPIC_TAG.TAG_ID
+										GROUP BY TAG.NAME
+										ORDER BY NUM DESC)
+										WHERE ROWNUM <= 3");
+	}
 }
