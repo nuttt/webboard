@@ -124,15 +124,17 @@ class Auth extends CI_Controller {
 			// $data['footer'] = $this->load->view('footer', $this->footer, TRUE);
 			// $this->load->view('topiclist', $data);
 			//var_dump($_POST);
-			$tmp = $this->signup->add_picture();
-			if(isset($tmp['upload_data'])){
-				foreach ($map as $key => $value) {
-					# code...
-					$person[$value] = $_POST[$key];
+			if($this->signup->check_name($_POST['name'])){
+				$tmp = $this->signup->add_picture();
+				if(isset($tmp['upload_data'])){
+					foreach ($map as $key => $value) {
+						# code...
+						$person[$value] = $_POST[$key];
+					}
+					$person['AVATAR'] = $tmp['upload_data']['file_name'];
+					$co = $this->signup->add_person($person);
+					echo $co;
 				}
-				$person['AVATAR'] = $tmp['upload_data']['file_name'];
-				$co = $this->signup->add_person($person);
-				echo $co;
 			}
 			
 
