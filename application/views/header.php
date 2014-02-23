@@ -25,7 +25,7 @@
 	<!-- Collect the nav links, forms, and other content for toggling -->
 	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 		<ul class="nav navbar-nav">
-			<li class="active"><a href="index.php">Home</a></li>
+			<li class="active"><a href="<?php echo base_url(); ?>">Home</a></li>
 			<li><a href="new_topic.php">New Topic</a></li>
 			<li class="dropdown">
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown">Tags <b class="caret"></b></a>
@@ -42,10 +42,10 @@
 			<li class="dropdown">
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin Management <b class="caret"></b></a>
 				<ul class="dropdown-menu">
-					<li><a href="<?php echo base_url(); ?>">Dashboard</a></li>
-					<li><a href="admin/manage_user.php">Users</a></li>
-					<li><a href="admin/manage_tag.php">Tags</a></li>
-					<li><a href="admin/manage_report.php">Reports</a></li>
+					<li><a href="<?php echo base_url('admin/dashboard'); ?>">Dashboard</a></li>
+					<li><a href="<?php echo base_url('admin/user'); ?>">Users</a></li>
+					<li><a href="<?php echo base_url('admin/tag'); ?>">Tags</a></li>
+					<li><a href="<?php echo base_url('admin/report'); ?>">Reports</a></li>
 				</ul>
 			</li>
 			<?php endif; ?>
