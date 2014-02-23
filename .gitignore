@@ -9,4 +9,3 @@ application/logs/*
 !)application/logs/.htaccess
 
 *.swp
-uploads/*
