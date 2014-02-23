@@ -91,7 +91,7 @@ class Auth extends CI_Controller {
 
 	public function signout(){
 
-		session_destroy();
+		$this->session->sess_destroy();
 		redirect($this->input->get('return'));
 	}
 	public function signup(){
