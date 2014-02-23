@@ -31,7 +31,7 @@ class Person_model extends CI_Model {
 	}
 
 	function is_admin($person_id){
-		$query = $this->db->query("SELECT person_id FROM person_admin");
+		$query = $this->db->query("SELECT person_id FROM person_admin WHERE person_id = $person_id");
 		return $query->num_rows() > 0;
 	}
 
