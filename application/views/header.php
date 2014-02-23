@@ -7,10 +7,13 @@
 	<link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap.min.css'); ?>">
 	<link rel="stylesheet/less" type="text/css" href="<?php echo base_url('assets/css/style.less'); ?>" />
 	<link rel="stylesheet" href="<?php echo base_url('assets/css/chosen.min.css'); ?>">
+	<link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap-wysihtml5-0.0.2.css') ?>">
 	<script src="<?php echo base_url('assets/js/jquery-1.9.1.js'); ?>" type="text/javascript"></script>
 	<script src="<?php echo base_url('assets/js/bootstrap.min.js'); ?>" type="text/javascript"></script>
 	<script src="<?php echo base_url('assets/js/less.js'); ?>" type="text/javascript"></script>
 	<script src="<?php echo base_url('assets/js/chosen.jquery.min.js'); ?>"></script>
+	<script src="<?php echo base_url('assets/js/wysihtml5-0.3.0_rc2.min.js'); ?>" type="text/javascript"></script>
+	<script src="<?php echo base_url('assets/js/bootstrap-wysihtml5-0.0.2.min.js'); ?>" type="text/javascript"></script>
 </head>
 <body>
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -22,7 +25,7 @@
 			<span class="icon-bar"></span>
 			<span class="icon-bar"></span>
 		</button>
-		<a class="navbar-brand" href="index.php">Webboard</a>
+		<a class="navbar-brand" href="<?php echo base_url(); ?>">Webboard</a>
 	</div>
 	<!-- Collect the nav links, forms, and other content for toggling -->
 	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
