@@ -40,14 +40,21 @@ class tag_model extends CI_Model {
 
 
 	function get_top_tag_used($person_id){
-		$topic_query = $this->db->query("SELECT * FROM (SELECT TAG.NAME, COUNT(*) AS NUM
-										FROM POST_TOPIC
-										INNER JOIN POST ON POST_TOPIC.POST_ID = POST_TOPIC.POST_ID AND POST.PERSON_ID = ".$person_id.
-										" INNER JOIN TOPIC_TAG ON TOPIC_TAG.TOPIC_ID = POST_TOPIC.POST_ID 
-										INNER JOIN TAG ON TAG.TAG_ID = TOPIC_TAG.TAG_ID
-										GROUP BY TAG.NAME
-										ORDER BY NUM DESC)
-										WHERE ROWNUM <= 3");
+		$query = $this->db->query("SELECT *
+									FROM (SELECT RELATED.TAG_ID,RELATED.NAME,ALLCOUNT.NUM
+							        FROM (SELECT DISTINCT TAG.TAG_ID, TAG.NAME
+							          FROM POST_TOPIC
+							          INNER JOIN POST ON POST_TOPIC.POST_ID = POST.POST_ID AND POST.PERSON_ID = ".$person_id.
+							          " INNER JOIN TOPIC_TAG ON TOPIC_TAG.TOPIC_ID = POST_TOPIC.POST_ID 
+							          INNER JOIN TAG ON TAG.TAG_ID = TOPIC_TAG.TAG_ID) RELATED
+							        INNER JOIN (
+							          SELECT TAG.TAG_ID, count(*) as NUM 
+							          FROM TAG INNER JOIN TOPIC_TAG ON TAG.TAG_ID = TOPIC_TAG.TAG_ID 
+							          GROUP BY TAG.TAG_ID
+							        ) ALLCOUNT ON RELATED.TAG_ID = ALLCOUNT.TAG_ID
+							      	ORDER BY ALLCOUNT.NUM DESC)
+									WHERE ROWNUM <= 5");
+		return $query->result();
 	}
 
 	function remove_tag($tag_id){

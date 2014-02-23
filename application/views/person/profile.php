@@ -4,7 +4,7 @@
 				<div class="thread">
 					<div class="row topic">
 						<div class="col-xs-1">
-							<img src="img/avatar_test.jpg" class="img-circle">
+							<img src="<?=base_url()?>uploads/<?php echo $person->AVATAR; ?>" class="img-circle">
 						</div>
 						<div class="col-xs-9">
 							<?php 
@@ -80,8 +80,13 @@
 							</span>
 							<div class="clear"></div>
 						</div><!--helper-->
-						<hr>
+						<?php if (count($topics)==0): ?>
+							<hr>
+							<p>No Post</p>
+						<?php endif ?>
+							
 						<?php foreach ($topics as $topic): ?>
+						<hr>
 						<div class="row topic">
 							<div class="col-xs-10">
 								<h4><a href="<?=base_url()?>post/view/<?=$topic->POST_ID;?>"><?php echo $topic->TITLE; ?></a></h4>
@@ -99,44 +104,39 @@
 								</a><!--comment-->
 							</div>
 						</div><!--topic-->
-						<hr>		
+							
 						<?php endforeach ?>
 					</div>
 				</div>
 			</div><!--content-->
 			<div class="col-md-3" id="sidebar">
+				<?php if(is_person($person->PERSON_ID)): ?>
 				<a href="edit_profile.php" type="button" class="create-btn btn btn-warning btn-lg btn-block">
 					<span class="glyphicon glyphicon-pencil"></span>
 					Edit Profile
 				</a>
+				<?php endif; ?>
 				<a href="mailto:nuttt.p@gmail.com" type="button" class="create-btn btn btn-primary btn-lg btn-block">
 					<span class="glyphicon glyphicon-envelope"></span>
 					E-mail Nuttapon
 				</a>
 				<h3>Latest Replies</h3>
 				<div class="list-group replies">
-					<a href="#" class="list-group-item">
-						<h4 class="list-group-item-heading">Help with Fix me! code.</h4>
-						<p class="list-group-item-text">The problem you have is that your function is inside a block-comment...</p>
-					</a>
-					<a href="#" class="list-group-item">
-						<h4 class="list-group-item-heading">Answer for 1.4 Fix Me</h4>
-						<p class="list-group-item-text">What do you understand so far? Can we look at your work from the previous...</p>
-					</a>
-					<a href="#" class="list-group-item">
-						<h4 class="list-group-item-heading">What name do i enter????</h4>
-						<p class="list-group-item-text">This code works but it and I can type in the "prompt" box on the screen...</p>
-					</a>
-					<a href="#" class="list-group-item">
-						<h4 class="list-group-item-heading">Answer for 1.4 Fix Me</h4>
-						<p class="list-group-item-text">The string method might be your issue: firstLetter . toUpperCase() cannot...</p>
-					</a>
+					<?php foreach ($latest_replies as $latest_reply): ?>
+						<a href="<?=base_url()?>post/view/<?=$latest_reply->POST_ID?>" class="list-group-item">
+							<h4 class="list-group-item-heading"><?=$latest_reply->TITLE?></h4>
+							<p class="list-group-item-text"><?php echo (strlen($latest_reply->CONTENT) > 100) ? mb_substr($latest_reply->CONTENT,0,100).'...' : $latest_reply->CONTENT; ?></p>
+						</a>
+					<?php endforeach ?>
 				</div>
-				<h3>Top Tags Used</h3>
+				<?php if (count($top_tags)>0): ?>
+					<h3>Top Tags Used</h3>
+				<?php endif ?>
+				
 				<div class="list-group">
-					<a href="" class="list-group-item"><span class="badge">114</span> Computer</a>
-					<a href="" class="list-group-item"><span class="badge">20</span> Coding</a>
-					<a href="" class="list-group-item"><span class="badge">6</span> Programming</a>
+					<?php foreach ($top_tags as $top_tag): ?>
+						<a href="<?=base_url()?>post/tag/<?=$top_tag->TAG_ID?>" class="list-group-item"><span class="badge"><?php echo $top_tag->NUM ?></span><?php echo $top_tag->NAME ?></a>
+					<?php endforeach ?>
 				</div>
 			</div><!--sidebar-->
 		</div><!--row-->

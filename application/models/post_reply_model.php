@@ -20,4 +20,25 @@ class Post_reply_model extends CI_Model {
 		//var_dump($query->result());
 		return $query->result();
 	}
+
+	function get_latest_reply($tag_id = "0",$person_id=-1) {
+		if($tag_id == 0) {
+			$q_tag = "";
+		}
+		else {
+			$q_tag = " INNER JOIN TOPIC_TAG TT on PT.POST_ID = TT.TOPIC_ID and TT.TAG_ID = $tag_id ";
+		}
+		$person_sql = "";
+		if($person_id!=-1){
+			$person_sql=" AND POST.PERSON_ID = ".$person_id;
+		}
+		$query = $this->db->query("select * from (select PT.POST_ID, PT.TITLE, POST.CONTENT, POST.TIME
+			FROM POST_REPLY PR
+			INNER JOIN POST on PR.POST_ID = POST.POST_ID".$person_sql."
+			INNER JOIN POST_TOPIC PT on PT.POST_ID = PR.TOPIC_ID
+      		$q_tag
+			ORDER BY POST.TIME DESC)
+			WHERE ROWNUM <= 5");
+		return $query->result();
+	}
 }

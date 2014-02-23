@@ -58,7 +58,7 @@
 							</div>
 							<div class="col-xs-8">
 								<p class="info">
-									<a href="<?=base_url()?>person/profile/<?=$post->PERSON_ID?>" class="name"><strong><?php echo $reply->DISPLAY_NAME; ?></strong></a>
+									<a href="<?=base_url()?>person/profile/<?=$reply->PERSON_ID?>" class="name"><strong><?php echo $reply->DISPLAY_NAME; ?></strong></a>
 									<span class="date"><?php echo $reply->TIME; ?></span>
 									<?php 
 									// Member can edit his own post
