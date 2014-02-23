@@ -7,20 +7,20 @@
 							<img src="<?=base_url()?>uploads/<?php echo $person->AVATAR; ?>" class="img-circle">
 						</div>
 						<div class="col-xs-9">
-							<?php 
-							// Member can edit his own profile
-							// Mod can't edit anyone's profile
-							// Admin can edit everyone's profile
-							 ?>
-							<h4><a href="edit_profile.php"><?php echo $person->DISPLAY_NAME; ?>[Edit Profile]</a></h4>
+							
+							<h4><?php echo $person->DISPLAY_NAME; ?></h4>
 							<p class="info">
 								<a href="mailto:<?php echo $person->EMAIL; ?>" class="name"><strong><?php echo $person->EMAIL ?></strong></a>
 								<span class="date">Joined since <?php echo $person->JOINED_DATE; ?></span>
-								<a href="edit_profile.php" class="tag yellow"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
-								<!-- for admin only -->
-								<a href="edit_profile.php" class="tag red"><span class="glyphicon glyphicon-trash"></span> Remove</a>
+								<?php if(is_person($person->PERSON_ID)||is_admin()): ?>
+									<a href="<?=base_url()?>person/edit" class="tag yellow"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
+									<!-- for admin only -->
+								<?php endif ?>
+								<?php if(is_admin()): ?>
+								<a href="" class="tag red"><span class="glyphicon glyphicon-trash"></span> Remove</a>
 								<!-- for admin only -->
 								<a href="admin/ban_user.php" class="tag orange"><span class="glyphicon glyphicon-remove"></span> Ban</a>
+								<?php endif ?>
 							</p>
 						</div>
 					</div><!--topic-->
@@ -110,15 +110,15 @@
 				</div>
 			</div><!--content-->
 			<div class="col-md-3" id="sidebar">
-				<?php if(is_person($person->PERSON_ID)): ?>
-				<a href="edit_profile.php" type="button" class="create-btn btn btn-warning btn-lg btn-block">
+				<?php if(is_person($person->PERSON_ID)||is_admin()): ?>
+				<a href="<?=base_url()?>person/edit" type="button" class="create-btn btn btn-warning btn-lg btn-block">
 					<span class="glyphicon glyphicon-pencil"></span>
 					Edit Profile
 				</a>
 				<?php endif; ?>
 				<a href="mailto:nuttt.p@gmail.com" type="button" class="create-btn btn btn-primary btn-lg btn-block">
 					<span class="glyphicon glyphicon-envelope"></span>
-					E-mail Nuttapon
+					E-mail <?php echo $person->DISPLAY_NAME ?>
 				</a>
 				<h3>Latest Replies</h3>
 				<div class="list-group replies">
