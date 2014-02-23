@@ -79,7 +79,7 @@
 				<h3>Latest Replies</h3>
 				<div class="list-group replies">
 					<?php foreach($latest_replies as $latest_reply): ?>
-					<a href="#" class="list-group-item">
+					<a href="<?=base_url()?>post/view/<?=$latest_reply->POST_ID?>" class="list-group-item">
 						<h4 class="list-group-item-heading"><?=$latest_reply->TITLE?></h4>
 						<p class="list-group-item-text">
 							<?php echo (strlen($latest_reply->CONTENT) > 100) ? mb_substr($latest_reply->CONTENT,0,100).'...' : $latest_reply->CONTENT; ?>

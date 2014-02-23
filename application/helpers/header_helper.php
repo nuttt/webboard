@@ -54,3 +54,9 @@ function admin_login(){
   	redirect('/');
   }
 }
+
+function is_person($id){
+	$CI =& get_instance();
+	if($id == get_person_id($CI)) return true;
+	return false;
+}

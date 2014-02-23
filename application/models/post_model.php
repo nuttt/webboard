@@ -118,20 +118,5 @@ class Post_model extends CI_Model {
 
 	}
 
-	function get_latest_reply($tag_id = "0") {
-		if($tag_id == 0) {
-			$q_tag = "";
-		}
-		else {
-			$q_tag = " INNER JOIN TOPIC_TAG TT on PT.POST_ID = TT.TOPIC_ID and TT.TAG_ID = $tag_id ";
-		}
-		$query = $this->db->query("select * from (select PT.TITLE, POST.CONTENT, POST.TIME
-			FROM POST_REPLY PR
-			INNER JOIN POST on PR.POST_ID = POST.POST_ID
-			INNER JOIN POST_TOPIC PT on PT.POST_ID = PR.TOPIC_ID
-      		$q_tag
-			ORDER BY POST.TIME DESC)
-			WHERE ROWNUM <= 5");
-		return $query->result();
-	}
+	
 }
