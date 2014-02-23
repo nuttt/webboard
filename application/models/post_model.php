@@ -7,10 +7,30 @@ class Post_model extends CI_Model {
 
 	}
 
-	function get_topics(){
+	function get_topics($sort_by = 'date',$tag_filter){
+		$sort = "";
+		switch ($sort_by) {
+			case 'views':
+				$sort = 'VISIT DESC';
+				break;
+			
+			case 'votes':
+				$sort = 'VOTE DESC';
+				break;
+
+			default:
+				$sort = 'TIME DESC';
+				break;
+		}
+		
+		$filter='';
+		if($tag_filter!=NULL){
+			$filter = "INNER JOIN TOPIC_TAG ON POST.POST_ID = TOPIC_TAG.TOPIC_ID INNER JOIN TAG ON TAG.TAG_ID = TOPIC_TAG.TAG_ID AND TAG.NAME = '".$tag_filter."' ";
+			
+		}
 		$this->load->model('tag_model');
 		$this->load->model('post_reply_model');
-		$post_query = $this->db->query("SELECT PERSON.PERSON_ID, POST.POST_ID, to_char(POST.TIME,'DY DD-Mon-YYYY HH24:MI')AS TIME, POST_TOPIC.TITLE, PERSON.DISPLAY_NAME FROM POST INNER JOIN POST_TOPIC ON POST.POST_ID = POST_TOPIC.POST_ID INNER JOIN PERSON ON PERSON.PERSON_ID = POST.PERSON_ID");
+		$post_query = $this->db->query("SELECT PERSON.PERSON_ID, POST.POST_ID, to_char(POST.TIME,'DY DD-Mon-YYYY HH24:MI')AS TIME, POST_TOPIC.TITLE, PERSON.DISPLAY_NAME FROM POST INNER JOIN POST_TOPIC ON POST.POST_ID = POST_TOPIC.POST_ID INNER JOIN PERSON ON PERSON.PERSON_ID = POST.PERSON_ID ".$filter." ORDER BY ".$sort);
 		$posts = $post_query->result();
 		foreach($posts as $post){
 			$post->TAGS = $this->tag_model->get_tag($post->POST_ID);
@@ -94,13 +114,13 @@ class Post_model extends CI_Model {
 			// "INNER JOIN POST_TOPIC ON POST.POST_ID = POST_TOPIC.POST_ID AND POST.POST_ID = " . $post_id);
 		$this->load->model('tag_model');
 		$this->load->model('post_reply_model');
-		$post_query = $this->db->query("SELECT PERSON.PERSON_ID, POST.POST_ID, to_char(POST.TIME,'DY DD-Mon-YYYY HH24:MI')AS TIME, POST_TOPIC.TITLE, PERSON.DISPLAY_NAME,CASE WHEN sum(VOTES.STATUS) IS NULL THEN 0 ELSE sum(VOTES.STATUS) END 
+		$post_query = $this->db->query("SELECT PERSON.PERSON_ID, POST.POST_ID, to_char(POST.TIME,'DY DD-Mon-YYYY HH24:MI')AS TIME, POST_TOPIC.TITLE, PERSON.DISPLAY_NAME, PERSON.AVATAR, CASE WHEN sum(VOTES.STATUS) IS NULL THEN 0 ELSE sum(VOTES.STATUS) END 
 										AS VOTE, POST.CONTENT  
 										FROM POST 
 										INNER JOIN POST_TOPIC ON POST.POST_ID = POST_TOPIC.POST_ID AND POST.POST_ID = ".$post_id.
 										"INNER JOIN PERSON ON PERSON.PERSON_ID = POST.PERSON_ID 
 										LEFT  JOIN VOTES ON POST.POST_ID = VOTES.POST_ID
-										GROUP BY PERSON.PERSON_ID, POST.POST_ID, to_char(POST.TIME,'DY DD-Mon-YYYY HH24:MI'), POST_TOPIC.TITLE, PERSON.DISPLAY_NAME, POST.CONTENT");
+										GROUP BY PERSON.PERSON_ID, POST.POST_ID, to_char(POST.TIME,'DY DD-Mon-YYYY HH24:MI'), POST_TOPIC.TITLE, PERSON.DISPLAY_NAME, POST.CONTENT, PERSON.AVATAR");
 		$post_query->first_row()->TAGS = $this->tag_model->get_tag($post_id);
 		$post_query->first_row()->COUNT_REPLY = $this->post_reply_model->get_count_reply($post_id);
 		

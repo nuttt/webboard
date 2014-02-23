@@ -15,7 +15,15 @@ class Post extends CI_Controller {
 	}
 
 	public function index(){
-		$data['posts'] = $this->post_model->get_topics();
+		$data['sort_by'] = NULL;
+		$data['tag_filter'] = NULL;
+		if(isset($_GET['sortby'])){ 
+			$data['sort_by'] = $_GET['sortby']; 
+		}
+		if(isset($_GET['tag_filter'])){ 
+			$data['tag_filter'] = $_GET['tag_filter']; 
+		}
+		$data['posts'] = $this->post_model->get_topics($data['sort_by'],$data['tag_filter']);
 		$data['header'] = $this->load->view('header', $this->header, TRUE);
 		$data['footer'] = $this->load->view('footer', $this->footer, TRUE);
 		$data['Title'] = "All Topics";
@@ -42,7 +50,8 @@ class Post extends CI_Controller {
 	public function view($post_id) {
 		$data['post'] = $this->post_model->get_content($post_id);
 		$data['replies'] = $this->post_reply_model->get_post_reply($post_id);
-
+		$data['latest_replies'] = $this->post_reply_model->get_latest_reply(0);
+		$data['related_tags'] = $this->tag_model->get_related_tag_by_topic($post_id);
 		$data['header'] = $this->load->view('header', $this->header, TRUE);
 		$data['footer'] = $this->load->view('footer', $this->footer, TRUE);
 		$this->load->view('post/content', $data);

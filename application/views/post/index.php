@@ -10,9 +10,9 @@
 									Sort by <span class="caret"></span>
 								</button>
 								<ul class="dropdown-menu">
-									<li><a href="#">Sort by Date</a></li>
-									<li><a href="#">Sort by Views</a></li>
-									<li><a href="#">Sort by Votes</a></li>
+									<li><a href="<?=base_url()?>post/?sortby=date&tag_filter=<?php echo $tag_filter;?>">Sort by Date</a></li>
+									<li><a href="<?=base_url()?>post/?sortby=views&tag_filter=<?php echo $tag_filter;?>">Sort by Views</a></li>
+									<li><a href="<?=base_url()?>post/?sortby=votes&tag_filter=<?php echo $tag_filter;?>">Sort by Votes</a></li>
 								</ul>
 							</div><!--btn-group-->
 							<div class="btn-group">
@@ -24,7 +24,7 @@
 										$tags = get_tags();
 										foreach($tags as $tag):
 									?>
-										<li><a href="<?=base_url()?>post/tag/<?php echo $tag->TAG_ID; ?>"><?php echo $tag->NAME; ?></a></li>
+										<li><a href="<?=base_url()?>post/?sortby=<?php echo $sort_by;?>&tag_filter=<?php echo $tag->NAME; ?>"><?php echo $tag->NAME; ?></a></li>
 									<?php endforeach; ?>
 								</ul>
 							</div><!--btn-group-->

@@ -35,6 +35,16 @@ class Person_model extends CI_Model {
 		return $query->num_rows() > 0;
 	}
 
+	function is_moderator($person_id,$topic_id){
+		$query = $this->db->query("SELECT MOD_TAG.*
+									FROM MOD_TAG
+									INNER JOIN TOPIC_TAG 
+										ON TOPIC_TAG.TAG_ID=MOD_TAG.TAG_ID 
+										AND MOD_TAG.MOD_ID =".$person_id." 
+										AND TOPIC_TAG.TOPIC_ID = ".$topic_id);
+		return $query->num_rows() > 0;
+	}
+
 	function get_person_profile($id){
 		$query = $this->db->query("SELECT P.PERSON_ID, P.DISPLAY_NAME, P.PASSWORD, 
 									CASE WHEN P.AVATAR IS NULL THEN 'DEFAULT' ELSE P.AVATAR END AS AVATAR,

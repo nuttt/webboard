@@ -38,6 +38,23 @@ class tag_model extends CI_Model {
 		$query = $this->db->query("INSERT INTO TAG (NAME) VALUES ('$name')");
 	}
 
+	function get_related_tag_by_topic($topic_id){
+		$query = $this->db->query("SELECT *
+									FROM (SELECT RELATED.TAG_ID,RELATED.NAME,ALLCOUNT.NUM
+							        FROM (SELECT DISTINCT TAG.TAG_ID, TAG.NAME
+							          FROM POST_TOPIC
+							          INNER JOIN TOPIC_TAG ON TOPIC_TAG.TOPIC_ID = POST_TOPIC.POST_ID AND POST_TOPIC.POST_ID = ".$topic_id." 
+							          INNER JOIN TAG ON TAG.TAG_ID = TOPIC_TAG.TAG_ID) RELATED
+							        INNER JOIN (
+							          SELECT TAG.TAG_ID, count(*) as NUM 
+							          FROM TAG INNER JOIN TOPIC_TAG ON TAG.TAG_ID = TOPIC_TAG.TAG_ID 
+							          GROUP BY TAG.TAG_ID
+							        ) ALLCOUNT ON RELATED.TAG_ID = ALLCOUNT.TAG_ID
+							      	ORDER BY ALLCOUNT.NUM DESC)
+									WHERE ROWNUM <= 5");
+		return $query->result();
+	}
+
 
 	function get_top_tag_used($person_id){
 		$query = $this->db->query("SELECT *

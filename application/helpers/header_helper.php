@@ -41,6 +41,15 @@ function is_admin(){
 	return false;
 }
 
+function is_moderator($topic_id){
+	$CI =& get_instance();
+	$CI->load->model('person_model');
+	if($person_id = get_person_id($CI)){
+		return $CI->person_model->is_moderator($person_id,$topic_id);
+	}
+	return false;
+}
+
 function person_login(){
 	$CI =& get_instance();
 	if(!$CI->session->userdata('person_id')){ // hasn't logged in
