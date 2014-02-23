@@ -80,8 +80,13 @@
 							</span>
 							<div class="clear"></div>
 						</div><!--helper-->
-						<hr>
+						<?php if (count($topics)==0): ?>
+							<hr>
+							<p>No Post</p>
+						<?php endif ?>
+							
 						<?php foreach ($topics as $topic): ?>
+						<hr>
 						<div class="row topic">
 							<div class="col-xs-10">
 								<h4><a href="<?=base_url()?>post/view/<?=$topic->POST_ID;?>"><?php echo $topic->TITLE; ?></a></h4>
@@ -132,11 +137,14 @@
 						<p class="list-group-item-text">The string method might be your issue: firstLetter . toUpperCase() cannot...</p>
 					</a>
 				</div>
-				<h3>Top Tags Used</h3>
+				<?php if (count($top_tags)>0): ?>
+					<h3>Top Tags Used</h3>
+				<?php endif ?>
+				
 				<div class="list-group">
-					<a href="" class="list-group-item"><span class="badge">114</span> Computer</a>
-					<a href="" class="list-group-item"><span class="badge">20</span> Coding</a>
-					<a href="" class="list-group-item"><span class="badge">6</span> Programming</a>
+					<?php foreach ($top_tags as $top_tag): ?>
+						<a href="<?=base_url()?>post/tag/<?=$top_tag->TAG_ID?>" class="list-group-item"><span class="badge"><?php echo $top_tag->NUM ?></span><?php echo $top_tag->NAME ?></a>
+					<?php endforeach ?>
 				</div>
 			</div><!--sidebar-->
 		</div><!--row-->
