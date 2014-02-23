@@ -45,4 +45,6 @@ class Post extends CI_Controller {
 		$data['footer'] = $this->load->view('footer', $this->footer, TRUE);
 		$this->load->view('post/content', $data);
 	}
+
+
 }

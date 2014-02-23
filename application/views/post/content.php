@@ -33,7 +33,7 @@
 									<span class="glyphicon glyphicon-thumbs-down"></span>
 								</a><!--vote-->
 								<span class="current-score">
-									20
+									<?php echo $post->VOTE; ?>
 								</span>
 								<a href="" class="btn btn-success btn-xs vote vote-up">
 									<span class="glyphicon glyphicon-thumbs-up"></span>
