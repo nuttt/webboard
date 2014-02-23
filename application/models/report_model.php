@@ -6,11 +6,14 @@ class report_model extends CI_Model {
 	function get_report() {
 		// P1 is Reporter, P2 is 'Posted by'
 		$query = $this->db->query("SELECT * FROM REPORT_VIEW ORDER BY REPORTED_DATE DESC");
-		
-		if($query->num_rows() > 0){
-			return $query->result();
-		}
-		return false;
+		return $query->result();
+	}
+
+	function get_waiting_report($limit = '') {
+		// P1 is Reporter, P2 is 'Posted by'
+		if($limit) $limit = 'AND ROWNUM <= '.$limit;
+		$query = $this->db->query("SELECT * FROM REPORT_VIEW WHERE STATUS = 'Waiting' $limit ORDER BY REPORTED_DATE DESC");
+		return $query->result();
 	}
 
 	function handle($person_id, $post_id){

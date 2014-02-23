@@ -19,6 +19,7 @@ class Post extends CI_Controller {
 		$data['header'] = $this->load->view('header', $this->header, TRUE);
 		$data['footer'] = $this->load->view('footer', $this->footer, TRUE);
 		$data['Title'] = "All Topics";
+		$data['latest_replies'] = $this->post_model->get_latest_reply();
 		$data['ListOfTag'] = $this->tag_model->get_tags();
 		$this->load->view('post/index', $data);
 	}
@@ -33,6 +34,7 @@ class Post extends CI_Controller {
 
 		$data['header'] = $this->load->view('header', $this->header, TRUE);
 		$data['footer'] = $this->load->view('footer', $this->footer, TRUE);
+		$data['latest_replies'] = $this->post_model->get_latest_reply($tag_ID);
 		$data['ListOfTag'] = $this->tag_model->get_tags();
 		$this->load->view('post/index', $data);
 	}

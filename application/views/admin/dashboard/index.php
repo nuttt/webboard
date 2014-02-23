@@ -41,30 +41,16 @@
         </div><!--box-->
       </div><!--content-->
       <div class="col-md-6" id="sidebar">
-        <h3><span class="glyphicon glyphicon-exclamation-sign"></span> Latest Reports</h3>
+        <h3><span class="glyphicon glyphicon-exclamation-sign"></span> Waiting Reports</h3>
         <div class="list-group replies">
-          <a href="../content.php" class="list-group-item">
-            <h4 class="list-group-item-heading">Help with Fix me! code.</h4>
-            <p class="list-group-item-text">Reported by Nuttapon</p>
+        <?php foreach($reports as $report): ?>
+          <a href="<?php echo base_url('post/view/'.$report->ROOT_TOPIC_ID.'#'.$report->POST_ID); ?>" class="list-group-item">
+            <h4 class="list-group-item-heading"><?php echo $report->REPORT_TITLE; ?></h4>
+            <p class="list-group-item-text">Reported by <?php echo $report->REPORTER_NAME; ?></p>
           </a>
-          <a href="../content.php" class="list-group-item">
-            <h4 class="list-group-item-heading">Help with Fix me! code.</h4>
-            <p class="list-group-item-text">Reported by Vee</p>
-          </a>
-          <a href="../content.php" class="list-group-item">
-            <h4 class="list-group-item-heading">Help with Fix me! code.</h4>
-            <p class="list-group-item-text">Reported by Nuttapon</p>
-          </a>
-          <a href="../content.php" class="list-group-item">
-            <h4 class="list-group-item-heading">Help with Fix me! code.</h4>
-            <p class="list-group-item-text">Reported by Nuttapon</p>
-          </a>
-          <a href="../content.php" class="list-group-item">
-            <h4 class="list-group-item-heading">Help with Fix me! code.</h4>
-            <p class="list-group-item-text">Reported by Nuttapon</p>
-          </a>
-          <a href="manage_report.php" class="list-group-item">
-            <h4 class="list-group-item-heading">View all reported topics...</h4>
+        <?php endforeach; ?>
+          <a href="<?php echo base_url('admin/report'); ?>" class="list-group-item">
+            <h4 class="list-group-item-heading">View all reports</h4>
           </a>
         </div>
       </div><!--sidebar-->

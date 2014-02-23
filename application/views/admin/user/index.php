@@ -9,20 +9,18 @@
             <th width="20%">Display Name</td>
             <th width="30%">E-mail</td>
             <th width="25%">Joined Date</td>
-            <th width="20%">Edit/ View/ Ban/ Remove</td>
+            <th width="20%">Edit/ Ban/ Remove</td>
           </tr>
         </thead>
         <tbody>
           <?php foreach($role_users as $user): ?>
             <tr>
               <td><?php echo $user->PERSON_ID; ?></td>
-              <td><?php echo $user->DISPLAY_NAME; ?></td>
+              <td><a href="<?php echo base_url('person/profile/'.$user->PERSON_ID); ?>"><?php echo $user->DISPLAY_NAME; ?></a></td>
               <td><a href="mailto:<?php echo $user->EMAIL; ?>"><?php echo $user->EMAIL; ?></a></td>
               <td><?php echo $user->JOINED; ?></td>
               <td>
                 <a href="<?php echo base_url('person/profile/'.$user->PERSON_ID) ?>"><span class="glyphicon glyphicon-pencil"></span></a>
-                &nbsp;
-                <a href="<?php echo base_url('person/profile/'.$user->PERSON_ID) ?>"><span class="glyphicon glyphicon-user"></span></a>
                 &nbsp;
                 <a href="<?php echo base_url('person/profile/'.$user->PERSON_ID) ?>"><span class="glyphicon glyphicon-eye-close"></span></a>
                 &nbsp;

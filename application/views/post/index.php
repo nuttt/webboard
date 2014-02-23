@@ -78,22 +78,14 @@
 				</a>
 				<h3>Latest Replies</h3>
 				<div class="list-group replies">
+					<?php foreach($latest_replies as $latest_reply): ?>
 					<a href="#" class="list-group-item">
-						<h4 class="list-group-item-heading">Help with Fix me! code.</h4>
-						<p class="list-group-item-text">The problem you have is that your function is inside a block-comment...</p>
+						<h4 class="list-group-item-heading"><?=$latest_reply->TITLE?></h4>
+						<p class="list-group-item-text">
+							<?php echo (strlen($latest_reply->CONTENT) > 100) ? mb_substr($latest_reply->CONTENT,0,100).'...' : $latest_reply->CONTENT; ?>
+						</p>
 					</a>
-					<a href="#" class="list-group-item">
-						<h4 class="list-group-item-heading">Answer for 1.4 Fix Me</h4>
-						<p class="list-group-item-text">What do you understand so far? Can we look at your work from the previous...</p>
-					</a>
-					<a href="#" class="list-group-item">
-						<h4 class="list-group-item-heading">What name do i enter????</h4>
-						<p class="list-group-item-text">This code works but it and I can type in the "prompt" box on the screen...</p>
-					</a>
-					<a href="#" class="list-group-item">
-						<h4 class="list-group-item-heading">Answer for 1.4 Fix Me</h4>
-						<p class="list-group-item-text">The string method might be your issue: firstLetter . toUpperCase() cannot...</p>
-					</a>
+					<?php endforeach; ?>
 				</div>
 				<h3>Related Tags</h3>
 				<div class="list-group">

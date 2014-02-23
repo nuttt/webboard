@@ -36,5 +36,30 @@ class Person extends CI_Controller {
 	
 
 	}
+	public function edit(){
+		$map = array(
+			'name' => 'DISPLAY_NAME',
+			'password' => 'PASSWORD',
+			'birthdate' => 'BIRTHDATE',
+			'twitter' => 'TWITTER',
+			'facebook' => 'FACEBOOK',
+			'email' => 'EMAIL',
+			'picture' => 'AVARTAR'
+			);
+		person_login();
+		$this->load->model('person_model');
+		$id = $this->session->userdata('person_id');
+		$data['profile'] = $this->person_model->get_person($id);
+		$data['header'] = $this->load->view('header', $this->header, TRUE);
+		$data['footer'] = $this->load->view('footer', $this->footer, TRUE);
+		$this->load->view('person/edit',$data);
+
+	}
+	public function edit_all($id){
+		$data['header'] = $this->load->view('header', $this->header, TRUE);
+		$data['footer'] = $this->load->view('footer', $this->footer, TRUE);
+		$this->load->view('person/edit',$data);
+
+	}
 	
 }
