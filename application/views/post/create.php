@@ -33,12 +33,12 @@
 								</div>
 								<div class="form-group">
 
-									<?=form_label('Tags <span class="red">*</span>', 'tag')?>
-									<?=form_multiselect('tag', $tags, set_value('tag'), 'class="form-control" id="tag-field"')?>
+									<?=form_label('Tags <span class="red">*</span>', 'tag[]')?>
+									<?=form_multiselect('tag[]', $tags, set_value('tag[]'), 'class="form-control" id="tag-field"')?>
 									<!-- <label for="tag">Tags <span class="red">*</span></label>
 									<input type="text" class="form-control" id="tag" placeholder="Tag1, Tag2, Tag3"> -->
 								</div>
-								<button type="submit" class="btn btn-primary">Update</button>
+								<button type="submit" class="btn btn-primary">Create</button>
 						</div><!--context-->
 					</div><!--thread-->
 			</div><!--content-->
@@ -59,6 +59,7 @@
 			<?php echo form_close(); ?>
 		</div><!--row-->
 <script type="text/javascript">
+
 	$('#tag-field').chosen({no_results_text: "ไม่มี tag ที่คุณต้องการ"});
 	$('#post-content').wysihtml5({
 	"font-styles": true, //Font styling, e.g. h1, h2, etc. Default true
@@ -69,5 +70,6 @@
 	"image": false, //Button to insert an image. Default true,
 	"color": false //Button to change color of font  
 });
+
 </script>
 <?php echo $footer; ?>

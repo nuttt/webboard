@@ -118,5 +118,21 @@ class Post_model extends CI_Model {
 
 	}
 
-	
+	function create($post_data) {
+		$q_post = "INSERT INTO POST (CONTENT, TIME, STATUS, PERSON_ID) values ('".$post_data['content']."', systimestamp, ".$post_data['status'].", ".$post_data['person_id'].")";
+		$this->db->query($q_post);
+		$query = $this->db->query("SELECT POST_ID FROM POST WHERE ROWNUM = 1 ORDER BY POST_ID DESC");
+		$post_id = $query->first_row()->POST_ID;
+
+		$q_post_topic = "INSERT INTO POST_TOPIC (POST_ID, TITLE, VISIT) values ($post_id, '".$post_data['title']."', 0)";
+		$this->db->query($q_post_topic);
+
+		foreach($post_data['tag'] as $tag) {
+			echo $q_topic_tag =  "INSERT INTO TOPIC_TAG (TOPIC_ID, TAG_ID) values ($post_id, ".$tag.")";
+			$this->db->query($q_topic_tag);
+		}
+
+		return $post_id;
+	}
+
 }
