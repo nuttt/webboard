@@ -6,6 +6,11 @@
 <?php echo $header; ?>
 		<div class="row">
 			<div class="col-md-9" id="content-view">
+					<?php if(validation_errors()): ?>
+						<div class="alert alert-danger">
+							<?php echo validation_errors(); ?>
+						</div>
+					<?php endif; ?>
 				<div class="thread">
 					<div class="row topic">
 						<div class="col-xs-1">
@@ -83,7 +88,7 @@
 							<div class="form-group">
 								<div class="col-sm-offset-4 col-sm-8">
 
-									<button type="submit" class="btn btn-primary">Update Profile</button>
+									<button type="submit" class="btn btn-primary">SignUp!!!</button>
 								</div>
 							</div>
 						</form>

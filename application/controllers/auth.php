@@ -98,18 +98,16 @@ class Auth extends CI_Controller {
 
 
 		// session_destroy();
-		$this->session->sess_destroy();
-		$data['header'] = $this->load->view('header', $this->header, TRUE);
-		$data['footer'] = $this->load->view('footer', $this->footer, TRUE);
-		$this->load->view('auth/signup', $data);
+		//$this->session->sess_destroy();
 		$this->load->model('signup');
 		$this->load->library('form_validation');
-
+		$this->load->library('form_validation');
 		$this->form_validation->set_rules('name', 'Username', 'trim|required|min_length[5]|max_length[12]|xss_clean');
-		$this->form_validation->set_rules('facebook', 'Username', 'trim|required|xss_clean');
+		// $this->form_validation->set_rules('facebook', 'Faceboo', 'trim|required|xss_clean');
 		$this->form_validation->set_rules('password', 'Password', 'trim|required|matches[password2]');
 		$this->form_validation->set_rules('password2', 'Password Confirmation', 'trim|required');
 		$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
+
 		$map = array(
 			'name' => 'DISPLAY_NAME',
 			'password' => 'PASSWORD',
@@ -131,9 +129,20 @@ class Auth extends CI_Controller {
 						# code...
 						$person[$value] = $_POST[$key];
 					}
+					$this->load->model('person_model');
 					$person['AVATAR'] = $tmp['upload_data']['file_name'];
 					$co = $this->signup->add_person($person);
-					echo $co;
+					// var_dump($co->row()->PERSON_ID);
+					// $person = $this->person_model->verify_person($this->input->post('email'), $this->input->post('password'));
+					// var_dump($person);
+					// var_dump($this->input->post('email'));
+					// var_dump($co->row()->PERSON_ID);
+					$this->session->set_userdata('person_id', $co->row()->PERSON_ID);
+					// echo $this->session->userdata('person_id');
+					//redirect('/');
+					$success = true;	
+
+
 				}
 			}
 			
@@ -149,6 +158,12 @@ class Auth extends CI_Controller {
 			//redirect($this->input->get('return'));
 			
 		}
+
+		$data['header'] = $this->load->view('header', $this->header, TRUE);
+		$data['footer'] = $this->load->view('footer', $this->footer, TRUE);
+		$this->load->view('auth/signup', $data);
+		if(isset($success))
+			redirect('/');
 
 	}
 		
