@@ -25,7 +25,6 @@ class User extends CI_Controller {
 		$data['header'] = $this->load->view('header', $this->header, TRUE);
 		$data['footer'] = $this->load->view('footer', $this->footer, TRUE);
 		$this->load->view('admin/user/ban', $data);
-
 	}
 
 }
