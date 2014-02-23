@@ -94,6 +94,13 @@ class Auth extends CI_Controller {
 		$this->session->sess_destroy();
 		redirect($this->input->get('return'));
 	}
+	public function username_check($check_name){
+		return $this->signup->check_name($check_name);
+	}
+	public function email_check($check_email){
+		return $this->signup->check_email($check_email);
+	}
+
 	public function signup(){
 
 
@@ -102,11 +109,16 @@ class Auth extends CI_Controller {
 		$this->load->model('signup');
 		$this->load->library('form_validation');
 		$this->load->library('form_validation');
-		$this->form_validation->set_rules('name', 'Username', 'trim|required|min_length[5]|max_length[12]|xss_clean');
+		$this->form_validation->set_rules('name', 'Username', 'trim|required|min_length[3]|max_length[45]|xss_clean');
 		// $this->form_validation->set_rules('facebook', 'Faceboo', 'trim|required|xss_clean');
-		$this->form_validation->set_rules('password', 'Password', 'trim|required|matches[password2]');
+		$this->form_validation->set_rules('password', 'Password', 'trim|required|matches[password2]|min_length[8]|max_length[45]');
 		$this->form_validation->set_rules('password2', 'Password Confirmation', 'trim|required');
 		$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
+
+		$this->form_validation->set_rules('name', 'Username', 'callback_username_check');
+		$this->form_validation->set_rules('email', 'Email', 'callback_email_check');
+		$this->form_validation->set_message('username_check','Member is already used!');
+		$this->form_validation->set_message('email_check','Email is already used!');
 
 		$map = array(
 			'name' => 'DISPLAY_NAME',
@@ -122,7 +134,7 @@ class Auth extends CI_Controller {
 			// $data['footer'] = $this->load->view('footer', $this->footer, TRUE);
 			// $this->load->view('topiclist', $data);
 			//var_dump($_POST);
-			if($this->signup->check_name($_POST['name'])){
+			if($this->signup->check_name($_POST['name'])&&$this->signup->check_email($_POST['email'])){
 				$tmp = $this->signup->add_picture();
 				if(isset($tmp['upload_data'])){
 					foreach ($map as $key => $value) {

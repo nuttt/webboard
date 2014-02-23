@@ -45,6 +45,10 @@ class Signup extends CI_Model{
 		$co = $this->db->query("SELECT DISPLAY_NAME FROM PERSON WHERE DISPLAY_NAME='".$name."'");
 		return $co->num_rows()==0;
 	}
+	public function check_email($email){
+		$co = $this->db->query("SELECT DISPLAY_NAME FROM PERSON WHERE EMAIL='".$email."'");
+		return $co->num_rows()==0;
+	}
 	public function add_picture(){
 		$config['upload_path'] = './uploads/';
 		$config['allowed_types'] = 'gif|jpg|png';
