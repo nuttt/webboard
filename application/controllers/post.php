@@ -48,5 +48,43 @@ class Post extends CI_Controller {
 		$this->load->view('post/content', $data);
 	}
 
+	public function create() {
+		person_login();
 
+		$this->load->library('form_validation');
+		$this->form_validation->set_rules('title', 'Title', 'required');
+		$this->form_validation->set_rules('content', 'Content', 'required');
+		$this->form_validation->set_rules('tag', 'Tag', 'required');
+
+		$person_id = $this->session->userdata('person_id');
+
+		$dt = new DateTime();
+		$post_date = strtoupper($dt->format('d-M-y'));
+
+		if($this->form_validation->run()) {
+			echo "Pass";
+			$post_data = array(
+				'person_id' => $person_id,
+				'title' => $this->input->post('title'),
+				'content' => $this->input->post('content'),
+				'tag' => $this->input->post('tag'),
+				'status' => 1,
+				'time' => $post_date
+			);
+
+			// $this->post_model->create($post_data);
+		}
+
+		$tags = $this->tag_model->get_tags();
+		$data['tags'] = array();
+		foreach($tags as $tag) {
+			$data['tags'][$tag->TAG_ID] = $tag->NAME;
+		}
+
+
+		$data['header'] = $this->load->view('header', $this->header, TRUE);
+		$data['footer'] = $this->load->view('footer', $this->footer, TRUE);
+		$this->load->view('post/create', $data);
+
+	}
 }

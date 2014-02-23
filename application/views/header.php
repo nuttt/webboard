@@ -6,9 +6,11 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap.min.css'); ?>">
 	<link rel="stylesheet/less" type="text/css" href="<?php echo base_url('assets/css/style.less'); ?>" />
+	<link rel="stylesheet" href="<?php echo base_url('assets/css/chosen.min.css'); ?>">
 	<script src="<?php echo base_url('assets/js/jquery-1.9.1.js'); ?>" type="text/javascript"></script>
 	<script src="<?php echo base_url('assets/js/bootstrap.min.js'); ?>" type="text/javascript"></script>
 	<script src="<?php echo base_url('assets/js/less.js'); ?>" type="text/javascript"></script>
+	<script src="<?php echo base_url('assets/js/chosen.jquery.min.js'); ?>"></script>
 </head>
 <body>
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
