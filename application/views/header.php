@@ -31,7 +31,7 @@
 	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 		<ul class="nav navbar-nav">
 			<li class="active"><a href="<?php echo base_url(); ?>">Home</a></li>
-			<li><a href="new_topic.php">New Topic</a></li>
+			<li><a href="<?php echo base_url('post/create'); ?>">New Topic</a></li>
 			<li class="dropdown">
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown">Tags <b class="caret"></b></a>
 				<ul class="dropdown-menu">
@@ -43,7 +43,7 @@
 				<?php endforeach; ?>
 				</ul>
 			</li>
-			<?php if(is_admin()): ?>
+			<?php if($is_admin = is_admin()): ?>
 			<li class="dropdown">
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin Management <b class="caret"></b></a>
 				<ul class="dropdown-menu">
@@ -60,11 +60,13 @@
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $user->DISPLAY_NAME; ?> <b class="caret"></b></a>
 						<ul class="dropdown-menu">
-							<li><a href="edit_profile.php">Edit Profile</a></li>
-							<li><a href="member_profile.php">View Profile</a></li>
-							<li><a href="member_profile.php#topics">View your posts</a></li>
+							<li><a href="<?php echo base_url('person/edit'); ?>">Edit Profile</a></li>
+							<li><a href="<?php echo base_url('person/profile/'.$this->session->userdata('person_id')); ?>">View Profile</a></li>
+							<li><a href="<?php echo base_url('person/profile/'.$this->session->userdata('person_id')); ?>#topics">View your posts</a></li>
 							<li class="divider"></li>
-							<li><a href="admin">Admin</a></li>
+							<?php if($is_admin): ?>
+							<li><a href="<?php echo base_url('admin/dashboard'); ?>">Admin</a></li>
+							<?php endif; ?>
 							<li><a href="<?php echo base_url('auth/signout?return='.uri_string()); ?>">Sign out</a></li>
 						</ul>
 					</li>

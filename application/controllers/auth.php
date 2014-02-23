@@ -8,6 +8,7 @@ class Auth extends CI_Controller {
 		parent::__construct();
 		// session_start();
 		$this->header = get_header_data();
+		$this->load->model('ban_model');
 	}
 
 	public function commitsignup(){
@@ -75,12 +76,20 @@ class Auth extends CI_Controller {
 		$this->load->model('person_model');
 		$this->form_validation->set_rules('email', 'Email Address', 'required|valid_email');
 		$this->form_validation->set_rules('password', 'Password', 'required|min_length[4]');
-		if($this->form_validation->run() != false){
+		$data['error'] = '';
+		if($this->form_validation->run()){
 			$person = $this->person_model->verify_person($this->input->post('email'), $this->input->post('password'));
 			if($person){
-				$this->session->set_userdata('person_id', $person->PERSON_ID);
-				// $_SESSION['person_id'] = $person->PERSON_ID;
-				redirect($this->input->get('return'));
+				if(is_not_banned($person->PERSON_ID)){
+					$this->session->set_userdata('person_id', $person->PERSON_ID);
+					redirect($this->input->get('return'));
+				}
+				else{
+					$data['error'] = 'You are banned. Please contact admin.';
+				}
+			}
+			else{
+				$data['error'] = 'E-mail or password is incorrect.';
 			}
 		}
 		$data['return'] = $this->input->get('return');

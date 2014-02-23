@@ -7,7 +7,7 @@
 							<img src="<?php echo base_url('uploads/'.$person->AVATAR); ?>" class="img-circle">
 						</div>
 						<div class="col-xs-9">
-							<h4><a href="<?php echo base_url('person/edit_all/'.$person->PERSON_ID); ?>"><?php echo $person->DISPLAY_NAME; ?></a></h4>
+							<h4><a href="<?php echo base_url('person/profile/'.$person->PERSON_ID); ?>"><?php echo $person->DISPLAY_NAME; ?></a></h4>
 							<p class="info">
 								<a href="mailto:<?php echo $person->EMAIL; ?>" class="name"><strong><?php echo $person->EMAIL; ?></strong></a>
 								<span class="date">Joined since <?php echo $person->JOINED_DATE; ?></span>
@@ -71,16 +71,6 @@
 							</table>
 				</div>
 			</div><!--content-->
-			<div class="col-md-3" id="sidebar">
-				<a href="<?php echo base_url('person/profile/'.$person->PERSON_ID); ?>" type="button" class="create-btn btn btn-success btn-lg btn-block">
-					<span class="glyphicon glyphicon-eye-open"></span>
-					View Profile
-				</a>
-				<h3>Ban Guidelines</h3>
-				<div class="replies">
-					<p>Users can be banned. When this happens all of their comments will be deleted and they will be unable to add further comments. Users who are spamming the site should be banned. Banning users is not available on older comments because a user account system was not available then. You will need to delete those individually.</p>
-					<p>If you are ever uncertain whether it is spam or not, click on their profile and read their other comments. If you are still unsure, leave it alone. We do not want to ban legitimate users.</p>
-				</div>
-			</div><!--sidebar-->
+			<?php include('sidebar.php'); ?>
 		</div><!--row-->
 <?php echo $footer; ?>

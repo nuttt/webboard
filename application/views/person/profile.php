@@ -50,6 +50,7 @@
 					</div><!--context-->
 				</div><!--thread-->
 				<br>
+				<a name="topics"></a>
 				<div id="content-list">
 					<div class="list">
 						<div class="helper">

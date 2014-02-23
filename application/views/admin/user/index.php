@@ -1,4 +1,7 @@
 <?php echo $header; ?>
+<?php if($this->session->flashdata('alert')): ?>
+  <div class="alert alert-success"><?php echo $this->session->flashdata('alert'); ?></div>
+<?php endif; ?>
 <?php foreach($users as $role => $role_users): ?>
   <h3><span class="glyphicon glyphicon-user"></span> Manage <?php echo $role; ?></h3>
     <div class="context">
@@ -22,9 +25,9 @@
               <td>
                 <a href="<?php echo base_url('person/profile/'.$user->PERSON_ID) ?>"><span class="glyphicon glyphicon-pencil"></span></a>
                 &nbsp;
-                <a href="<?php echo base_url('person/profile/'.$user->PERSON_ID) ?>"><span class="glyphicon glyphicon-eye-close"></span></a>
+                <a href="<?php echo base_url('admin/ban/person/'.$user->PERSON_ID); ?>"><span class="glyphicon glyphicon-eye-close"></span></a>
                 &nbsp;
-                <a href="#"><span class="glyphicon glyphicon-trash"></span></a>
+                <a href="<?php echo base_url('admin/user/remove/'.$user->PERSON_ID); ?>" class="remove"><span class="glyphicon glyphicon-trash"></span></a>
               </td>
             </tr>
           <?php endforeach; ?>

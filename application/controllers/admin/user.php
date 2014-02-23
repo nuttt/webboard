@@ -19,4 +19,11 @@ class User extends CI_Controller {
 		$data['footer'] = $this->load->view('footer', $this->footer, TRUE);
 		$this->load->view('admin/user/index', $data);
 	}
+
+	public function remove($id){
+		$person = $this->person_model->get_person_profile($id);
+		$result = $this->person_model->remove_person($id);
+		$this->session->set_flashdata('alert', 'Successfully removed user <strong>'.$person->DISPLAY_NAME.'</strong>');
+		redirect('admin/user');
+	}
 }

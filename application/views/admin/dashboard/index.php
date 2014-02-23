@@ -32,7 +32,7 @@
               <tbody>
               <?php foreach($bans as $ban): ?>
                 <tr>
-                  <th><a href="<?php echo base_url('person/profile/'.$ban->PERSON_ID); ?>"><?php echo $ban->DISPLAY_NAME; ?></a></th>
+                  <th><a href="<?php echo base_url('admin/ban/person/'.$ban->PERSON_ID); ?>"><?php echo $ban->DISPLAY_NAME; ?></a></th>
                   <td><?php echo $ban->END_DATE; ?></td>
                 </tr>
               <?php endforeach; ?>
