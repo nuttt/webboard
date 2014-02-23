@@ -76,4 +76,8 @@ class Person_model extends CI_Model {
 		return $query->row()->NUM;
 	}
 
+	function remove_person($id){
+		$query = $this->db->query("DELETE FROM person WHERE person_id = $id");
+	}
+
 }

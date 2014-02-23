@@ -4,9 +4,10 @@
 			<div class="col-md-4 col-md-offset-4" id="signin">
 				<?php echo form_open('auth?return='.$return, array('class' => 'form-signin')); ?>
 				<h2 class="form-signin-heading">Please sign in</h2>
-					<?php if(validation_errors()): ?>
+					<?php if(validation_errors() || $error): ?>
 						<div class="alert alert-danger">
 							<?php echo validation_errors(); ?>
+							<?php echo $error; ?>
 						</div>
 					<?php endif; ?>
 					<div class="form-group">
@@ -25,4 +26,5 @@
 				<?php echo form_close(); ?>
 			</div>
 		</div><!--row-->
+		<p class="text-center"><br><a href="<?php echo base_url('auth/signup'); ?>">Create an account</a></p>
 <?php echo $footer; ?>

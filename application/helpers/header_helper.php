@@ -5,8 +5,23 @@ function get_header_data(){
 	return $data;
 }
 
+function get_person_id2(){
+	$CI =& get_instance();
+	return $CI->session->userdata('person_id');		
+}
+
 function get_person_id($CI){
 	return $CI->session->userdata('person_id');
+}
+
+function is_not_banned($id){
+	$CI =& get_instance();
+	$CI->load->model('ban_model');
+	$current_ban_num = $CI->ban_model->get_current_user_bans_num($id);
+	if($current_ban_num > 0){
+		return false;
+	}
+	return true;
 }
 
 function get_user(){

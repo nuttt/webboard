@@ -62,5 +62,13 @@ class Person extends CI_Controller {
 		$this->load->view('person/edit',$data);
 
 	}
+
+	public function remove(){
+		$person = $this->person_model->get_person($this->session->userdata('person_id'));
+		$result = $this->person_model->remove_person($this->session->userdata('person_id'));
+		$this->session->sess_destroy();
+		$this->session->set_flashdata('alert', 'Successfully removed user <strong>'.$person->DISPLAY_NAME.'</strong>');
+		redirect('/');
+	}
 	
 }

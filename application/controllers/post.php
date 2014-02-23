@@ -67,11 +67,11 @@ class Post extends CI_Controller {
 
 		$person_id = $this->session->userdata('person_id');
 
+		date_default_timezone_set('Asia/Bangkok');
 		$dt = new DateTime();
-		$post_date = strtoupper($dt->format('d-M-y'));
+		$post_date = date('Y-m-d H:i:s',time());
 
 		if($this->form_validation->run()) {
-			echo "Pass";
 			$post_data = array(
 				'person_id' => $person_id,
 				'title' => $this->input->post('title'),
@@ -81,7 +81,9 @@ class Post extends CI_Controller {
 				'time' => $post_date
 			);
 
-			// $this->post_model->create($post_data);
+			// echo $post_date;
+			$post_id = $this->post_model->create($post_data);
+			redirect(base_url('post/view/'.$post_id));
 		}
 
 		$tags = $this->tag_model->get_tags();

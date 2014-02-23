@@ -1,7 +1,9 @@
 <?php echo $header; ?>
-<!--<pre><?php var_dump($posts); ?></pre>-->
 		<div class="row">
 			<div class="col-md-9" id="content-list">
+				<?php if($this->session->flashdata('alert')): ?>
+					<div class="alert alert-success"><?php echo $this->session->flashdata('alert'); ?></div>
+				<?php endif; ?>
 				<div class="list">
 					<div class="helper">
 						<span class="right">

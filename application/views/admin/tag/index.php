@@ -29,15 +29,4 @@
 				</tbody>
 			</table>
 		</div><!--context-->
-<script>
-	$(function(){
-		$('a.remove').click(function(e){
-			e.preventDefault();
-			result = confirm("Do you want to remove this tag?");
-			if(result){
-				window.location.replace($(this).attr('href'));
-			}
-		});
-	});
-</script>
 <?php echo $footer; ?>
