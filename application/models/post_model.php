@@ -107,4 +107,14 @@ class Post_model extends CI_Model {
 		return $post_query->first_row();
 	}
 
+	function get_topic_num(){
+		$query = $this->db->query("SELECT count(*) as num FROM post_topic");
+		return $query->row()->NUM;
+	}
+
+	function get_post_num(){
+		$query = $this->db->query("SELECT count(*) as num FROM post");
+		return $query->row()->NUM;
+
+	}
 }

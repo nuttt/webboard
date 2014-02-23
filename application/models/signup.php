@@ -23,13 +23,19 @@ class Signup extends CI_Model{
 			if($column == '(') $column = $column.$key;
 			else $column = $column.",".$key;
 			if($query == '(')$query = $query."'".$value."'";
-			else $query = $query.",'".$value."'";
+			elseif ($key == 'PASSWORD') {
+				# code...
+				$query = $query.",'".sha1($value)."'";
+			}else{
+				$query = $query.",'".$value."'";
+			}
+
 		}
 		$column = $column.",JOINED_DATE";
 		$query = $query.",'".$join_date."'";
 		$all = 'INSERT INTO PERSON '.$column.') values '.$query.')';
 		$this->db->query($all);
-		$co = $this->db->count_all('PERSON');
+		$co = $this->db->query("SELECT PERSON_ID FROM PERSON WHERE DISPLAY_NAME='".$_POST['name']."'");
 		$this->db->trans_complete();
 
 		
@@ -37,6 +43,10 @@ class Signup extends CI_Model{
 	}
 	public function check_name($name){
 		$co = $this->db->query("SELECT DISPLAY_NAME FROM PERSON WHERE DISPLAY_NAME='".$name."'");
+		return $co->num_rows()==0;
+	}
+	public function check_email($email){
+		$co = $this->db->query("SELECT DISPLAY_NAME FROM PERSON WHERE EMAIL='".$email."'");
 		return $co->num_rows()==0;
 	}
 	public function add_picture(){

@@ -15,8 +15,13 @@ class tag_model extends CI_Model {
 		return false;
 	}
 
-	function get_tags(){
-		$query = $this->db->query("SELECT * FROM TAG");
+	function get_tags($order_by = null){
+		if($order_by){
+			$query = $this->db->query("SELECT * FROM TAG ORDER BY $order_by");
+		}
+		else{
+			$query = $this->db->query("SELECT * FROM TAG");
+		}
 		return $query->result();
 	}
 
@@ -33,6 +38,7 @@ class tag_model extends CI_Model {
 		$query = $this->db->query("INSERT INTO TAG (NAME) VALUES ('$name')");
 	}
 
+
 	function get_top_tag_used($person_id){
 		$topic_query = $this->db->query("SELECT * FROM (SELECT TAG.NAME, COUNT(*) AS NUM
 										FROM POST_TOPIC
@@ -42,5 +48,10 @@ class tag_model extends CI_Model {
 										GROUP BY TAG.NAME
 										ORDER BY NUM DESC)
 										WHERE ROWNUM <= 3");
+	}
+
+	function remove_tag($tag_id){
+		$query = $this->db->query("DELETE FROM TAG WHERE TAG_ID = ".$tag_id);
+
 	}
 }
