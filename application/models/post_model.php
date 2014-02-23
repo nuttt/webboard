@@ -56,4 +56,15 @@ class Post_model extends CI_Model {
 		$post_query->first_row()->COUNT_REPLY = $this->post_reply_model->get_count_reply($post_id);
 		return $post_query->first_row();
 	}
+
+	function get_topic_num(){
+		$query = $this->db->query("SELECT count(*) as num FROM post_topic");
+		return $query->row()->NUM;
+	}
+
+	function get_post_num(){
+		$query = $this->db->query("SELECT count(*) as num FROM post");
+		return $query->row()->NUM;
+
+	}
 }
