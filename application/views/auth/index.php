@@ -25,4 +25,5 @@
 				<?php echo form_close(); ?>
 			</div>
 		</div><!--row-->
+		<p class="text-center"><br><a href="<?php echo base_url('auth/signup'); ?>">Create an account</a></p>
 <?php echo $footer; ?>

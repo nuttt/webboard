@@ -12,13 +12,20 @@ class User extends CI_Controller {
 	}
 
 	public function index(){
-
 		$data['users']['Members'] = $this->person_model->get_members();
 		$data['users']['Moderators'] = $this->person_model->get_moderators();
 		$data['users']['Administrators'] = $this->person_model->get_admins();
 		$data['header'] = $this->load->view('header', $this->header, TRUE);
 		$data['footer'] = $this->load->view('footer', $this->footer, TRUE);
 		$this->load->view('admin/user/index', $data);
+	}
+
+	public function ban($person_id){
+		$data['bans'] = $this->ban_model->get_user_bans($person_id);
+		$data['header'] = $this->load->view('header', $this->header, TRUE);
+		$data['footer'] = $this->load->view('footer', $this->footer, TRUE);
+		$this->load->view('admin/user/ban', $data);
+
 	}
 
 }
