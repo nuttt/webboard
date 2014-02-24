@@ -12,7 +12,6 @@ class User extends CI_Controller {
 	}
 
 	public function index(){
-
 		$data['users']['Members'] = $this->person_model->get_members();
 		$data['users']['Moderators'] = $this->person_model->get_moderators();
 		$data['users']['Administrators'] = $this->person_model->get_admins();
@@ -21,4 +20,10 @@ class User extends CI_Controller {
 		$this->load->view('admin/user/index', $data);
 	}
 
+	public function remove($id){
+		$person = $this->person_model->get_person_profile($id);
+		$result = $this->person_model->remove_person($id);
+		$this->session->set_flashdata('alert', 'Successfully removed user <strong>'.$person->DISPLAY_NAME.'</strong>');
+		redirect('admin/user');
+	}
 }

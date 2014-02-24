@@ -1,7 +1,9 @@
 <?php echo $header; ?>
-<!--<pre><?php var_dump($posts); ?></pre>-->
 		<div class="row">
 			<div class="col-md-9" id="content-list">
+				<?php if($this->session->flashdata('alert')): ?>
+					<div class="alert alert-success"><?php echo $this->session->flashdata('alert'); ?></div>
+				<?php endif; ?>
 				<div class="list">
 					<div class="helper">
 						<span class="right">
@@ -10,9 +12,9 @@
 									Sort by <span class="caret"></span>
 								</button>
 								<ul class="dropdown-menu">
-									<li><a href="#">Sort by Date</a></li>
-									<li><a href="#">Sort by Views</a></li>
-									<li><a href="#">Sort by Votes</a></li>
+									<li><a href="<?=base_url()?>post/?sortby=date&tag_filter=<?php echo $tag_filter;?>">Sort by Date</a></li>
+									<li><a href="<?=base_url()?>post/?sortby=views&tag_filter=<?php echo $tag_filter;?>">Sort by Views</a></li>
+									<li><a href="<?=base_url()?>post/?sortby=votes&tag_filter=<?php echo $tag_filter;?>">Sort by Votes</a></li>
 								</ul>
 							</div><!--btn-group-->
 							<div class="btn-group">
@@ -24,7 +26,7 @@
 										$tags = get_tags();
 										foreach($tags as $tag):
 									?>
-										<li><a href="<?=base_url()?>post/tag/<?php echo $tag->TAG_ID; ?>"><?php echo $tag->NAME; ?></a></li>
+										<li><a href="<?=base_url()?>post/?sortby=<?php echo $sort_by;?>&tag_filter=<?php echo $tag->NAME; ?>"><?php echo $tag->NAME; ?></a></li>
 									<?php endforeach; ?>
 								</ul>
 							</div><!--btn-group-->
@@ -78,22 +80,14 @@
 				</a>
 				<h3>Latest Replies</h3>
 				<div class="list-group replies">
-					<a href="#" class="list-group-item">
-						<h4 class="list-group-item-heading">Help with Fix me! code.</h4>
-						<p class="list-group-item-text">The problem you have is that your function is inside a block-comment...</p>
+					<?php foreach($latest_replies as $latest_reply): ?>
+					<a href="<?=base_url()?>post/view/<?=$latest_reply->POST_ID?>" class="list-group-item">
+						<h4 class="list-group-item-heading"><?=$latest_reply->TITLE?></h4>
+						<p class="list-group-item-text">
+							<?php echo (strlen($latest_reply->CONTENT) > 100) ? mb_substr($latest_reply->CONTENT,0,100).'...' : $latest_reply->CONTENT; ?>
+						</p>
 					</a>
-					<a href="#" class="list-group-item">
-						<h4 class="list-group-item-heading">Answer for 1.4 Fix Me</h4>
-						<p class="list-group-item-text">What do you understand so far? Can we look at your work from the previous...</p>
-					</a>
-					<a href="#" class="list-group-item">
-						<h4 class="list-group-item-heading">What name do i enter????</h4>
-						<p class="list-group-item-text">This code works but it and I can type in the "prompt" box on the screen...</p>
-					</a>
-					<a href="#" class="list-group-item">
-						<h4 class="list-group-item-heading">Answer for 1.4 Fix Me</h4>
-						<p class="list-group-item-text">The string method might be your issue: firstLetter . toUpperCase() cannot...</p>
-					</a>
+					<?php endforeach; ?>
 				</div>
 				<h3>Related Tags</h3>
 				<div class="list-group">

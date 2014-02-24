@@ -92,6 +92,7 @@ class Signup extends CI_Model{
 	public function add_picture(){
 		$config['upload_path'] = './uploads/';
 		$config['allowed_types'] = 'gif|jpg|png';
+
 		$config['max_size']	= '3000';
 		$config['max_width']  = '2048';
 		$config['max_height']  = '1526';

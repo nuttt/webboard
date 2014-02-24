@@ -1,8 +1,3 @@
-<?php 
-// Member can edit his own profile
-// Mod can't edit anyone's profile
-// Admin can edit everyone's profile
- ?>
 <?php echo $header; ?>
 <?php 
 	if($type == 'signup'){
@@ -24,22 +19,28 @@
 						</div>
 					<?php endif; ?>
 				<div class="thread">
-					<div class="row topic">
-						<div class="col-xs-1">
-							
-							<img src=<?php echo base_url('uploads/'.$profile->AVATAR);?> class="img-circle"> 
-						</div>
-						<div class="col-xs-9">
-							<h4>
+					<?php if($type == 'edit'): //case edit profile ?>
+						<div class="row topic">
+							<div class="col-xs-1">
+								
+								<img src=<?php echo base_url('uploads/'.$profile->AVATAR);?> class="img-circle"> 
+							</div>
+							<div class="col-xs-9">
+								<h4>
 
-								<a href="member_profile.php"><?php echo $profile->DISPLAY_NAME ?></a></h4>
-							<p class="info">
-								<?php echo anchor('mailto:'.$profile->EMAIL, '<strong>'.$profile->EMAIL.'</strong>',array('class' => 'name') ) ?>
-								<!-- <a href="mailto:nuttt.p@gmail.com" class="name"><strong>nuttt.p@gmail.com</strong></a> -->
-								<span class="date">Joined since <?php echo $profile->JOINED ?></span>
-							</p>
-						</div>
-					</div><!--topic-->
+									<a href="member_profile.php"><?php echo $profile->DISPLAY_NAME ?></a></h4>
+								<p class="info">
+									<?php echo anchor('mailto:'.$profile->EMAIL, '<strong>'.$profile->EMAIL.'</strong>',array('class' => 'name') ) ?>
+									<!-- <a href="mailto:nuttt.p@gmail.com" class="name"><strong>nuttt.p@gmail.com</strong></a> -->
+									<span class="date">Joined since <?php echo $profile->JOINED ?></span>
+								</p>
+							</div>
+						</div><!--topic-->
+					<?php else: ?>
+						<div class="topic">
+							<h4>Create an account</h4>
+						</div><!--topic-->
+					<?php endif; ?>
 					<hr class="topic-line">
 					<div class="context">
 							<?php echo form_open_multipart(($type=='signup')?'auth/signup':'person/edit/' , array('class' => 'form-horizontal', 'role' => 'form')) ?>
@@ -112,17 +113,10 @@
 				</div><!--thread-->
 			</div><!--content-->
 			<div class="col-md-3" id="sidebar">
-				<a href="member_profile.php" type="button" class="create-btn btn btn-warning btn-lg btn-block">
-					<span class="glyphicon glyphicon-eye-open"></span>
-					View Profile
-				</a>
-				<a href="member_profile.php" type="button" class="create-btn btn btn-success btn-lg btn-block">
-					<span class="glyphicon glyphicon-pencil"></span>
-					Update Profile
-				</a>
-				<h3>Guidelines</h3>
+				<h3>Agreement</h3>
 				<div class="replies">
-					<p>Text goes here Text goes here Text goes here Text goes here Text goes here Text goes here Text goes here Text goes here Text goes here Text goes here Text goes here Text goes here Text goes here Text goes here  Text goes here Text goes here Text goes here Text goes here Text goes here Text goes here Text goes here   </p>
+					<p>You agree, through your use of this forum, that you will not post any material which is false, defamatory, inaccurate, abusive, vulgar, hateful, harassing, obscene, profane, sexually oriented, threatening, invasive of a person's privacy, adult material, or otherwise in violation of any International or United States Federal law. You also agree not to post any copyrighted material unless you own the copyright or you have written consent from the owner of the copyrighted material. Spam, flooding, advertisements, chain letters, pyramid schemes, and solicitations are also forbidden on this forum.</p>
+					<p>You remain solely responsible for the content of your posted messages. Furthermore, you agree to indemnify and hold harmless the owners of this forum, any related websites to this forum, its staff, and its subsidiaries. The owners of this forum also reserve the right to reveal your identity (or any other related information collected on this service) in the event of a formal complaint or legal action arising from any situation caused by your use of this forum.</p>
 				</div>
 			</div><!--sidebar-->
 		</div><!--row-->

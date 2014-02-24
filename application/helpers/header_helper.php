@@ -5,8 +5,23 @@ function get_header_data(){
 	return $data;
 }
 
+function get_person_id2(){
+	$CI =& get_instance();
+	return $CI->session->userdata('person_id');		
+}
+
 function get_person_id($CI){
 	return $CI->session->userdata('person_id');
+}
+
+function is_not_banned($id){
+	$CI =& get_instance();
+	$CI->load->model('ban_model');
+	$current_ban_num = $CI->ban_model->get_current_user_bans_num($id);
+	if($current_ban_num > 0){
+		return false;
+	}
+	return true;
 }
 
 function get_user(){
@@ -41,6 +56,15 @@ function is_admin(){
 	return false;
 }
 
+function is_moderator($topic_id){
+	$CI =& get_instance();
+	$CI->load->model('person_model');
+	if($person_id = get_person_id($CI)){
+		return $CI->person_model->is_moderator($person_id,$topic_id);
+	}
+	return false;
+}
+
 function person_login(){
 	$CI =& get_instance();
 	if(!$CI->session->userdata('person_id')){ // hasn't logged in
@@ -53,4 +77,10 @@ function admin_login(){
   if(!is_admin()){
   	redirect('/');
   }
+}
+
+function is_person($id){
+	$CI =& get_instance();
+	if($id == get_person_id($CI)) return true;
+	return false;
 }

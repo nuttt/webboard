@@ -4,7 +4,7 @@
 				<div class="thread">
 						<div class="row topic">
 							<div class="col-xs-1">
-								<img src="img/avatar_test.jpg" class="img-circle">
+								<img src="<?=base_url()?>uploads/<?php echo $post->AVATAR; ?> " class="img-circle">
 							</div>
 							<div class="col-xs-8">
 								<h4><a href="<?=base_url()?>post/view/<?=$post->POST_ID?>"><?php echo $post->TITLE; ?></a></h4>
@@ -23,8 +23,10 @@
 									// Mod can edit a topic of his tag
 									// Admin can edit everyone's topic
 									 ?>
-									<a href="edit_content.php" class="tag yellow"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
-									<a href="" class="tag red"><span class="glyphicon glyphicon-trash"></span> Remove</a>
+									 <?php if(is_person($post->PERSON_ID)||is_admin()||is_moderator($post->POST_ID)):  ?>
+										<a href="edit_content.php" class="tag yellow"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
+										<a href="" class="tag red"><span class="glyphicon glyphicon-trash"></span> Remove</a>
+									<?php endif ?>
 									<a href="" class="tag orange"><span class="glyphicon glyphicon-exclamation-sign"></span> Report</a>
 								</p>
 							</div>
@@ -54,19 +56,16 @@
 						<hr class="topic-line">
 						<div class="row topic">
 							<div class="col-xs-1">
-								<img src="img/avatar_test.jpg" class="img-circle">
+								<img src="<?=base_url()?>uploads/<?php echo $reply->AVATAR; ?>" class="img-circle">
 							</div>
 							<div class="col-xs-8">
 								<p class="info">
-									<a href="<?=base_url()?>person/profile/<?=$post->PERSON_ID?>" class="name"><strong><?php echo $reply->DISPLAY_NAME; ?></strong></a>
+									<a href="<?=base_url()?>person/profile/<?=$reply->PERSON_ID?>" class="name"><strong><?php echo $reply->DISPLAY_NAME; ?></strong></a>
 									<span class="date"><?php echo $reply->TIME; ?></span>
-									<?php 
-									// Member can edit his own post
-									// Mod can edit a post of his tag
-									// Admin can edit everyone's post
-									 ?>
-									<a href="edit_post.php" class="tag yellow"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
-									<a href="" class="tag red"><span class="glyphicon glyphicon-trash"></span> Remove</a>
+									<?php if(is_person($reply->PERSON_ID)||is_admin()||is_moderator($post->POST_ID)): ?>
+										<a href="edit_post.php" class="tag yellow"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
+										<a href="" class="tag red"><span class="glyphicon glyphicon-trash"></span> Remove</a>
+									<?php endif ?>
 								</p>
 							</div>
 							<div class="col-xs-3 text-right">
@@ -90,30 +89,25 @@
 					<span class="glyphicon glyphicon-plus-sign"></span>
 					Reply
 				</a>
-				<h3>Related Topics</h3>
+				<h3>Latest Replies</h3>
 				<div class="list-group replies">
-					<a href="#" class="list-group-item">
-						<h4 class="list-group-item-heading">Help with Fix me! code.</h4>
-						<p class="list-group-item-text">The problem you have is that your function is inside a block-comment...</p>
+					<?php foreach($latest_replies as $latest_reply): ?>
+					<a href="<?=base_url()?>post/view/<?=$latest_reply->POST_ID?>" class="list-group-item">
+						<h4 class="list-group-item-heading"><?=$latest_reply->TITLE?></h4>
+						<p class="list-group-item-text">
+							<?php echo (strlen($latest_reply->CONTENT) > 100) ? mb_substr($latest_reply->CONTENT,0,100).'...' : $latest_reply->CONTENT; ?>
+						</p>
 					</a>
-					<a href="#" class="list-group-item">
-						<h4 class="list-group-item-heading">Answer for 1.4 Fix Me</h4>
-						<p class="list-group-item-text">What do you understand so far? Can we look at your work from the previous...</p>
-					</a>
-					<a href="#" class="list-group-item">
-						<h4 class="list-group-item-heading">What name do i enter????</h4>
-						<p class="list-group-item-text">This code works but it and I can type in the "prompt" box on the screen...</p>
-					</a>
-					<a href="#" class="list-group-item">
-						<h4 class="list-group-item-heading">Answer for 1.4 Fix Me</h4>
-						<p class="list-group-item-text">The string method might be your issue: firstLetter . toUpperCase() cannot...</p>
-					</a>
+					<?php endforeach; ?>
 				</div>
-				<h3>Related Tags</h3>
+				<?php if (count($related_tags)>0): ?>
+					<h3>Related Tags</h3>
+				<?php endif ?>
+				
 				<div class="list-group">
-					<a href="" class="list-group-item"><span class="badge">114</span> Computer</a>
-					<a href="" class="list-group-item"><span class="badge">20</span> Coding</a>
-					<a href="" class="list-group-item"><span class="badge">6</span> Programming</a>
+					<?php foreach ($related_tags as $related_tag): ?>
+						<a href="<?=base_url()?>post/tag/<?=$related_tag->TAG_ID?>" class="list-group-item"><span class="badge"><?php echo $related_tag->NUM ?></span><?php echo $related_tag->NAME ?></a>
+					<?php endforeach ?>
 				</div>
 			</div><!--sidebar-->
 		</div><!--row-->

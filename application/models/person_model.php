@@ -31,13 +31,23 @@ class Person_model extends CI_Model {
 	}
 
 	function is_admin($person_id){
-		$query = $this->db->query("SELECT person_id FROM person_admin");
+		$query = $this->db->query("SELECT person_id FROM person_admin WHERE person_id = $person_id");
+		return $query->num_rows() > 0;
+	}
+
+	function is_moderator($person_id,$topic_id){
+		$query = $this->db->query("SELECT MOD_TAG.*
+									FROM MOD_TAG
+									INNER JOIN TOPIC_TAG 
+										ON TOPIC_TAG.TAG_ID=MOD_TAG.TAG_ID 
+										AND MOD_TAG.MOD_ID =".$person_id." 
+										AND TOPIC_TAG.TOPIC_ID = ".$topic_id);
 		return $query->num_rows() > 0;
 	}
 
 	function get_person_profile($id){
 		$query = $this->db->query("SELECT P.PERSON_ID, P.DISPLAY_NAME, P.PASSWORD, 
-									CASE WHEN P.AVATAR IS NULL THEN 'DEFAULT' ELSE P.TWITTER END AS AVARTAR,
+									CASE WHEN P.AVATAR IS NULL THEN 'DEFAULT' ELSE P.AVATAR END AS AVATAR,
 									to_char(P.BIRTHDATE,'DD Month YYYY HH24:MI')AS BIRTHDATE,
 									CASE WHEN P.TWITTER IS NULL THEN '' ELSE P.TWITTER END AS TWITTER,
 									CASE WHEN P.FACEBOOK IS NULL THEN '' ELSE P.FACEBOOK END AS FACEBOOK,
@@ -64,6 +74,10 @@ class Person_model extends CI_Model {
 	function get_person_number(){
 		$query = $this->db->query("SELECT count(*) as num FROM person");
 		return $query->row()->NUM;
+	}
+
+	function remove_person($id){
+		$query = $this->db->query("DELETE FROM person WHERE person_id = $id");
 	}
 
 }

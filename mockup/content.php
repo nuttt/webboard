@@ -58,60 +58,7 @@
 							Also, why didn't he know that made-up tags exist and work with CSS. Are they uncommon?
 						</div><!--context-->
 					</div><!--thread-->
-					<div class="reply">
-						<div class="context">
-							In my class, I was playing around and found out that CSS works with made-up tags.
-						
-							Example:
-						
-							<pre>&lt;style&gt;
-						imsocool {
-						    color:blue;
-						}
-						&lt;/style&gt;
-						
-						&lt;body&gt;
-						    &lt;imsocool&gt;HELLO&lt;/imsocool&gt;
-						&lt;/body&gt;</pre>
-						
-							When my professor first saw me using this, he was a bit surprised that made-up tags worked and recommended I simply change all of my made up tags to paragraphs with ID's.
-						
-							Why doesn't my professor want me to use made-up tags? They work effectively.
-						
-							Also, why didn't he know that made-up tags exist and work with CSS. Are they uncommon?
-						</div><!--context-->
-						<hr class="topic-line">
-						<div class="row topic">
-							<div class="col-xs-1">
-								<img src="img/avatar_test.jpg" class="img-circle">
-							</div>
-							<div class="col-xs-8">
-								<p class="info">
-									<a href="member_profile.php" class="name"><strong>Nuttapon P</strong></a>
-									<span class="date">14 Dec 13, 21:30</span>
-									<?php 
-									// Member can edit his own post
-									// Mod can edit a post of his tag
-									// Admin can edit everyone's post
-									 ?>
-									<a href="edit_post.php" class="tag yellow"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
-									<a href="" class="tag red"><span class="glyphicon glyphicon-trash"></span> Remove</a>
-								</p>
-							</div>
-							<div class="col-xs-3 text-right">
-								<a href="" class="btn btn-danger btn-xs vote vote-down">
-									<span class="glyphicon glyphicon-thumbs-down"></span>
-								</a><!--vote-->
-								<span class="current-score">
-									5
-								</span>
-								<a href="" class="btn btn-success btn-xs vote vote-up">
-									<span class="glyphicon glyphicon-thumbs-up"></span>
-								</a><!--vote-->
-							</div>
-						</div><!--topic-->
-					</div><!--reply-->
-					<div class="reply">
+					<div class="reply media" id="reply-11">
 						<div class="context">
 							I don't know what I'm doing at all.
 						</div><!--context-->
@@ -120,14 +67,18 @@
 							<div class="col-xs-1">
 								<img src="img/avatar_test.jpg" class="img-circle">
 							</div>
-							<div class="col-xs-8">
+							<div class="col-xs-5">
 								<p class="info">
-									<a href="member_profile.php" class="name"><strong>Vee Vee</strong></a>
+									<a href="member_profile.php" class="name"><strong>Nut</strong></a>
 									<span class="date">14 Dec 13, 21:30</span>
 									<a href="" class="tag orange"><span class="glyphicon glyphicon-exclamation-sign"></span> Report</a>
 								</p>
 							</div>
-							<div class="col-xs-3 text-right">
+							<div class="col-xs-6 text-right">
+								<button type="button" data-reply="11" class="inner-reply-btn btn btn-primary btn-xs">
+									<span class="glyphicon glyphicon-plus-sign"></span>
+									Reply
+								</button>
 								<a href="" class="btn btn-danger btn-xs vote vote-down">
 									<span class="glyphicon glyphicon-thumbs-down"></span>
 								</a><!--vote-->
@@ -139,10 +90,122 @@
 								</a><!--vote-->
 							</div>
 						</div><!--topic-->
+						<div class="reply media" id="reply-113">
+							<div class="context">
+								I don't know what I'm doing at all.
+							</div><!--context-->
+							<hr class="topic-line">
+							<div class="row topic">
+								<div class="col-xs-1">
+									<img src="img/avatar_test.jpg" class="img-circle">
+								</div>
+								<div class="col-xs-5">
+									<p class="info">
+										<a href="member_profile.php" class="name"><strong>Vee Vee</strong></a>
+										<span class="date">14 Dec 13, 21:30</span>
+										<a href="" class="tag orange"><span class="glyphicon glyphicon-exclamation-sign"></span> Report</a>
+									</p>
+								</div>
+								<div class="col-xs-6 text-right">
+									<button type="button" data-reply="113" class="inner-reply-btn btn btn-primary btn-xs">
+										<span class="glyphicon glyphicon-plus-sign"></span>
+										Reply
+									</button>
+									<a href="" class="btn btn-danger btn-xs vote vote-down">
+										<span class="glyphicon glyphicon-thumbs-down"></span>
+									</a><!--vote-->
+									<span class="current-score">
+										-8
+									</span>
+									<a href="" class="btn btn-success btn-xs vote vote-up">
+										<span class="glyphicon glyphicon-thumbs-up"></span>
+									</a><!--vote-->
+								</div>
+							</div><!--topic-->
+						</div><!--reply-->
 					</div><!--reply-->
+					<div class="reply media" id="reply-12">
+						<div class="context">
+							I don't know what I'm doing at all.
+						</div><!--context-->
+						<hr class="topic-line">
+						<div class="row topic">
+							<div class="col-xs-1">
+								<img src="img/avatar_test.jpg" class="img-circle">
+							</div>
+							<div class="col-xs-5">
+								<p class="info">
+									<a href="member_profile.php" class="name"><strong>Nut</strong></a>
+									<span class="date">14 Dec 13, 21:30</span>
+									<a href="" class="tag orange"><span class="glyphicon glyphicon-exclamation-sign"></span> Report</a>
+								</p>
+							</div>
+							<div class="col-xs-6 text-right">
+								<button type="button" data-reply="12" class="inner-reply-btn btn btn-primary btn-xs">
+									<span class="glyphicon glyphicon-plus-sign"></span>
+									Reply
+								</button>
+								<a href="" class="btn btn-danger btn-xs vote vote-down">
+									<span class="glyphicon glyphicon-thumbs-down"></span>
+								</a><!--vote-->
+								<span class="current-score">
+									-8
+								</span>
+								<a href="" class="btn btn-success btn-xs vote vote-up">
+									<span class="glyphicon glyphicon-thumbs-up"></span>
+								</a><!--vote-->
+							</div>
+						</div><!--topic-->
+						<div class="reply media" id="reply-123">
+							<div class="context">
+								I don't know what I'm doing at all.
+							</div><!--context-->
+							<hr class="topic-line">
+							<div class="row topic">
+								<div class="col-xs-1">
+									<img src="img/avatar_test.jpg" class="img-circle">
+								</div>
+								<div class="col-xs-5">
+									<p class="info">
+										<a href="member_profile.php" class="name"><strong>Vee Vee</strong></a>
+										<span class="date">14 Dec 13, 21:30</span>
+										<a href="" class="tag orange"><span class="glyphicon glyphicon-exclamation-sign"></span> Report</a>
+									</p>
+								</div>
+								<div class="col-xs-6 text-right">
+									<button type="button" data-reply="123" class="inner-reply-btn btn btn-primary btn-xs">
+										<span class="glyphicon glyphicon-plus-sign"></span>
+										Reply
+									</button>
+									<a href="" class="btn btn-danger btn-xs vote vote-down">
+										<span class="glyphicon glyphicon-thumbs-down"></span>
+									</a><!--vote-->
+									<span class="current-score">
+										-8
+									</span>
+									<a href="" class="btn btn-success btn-xs vote vote-up">
+										<span class="glyphicon glyphicon-thumbs-up"></span>
+									</a><!--vote-->
+								</div>
+							</div><!--topic-->
+						</div><!--reply-->
+					</div><!--reply-->
+					<div class="topic-reply">
+						<form action="reply/TOPIC_ID" method="POST">
+							<p><textarea class="form-control" rows="3"></textarea></p>
+							<div class="row">
+								<div class="col-sm-6">
+									<h5>Reply to the topic</h5>
+								</div><!-- /.col-sm-6 -->
+								<div class="col-sm-6 text-right">
+									<button type="submit" class="btn btn-primary">Reply</button>
+								</div><!-- /.col-sm-6 -->
+							</div>
+						</form>
+					</div><!--reply-form-->
 			</div><!--content-->
 			<div class="col-md-3" id="sidebar">
-				<a type="button" class="create-btn btn btn-primary btn-lg btn-block">
+				<a type="button" class="reply-click btn btn-primary btn-lg btn-block">
 					<span class="glyphicon glyphicon-plus-sign"></span>
 					Reply
 				</a>
@@ -173,4 +236,41 @@
 				</div>
 			</div><!--sidebar-->
 		</div><!--row-->
+
+<!-- leave this alone -->
+<div class="reply-form-original">
+	<form action="" method="POST">
+		<p><textarea class="form-control" rows="3"></textarea></p>
+		<div class="row">
+			<div class="col-sm-6">
+				<h5>Reply to <span class="author"></span></h5>
+			</div><!-- /.col-sm-6 -->
+			<div class="col-sm-6 text-right">
+				<button type="submit" class="btn btn-primary">Reply</button>
+			</div><!-- /.col-sm-6 -->
+		</div>
+	</form>
+</div><!--reply-form-->
+<script>
+$(function(){
+	function scrollToAnchor(aid){
+    var aTag = $(aid);
+	  $('html,body').animate({scrollTop: aTag.offset().top-100},'slow');
+	}
+	$('.inner-reply-btn').click(function(e){
+		$('.reply-form').remove();
+		postID = $(this).data('reply');
+		author = $('#reply-'+postID+' .name').html();
+		reply = $('#reply-'+postID);
+		x = $('.reply-form-original').clone().appendTo(reply);
+		reply.find('.reply-form-original').attr('class', 'reply-form');
+		reply.find('.author').html(author);
+		reply.find('form').attr('action', '/reply/'+postID);
+		scrollToAnchor('.reply-form');
+	});
+	$('.reply-click').click(function(e){
+		scrollToAnchor('.topic-reply');
+	});
+});
+</script>
 <?php include('footer.php'); ?>
