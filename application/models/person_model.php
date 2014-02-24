@@ -1,9 +1,9 @@
 <?php
 class Person_model extends CI_Model {
 
-	var $attributes = "person_id, display_name, password, avatar, birthdate, twitter, facebook, email, to_char(joined_date,'DY DD-Mon-YYYY HH24:MI')AS joined";
+	var $attributes = "person_id, display_name, password, avatar, birthdate, twitter, facebook, email, to_char(joined_date,'DY DD-Mon-YYYY HH24:MI')AS joined, to_char(birthdate,'yyyy-mm-dd')AS birth";
 
-	function __construct(){
+	function __construct(){	
 		// Call the Model constructor
 		parent::__construct();
 	}

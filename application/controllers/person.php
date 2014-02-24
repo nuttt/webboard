@@ -47,14 +47,74 @@ class Person extends CI_Controller {
 			'picture' => 'AVARTAR'
 			);
 		person_login();
+		$success = false;
 		$this->load->model('person_model');
-		$id = $this->session->userdata('person_id');
-		$data['profile'] = $this->person_model->get_person($id);
+		$person_id = $this->session->userdata('person_id');
+		$data['profile'] = $this->person_model->get_person($person_id);
+		$name = $data['profile']->DISPLAY_NAME;
+		$email = $data['profile']->EMAIL;
+		//------------------------------------------------
+		$this->load->model('signup');
+		$this->load->library('form_validation');
+		$this->load->library('form_validation');
+		
+		$this->form_validation->set_rules('password', 'Password', 'trim|required|matches[password2]|min_length[8]|max_length[45]');
+		$this->form_validation->set_rules('password2', 'Password Confirmation', 'trim|required');
+		
+
+		if(!isset($_POST['name']))$this->form_validation->set_rules('name', 'Username', 'trim|required|min_length[3]|max_length[45]|xss_clean');
+		else if($name!=$_POST['name'])$this->form_validation->set_rules('name', 'Username', 'trim|required|min_length[3]|max_length[45]|xss_clean|callback_username_check');
+		else $this->form_validation->set_rules('name', 'Username', 'trim|required|min_length[3]|max_length[45]|xss_clean');
+		
+		if(!isset($_POST['email']))$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
+		elseif($email!=$_POST['email'])$this->form_validation->set_rules('email', 'Email', 'trim|required|matches[password2]|min_length[8]|max_length[45]|callback_email_check');
+		else $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
+		// $this->form_validation->set_message('username_check','Member is already used!');
+		// $this->form_validation->set_message('email_check','Email is already used!');
+
+		$map = array(
+			'name' => 'DISPLAY_NAME',
+			'password' => 'PASSWORD',
+			'birthdate' => 'BIRTHDATE',
+			'twitter' => 'TWITTER',
+			'facebook' => 'FACEBOOK',
+			'email' => 'EMAIL'
+			);
+		
+		if($this->form_validation->run() != false){
+			//if($this->signup->check_name($_POST['name'])&&$this->signup->check_email($_POST['email'])){
+				$tmp = $this->signup->add_picture();
+				// if(isset($tmp['upload_data'])){
+					foreach ($map as $key => $value) {
+						# code...
+						$person[$value] = $_POST[$key];
+					}
+					$this->load->model('person_model');
+					$person['AVATAR'] = $tmp['upload_data']['file_name'];
+					$co = $this->signup->edit_person($person_id,$person);
+					$success = true;
+					redirect('/');	
+				// }
+			//}
+		}
+		// $data['type'] = 'edit';
+		$data['type'] = 'edit';
 		$data['header'] = $this->load->view('header', $this->header, TRUE);
 		$data['footer'] = $this->load->view('footer', $this->footer, TRUE);
-		$this->load->view('person/edit',$data);
+		
+		$this->load->view('auth/signup', $data);
+		
+		//------------------------------------------------
+
+		// $data['type'] = 'edit';
+		// $data['profile'] = $this->person_model->get_person($person_id);
+		// $data['header'] = $this->load->view('header', $this->header, TRUE);
+		// $data['footer'] = $this->load->view('footer', $this->footer, TRUE);
+		// $this->load->view('auth/signup',$data);
+
 
 	}
+	
 	public function edit_all($id){
 		$data['header'] = $this->load->view('header', $this->header, TRUE);
 		$data['footer'] = $this->load->view('footer', $this->footer, TRUE);

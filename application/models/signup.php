@@ -3,6 +3,36 @@ class Signup extends CI_Model{
 	function __construct(){
 		parent::__construct();
 	}
+	function edit_person($id, $person){
+		$query = '';
+		// $column = '(';
+
+		$date = new DateTime($person['BIRTHDATE']);
+		//echo $date->format('d-M-y');
+
+		$dt = new DateTime();
+		$join_date = strtoupper($dt->format('d-M-y'));
+
+		$person['BIRTHDATE'] = strtoupper($date->format('d-M-y'));
+		foreach ($person as $key => $value) {
+			# code...
+			if($query != '')$query = $query.',';
+			if($key == 'PASSWORD') $query = $query.''.$key."='".sha1($value)."'";
+			else $query = $query.''.$key."='".$value."'";
+
+		}
+		//$column = $column.",JOINED_DATE";
+		// $query = $query.",'".$join_date."'";
+		$all = 'UPDATE PERSON SET '.$query.' WHERE PERSON_ID='.$id;
+		$this->db->query($all);
+		echo $all;
+		
+		$this->db->trans_complete();
+
+		
+		
+
+	}
 	function add_person($person){
 
 		// $this->db->trans_start();
@@ -49,12 +79,22 @@ class Signup extends CI_Model{
 		$co = $this->db->query("SELECT DISPLAY_NAME FROM PERSON WHERE EMAIL='".$email."'");
 		return $co->num_rows()==0;
 	}
+	public function callback_check_name1($name,$cur){
+		if($name == $cur)return true;
+		$co = $this->db->query("SELECT DISPLAY_NAME FROM PERSON WHERE DISPLAY_NAME='".$name."'");
+		return $co->num_rows()==0;
+	}
+	public function callback_check_email1($email,$cur){
+		if($name == $cur)return true;
+		$co = $this->db->query("SELECT DISPLAY_NAME FROM PERSON WHERE EMAIL='".$email."'");
+		return $co->num_rows()==0;
+	}
 	public function add_picture(){
 		$config['upload_path'] = './uploads/';
 		$config['allowed_types'] = 'gif|jpg|png';
-		$config['max_size']	= '100';
-		$config['max_width']  = '1024';
-		$config['max_height']  = '768';
+		$config['max_size']	= '3000';
+		$config['max_width']  = '2048';
+		$config['max_height']  = '1526';
 		$config['file_name'] = 'a';
 		$this->load->library('upload', $config);
 		if ( ! $this->upload->do_upload('picture')){
