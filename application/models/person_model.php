@@ -15,7 +15,7 @@ class Person_model extends CI_Model {
 	}
 
 	public function verify_person($email, $password){
-		$query = $this->db->query("SELECT $this->attributes FROM person WHERE email = '".$email."' AND password = '".sha1($password)."' AND ROWNUM <= 1");// AND status = 1");
+		$query = $this->db->query("SELECT $this->attributes FROM person WHERE email = '".$email."' AND password = '".sha1($password)."' AND ROWNUM <= 1 AND status = 1");
 		if($query->num_rows() > 0){
 			return $query->row();
 		}
@@ -57,27 +57,27 @@ class Person_model extends CI_Model {
 	}
 
 	function get_members(){
-		$query = $this->db->query("SELECT $this->attributes FROM person WHERE person_id not in (SELECT person_id FROM person_moderator) and person_id not in (SELECT person_id FROM person_admin)");// and status = 1");
+		$query = $this->db->query("SELECT $this->attributes FROM person WHERE person_id not in (SELECT person_id FROM person_moderator) and person_id not in (SELECT person_id FROM person_admin) and status = 1");
 		return $query->result();
 	}
 
 	function get_deleted_users(){
-		$query = $this->db->query("SELECT $this->attributes FROM person");// WHERE status = 0");
+		$query = $this->db->query("SELECT $this->attributes FROM person WHERE status = 0");
 		return $query->result();
 	}
 
 	function get_moderators(){
-		$query = $this->db->query("SELECT $this->attributes FROM person WHERE person_id in (SELECT person_id FROM person_moderator)");// and status = 1");
+		$query = $this->db->query("SELECT $this->attributes FROM person WHERE person_id in (SELECT person_id FROM person_moderator) and status = 1");
 		return $query->result();
 	}
 
 	function get_admins(){
-		$query = $this->db->query("SELECT $this->attributes FROM person WHERE person_id in (SELECT person_id FROM person_admin)");// and status = 1");
+		$query = $this->db->query("SELECT $this->attributes FROM person WHERE person_id in (SELECT person_id FROM person_admin) and status = 1");
 		return $query->result();
 	}
 
 	function get_person_number(){
-		$query = $this->db->query("SELECT count(*) as num FROM person");// WHERE status = 1");
+		$query = $this->db->query("SELECT count(*) as num FROM person WHERE status = 1");
 		return $query->row()->NUM;
 	}
 

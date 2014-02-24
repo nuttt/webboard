@@ -16,23 +16,23 @@
 					</div><!--topic-->
 					<hr class="topic-line">
 					<div class="context">
-						<form class="form-horizontal" role="form">
+						<?php echo form_open(uri_string(), array('class' => 'form-horizontal')); ?>
 							<div class="form-group">
 								<label for="inputEmail3" class="col-sm-3 control-label">Start date</label>
 								<div class="col-sm-4">
-									<input type="date" class="form-control" name="start-date" value="2014-02-23">
+									<input type="date" class="form-control" name="start-date" value="<?php echo $start_date; ?>">
 								</div>
 								<div class="col-sm-4">
-									<input type="time" class="form-control" name="start-time" value="23:00">
+									<input type="time" class="form-control" name="start-time" value="<?php echo $start_time; ?>">
 								</div>
 							</div><!--form-group-->
 							<div class="form-group">
 								<label for="inputEmail3" class="col-sm-3 control-label">End date</label>
 								<div class="col-sm-4">
-									<input type="date" class="form-control" name="end-date" value="2014-03-03">
+									<input type="date" class="form-control" name="end-date" min="<?php echo $start_date; ?>" value="<?php echo $end_date; ?>">
 								</div>
 								<div class="col-sm-4">
-									<input type="time" class="form-control" name="end-time" value="12:00">
+									<input type="time" class="form-control" name="end-time" value="<?php echo $end_time; ?>">
 								</div>
 							</div><!--form-group-->
 							<div class="form-group">
@@ -40,7 +40,7 @@
 									<button type="submit" class="btn btn-primary">Update</button>
 								</div>
 							</div>
-						</form>
+						<?php echo form_close(); ?>
 					</div><!--context-->
 				</div><!--thread-->
 				<!-- for admin only -->
