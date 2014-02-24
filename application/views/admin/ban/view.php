@@ -37,39 +37,14 @@
 							</div><!--form-group-->
 							<div class="form-group">
 								<div class="col-sm-offset-3 col-sm-9">
-									<button type="submit" class="btn btn-primary">Ban User</button>
+									<button type="submit" class="btn btn-primary">Update</button>
 								</div>
 							</div>
 						</form>
 					</div><!--context-->
 				</div><!--thread-->
 				<!-- for admin only -->
-				<h3>Ban History</h3>
-				<div class="box">
-					
-							<table class="table">
-								<tr>
-									<th width="10%">#</th>
-									<th width="25%">Begin date</th>
-									<th width="25%">End date</td>
-									<th width="20%">By</td>
-									<th width="20%">Manage</td>
-								</tr>
-								<?php $i = 1; foreach($bans as $ban): ?>
-									<tr>
-										<td><?php echo $i++; ?></td>
-										<td><?php echo $ban->START_DATE; ?></td>
-										<td><?php echo $ban->END_DATE; ?></td>
-										<td><a href="<?php echo base_url('person/profile/'.$ban->ADMIN_ID); ?>"><?php echo $ban->ADMIN_NAME; ?></a></td>
-										<td>
-											<a href="<?php echo base_url('admin/ban/view/'.$ban->BAN_LOG_ID) ?>"><span class="glyphicon glyphicon-pencil"></span></a>
-											&nbsp;
-											<a href="<?php echo base_url('admin/ban/remove/'.$ban->BAN_LOG_ID) ?>"><span class="glyphicon glyphicon-trash"></span></a>
-										</td>
-									</tr>
-								<?php endforeach; ?>
-							</table>
-				</div>
+				
 			</div><!--content-->
 			<?php include('sidebar.php'); ?>
 		</div><!--row-->

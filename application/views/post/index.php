@@ -74,7 +74,7 @@
 				</div>
 			</div><!--content-->
 			<div class="col-md-3" id="sidebar">
-				<a type="button" class="create-btn btn btn-primary btn-lg btn-block">
+				<a href="<?php echo base_url('post/create'); ?>" class="create-btn btn btn-primary btn-lg btn-block">
 					<span class="glyphicon glyphicon-plus-sign"></span>
 					Create a Topic
 				</a>
