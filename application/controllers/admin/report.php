@@ -6,6 +6,7 @@ class Report extends CI_Controller {
 
 	function __construct(){
 		parent::__construct();
+		admin_login();
 		$this->header = get_header_data();
 	}
 
@@ -24,6 +25,5 @@ class Report extends CI_Controller {
 		$this->session->set_flashdata('message', 'Report has been handled!');
 		redirect(base_url().'admin/report/index');
 	}
-
 
 }

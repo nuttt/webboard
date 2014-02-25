@@ -56,6 +56,15 @@ function is_admin(){
 	return false;
 }
 
+function is_moderator2(){
+	$CI =& get_instance();
+	$CI->load->model('person_model');
+	if($person_id = get_person_id($CI)){
+		return $CI->person_model->is_moderator2($person_id);
+	}
+	return false;
+}
+
 function is_moderator($topic_id){
 	$CI =& get_instance();
 	$CI->load->model('person_model');
@@ -75,6 +84,13 @@ function person_login(){
 function admin_login(){
 	person_login();
   if(!is_admin()){
+  	redirect('/');
+  }
+}
+
+function admin_login(){
+	person_login();
+  if(!is_moderator()){
   	redirect('/');
   }
 }
