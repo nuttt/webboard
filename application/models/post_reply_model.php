@@ -10,8 +10,7 @@ class Post_reply_model extends CI_Model {
 		else return 0;
 	}
 
-	function get_post_reply($post_id){
-		$query = $this->db->query("SELECT POST_REPLY.POST_ID, PERSON.PERSON_ID, to_char(POST.TIME,'DY DD-Mon-YYYY HH24:MI')AS TIME, PERSON.DISPLAY_NAME, PERSON.AVATAR, CASE WHEN sum(VOTES.STATUS) IS NULL THEN 0 ELSE sum(VOTES.STATUS) END  AS VOTE, POST.CONTENT
+	function get_post_reply($post_id){ $query = $this->db->query("SELECT POST_REPLY.POST_ID, PERSON.PERSON_ID, to_char(POST.TIME,'DY DD-Mon-YYYY HH24:MI')AS TIME, PERSON.DISPLAY_NAME, PERSON.AVATAR, CASE WHEN sum(VOTES.STATUS) IS NULL THEN 0 ELSE sum(VOTES.STATUS) END  AS VOTE, POST.CONTENT
 								From POST_REPLY
 								INNER JOIN POST ON POST_REPLY.POST_ID = POST.POST_ID AND POST_REPLY.REPLY_TO =".$post_id.
 								" INNER JOIN PERSON ON POST.PERSON_ID = PERSON.PERSON_ID 
@@ -40,5 +39,22 @@ class Post_reply_model extends CI_Model {
 			ORDER BY POST.TIME DESC)
 			WHERE ROWNUM <= 5");
 		return $query->result();
+	}
+	function reply($content, $person_id, $topic_id, $reply_id){
+		$this->db->trans_start();
+		$query = $this->db->query("
+			INSERT INTO POST (CONTENT, STATUS, PERSON_ID) VALUES ('".$content."', '1',".$person_id.") 
+		
+			"); 
+		$this->db->select_max('POST_ID');
+		$max = $this->db->get('POST');
+		$max_int = $max->result_array()[0]['POST_ID'];
+		$query = $this->db->query("
+			INSERT INTO POST_REPLY (POST_ID, REPLY_TO, TOPIC_ID) VALUES ('".$max_int."', '".$reply_id."', '".$topic_id."')
+			"); 
+		
+
+		$this->db->trans_complete();
+		return $max_int;
 	}
 }
