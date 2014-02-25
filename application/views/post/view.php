@@ -94,19 +94,21 @@
 						</div><!--topic-->
 					</div><!--reply-->
 					<?php endforeach ?>
-					<div class="topic-reply">
-						<?php echo form_open('post/reply/'.$post->POST_ID.'/'.$post->POST_ID); ?>
-							<p><?php echo form_textarea(array('name' => 'content', 'class' => 'form-control', 'rows' => '3')); ?></p>
-							<div class="row">
-								<div class="col-sm-6">
-									<h5>Reply to the topic</h5>
-								</div><!-- /.col-sm-6 -->
-								<div class="col-sm-6 text-right">
-									<button type="submit" class="btn btn-primary submit-validate">Reply</button>
-								</div><!-- /.col-sm-6 -->
-							</div>
-						<?php echo form_close(); ?>
-					</div><!--reply-form-->
+					<?php if($person_loggedin): // user logged in ?>
+						<div class="topic-reply" name="reply">
+							<?php echo form_open('post/reply/'.$post->POST_ID.'/'.$post->POST_ID); ?>
+								<p><?php echo form_textarea(array('name' => 'content', 'class' => 'form-control', 'rows' => '3')); ?></p>
+								<div class="row">
+									<div class="col-sm-6">
+										<h5>Reply to the topic</h5>
+									</div><!-- /.col-sm-6 -->
+									<div class="col-sm-6 text-right">
+										<button type="submit" class="btn btn-primary submit-validate">Reply</button>
+									</div><!-- /.col-sm-6 -->
+								</div>
+							<?php echo form_close(); ?>
+						</div><!--reply-form-->
+					<?php endif; ?>
 					
 			</div><!--content-->
 			<?php include('hook-view-sidebar.php'); ?>

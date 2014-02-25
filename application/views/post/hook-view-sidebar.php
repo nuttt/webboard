@@ -1,9 +1,16 @@
 
 			<div class="col-md-3" id="sidebar">
-				<a type="button" class="reply-click btn btn-primary btn-lg btn-block">
+			<?php if($person_loggedin): // user logged in ?>
+				<button type="button" class="reply-click btn btn-primary btn-lg btn-block">
+					<span class="glyphicon glyphicon-plus-sign"></span>
+					Reply
+				</button>
+			<?php else: ?>
+				<a href="<?php echo $login_url; ?>#reply" type="button" class="reply-click btn btn-primary btn-lg btn-block">
 					<span class="glyphicon glyphicon-plus-sign"></span>
 					Reply
 				</a>
+			<?php endif; ?>
 				<h3>Latest Replies</h3>
 				<div class="list-group replies">
 					<?php foreach($latest_replies as $latest_reply): ?>
