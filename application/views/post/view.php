@@ -27,7 +27,7 @@
 										<a href="edit_content.php" class="tag yellow"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
 										<a href="" class="tag red"><span class="glyphicon glyphicon-trash"></span> Remove</a>
 									<?php endif ?>
-									<?php if(is_person($post->PERSON_ID)): ?>
+									<?php if(!is_person($post->PERSON_ID)): ?>
 									<a href="<?php echo base_url('post/report/'.$post->POST_ID.'?return=post/view/'.$post->POST_ID) ?>" class="tag orange"><span class="glyphicon glyphicon-exclamation-sign"></span> Report</a>
 									<?php endif; ?>
 								</p>
