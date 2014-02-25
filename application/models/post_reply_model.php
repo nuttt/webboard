@@ -20,6 +20,31 @@ class Post_reply_model extends CI_Model {
 		return $query->result();
 	}
 
+	function get_nested_post_reply($post_id) {
+		$q = "SELECT POST_REPLY.POST_ID, POST_REPLY.REPLY_TO, PERSON.PERSON_ID, to_char(POST.TIME,'DY DD-Mon-YYYY HH24:MI')AS TIME, PERSON.DISPLAY_NAME, PERSON.AVATAR, CASE WHEN sum(VOTES.STATUS) IS NULL THEN 0 ELSE sum(VOTES.STATUS) END  AS VOTE, POST.CONTENT
+					From POST_REPLY
+					INNER JOIN POST ON POST_REPLY.POST_ID = POST.POST_ID AND POST_REPLY.TOPIC_ID = ".$post_id."
+					INNER JOIN PERSON ON POST.PERSON_ID = PERSON.PERSON_ID 
+					LEFT JOIN VOTES ON VOTES.POST_ID = POST.POST_ID  
+					GROUP BY POST_REPLY.POST_ID, POST_REPLY.REPLY_TO, PERSON.PERSON_ID, to_char(POST.TIME,'DY DD-Mon-YYYY HH24:MI'), PERSON.DISPLAY_NAME, POST.CONTENT,PERSON.AVATAR
+					ORDER BY POST_REPLY.POST_ID";
+		$query = $this->db->query($q);
+		$results = $query->result();
+
+		$tree = array();
+
+		foreach($results as $r){
+			$reply_to = $r->REPLY_TO;
+			if(!isset($tree[$reply_to])){
+				$tree[$reply_to] = array();
+			}
+			$tree[$reply_to][] = $r;
+		}
+
+		return $tree;
+
+	}
+
 	function get_latest_reply($tag_id = "0",$person_id=-1) {
 		if($tag_id == 0) {
 			$q_tag = "";
