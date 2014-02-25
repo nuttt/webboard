@@ -12,7 +12,7 @@
             <th width="20%">Display Name</td>
             <th width="30%">E-mail</td>
             <th width="25%">Joined Date</td>
-            <th width="20%">Edit/ Ban/ Remove</td>
+            <th width="20%">Edit/ Ban/ Remove/ Promote</td>
           </tr>
         </thead>
         <tbody>
@@ -28,6 +28,16 @@
                 <a href="<?php echo base_url('admin/ban/person/'.$user->PERSON_ID); ?>"><span class="glyphicon glyphicon-eye-close"></span></a>
                 &nbsp;
                 <a href="<?php echo base_url('admin/user/remove/'.$user->PERSON_ID); ?>" class="remove"><span class="glyphicon glyphicon-trash"></span></a>
+                &nbsp;
+                <?php if($role != 'Members'): ?>
+                <a href="<?php echo base_url('admin/user/to_member/'.$user->PERSON_ID); ?>" title="Downgrade to Member"><span class="glyphicon glyphicon-minus"></span></a>
+                &nbsp;
+                <?php endif; if($role != 'Moderators'): ?>
+                <a href="<?php echo base_url('admin/user/to_moderator/'.$user->PERSON_ID); ?>" title="Upgrade to Moderator"><span class="glyphicon glyphicon-plus"></span></a>
+                &nbsp;
+                <?php endif; if($role != 'Administrators'): ?>
+                <a href="<?php echo base_url('admin/user/to_admin/'.$user->PERSON_ID); ?>" title="Upgrade to Admin"><span class="glyphicon glyphicon-star"></span></a>
+                <?php endif; ?>
               </td>
             </tr>
           <?php endforeach; ?>

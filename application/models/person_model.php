@@ -45,6 +45,11 @@ class Person_model extends CI_Model {
 		return $query->num_rows() > 0;
 	}
 
+	function is_moderator2($person_id){
+		$query = $this->db->query("SELECT person_id FROM person_moderator WHERE person_id = $person_id");
+		return $query->num_rows() > 0;
+	}
+
 	function get_person_profile($id){
 		$query = $this->db->query("SELECT P.PERSON_ID, P.DISPLAY_NAME, P.PASSWORD, 
 									CASE WHEN P.AVATAR IS NULL THEN 'DEFAULT' ELSE P.AVATAR END AS AVATAR,
@@ -88,5 +93,37 @@ class Person_model extends CI_Model {
 	function recover_person($id){
 		$query = $this->db->query("UPDATE person SET status = 1 WHERE person_id = $id");
 	}
+
+	function remove_from_admin($id){
+		$query = $this->db->query("DELETE FROM person_admin WHERE person_id = $id");
+	}
+
+	function remove_from_moderator($id){
+		$query = $this->db->query("DELETE FROM person_moderator WHERE person_id = $id");
+	}
+
+	function add_to_moderator($id){
+		$query = $this->db->query("INSERT INTO person_moderator VALUES ($id)");	
+	}
+
+	function add_to_admin($id){
+		$query = $this->db->query("INSERT INTO person_admin VALUES ($id)");
+	}
+
+	function to_moderator($person_id){
+		$this->remove_from_admin($person_id);
+		$this->add_to_moderator($person_id);
+	}
+
+	function to_admin($person_id){
+		$this->remove_from_moderator($person_id);
+		$this->add_to_admin($person_id);
+	}
+
+	function to_member($person_id){
+		$this->remove_from_moderator($person_id);
+		$this->remove_from_admin($person_id);
+	}
+
 
 }

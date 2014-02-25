@@ -39,7 +39,7 @@ class report_model extends CI_Model {
 	}
 
 	function add_report($person_id, $post_id){
-		$query = $this->db->query("INSERT INTO report values ($person_id, $post_id, 'Waiting')");
+		$query = $this->db->query("INSERT INTO report values ($person_id, $post_id, systimestamp, 'Waiting')");
 	}
 
 }

@@ -12,14 +12,15 @@
 							<p class="info">
 								<a href="mailto:<?php echo $person->EMAIL; ?>" class="name"><strong><?php echo $person->EMAIL ?></strong></a>
 								<span class="date">Joined since <?php echo $person->JOINED_DATE; ?></span>
-								<?php if(is_person($person->PERSON_ID)||is_admin()): ?>
-									<a href="<?=base_url()?>person/edit" class="tag yellow"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
+								<?php if(is_person($person->PERSON_ID) && !is_admin()): ?>
+									<a href="<?=base_url('person/edit')?>" class="tag yellow"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
 									<!-- for admin only -->
 								<?php endif ?>
 								<?php if(is_admin()): ?>
-								<a href="" class="tag red"><span class="glyphicon glyphicon-trash"></span> Remove</a>
+								<a href="<?=base_url('person/edit_all/'.$person->PERSON_ID)?>" class="tag yellow"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
+								<a href="<?php echo base_url('admin/user/remove/'.$person->PERSON_ID); ?>" class="tag red remove"><span class="glyphicon glyphicon-trash"></span> Remove</a>
 								<!-- for admin only -->
-								<a href="admin/ban_user.php" class="tag orange"><span class="glyphicon glyphicon-remove"></span> Ban</a>
+								<a href="<?php echo base_url('admin/ban/person/'.$person->PERSON_ID); ?>" class="tag orange"><span class="glyphicon glyphicon-remove"></span> Ban</a>
 								<?php endif ?>
 							</p>
 						</div>

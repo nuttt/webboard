@@ -117,8 +117,9 @@ class Post extends CI_Controller {
 		redirect($this->input->get('return'));
 	}
 
-	public function report($person_id, $post_id){
+	public function report($post_id){
 		$this->load->model('report_model');
+		$person_id = get_person_id($this);
 		$this->report_model->add_report($person_id, $post_id);
 		$this->session->set_flashdata('alert', 'Successfully reported post ID#'.$post_id);
 		redirect($this->input->get('return'));

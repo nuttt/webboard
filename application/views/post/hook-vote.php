@@ -4,13 +4,13 @@
 										<span class="glyphicon glyphicon-plus-sign"></span>
 										Reply
 									</button>
-									<a href="" class="btn btn-danger btn-xs vote vote-down">
+									<a href="<?php echo base_url('post/vote_down/'.$reply->POST_ID.'?return=post/view/'.$post->POST_ID) ?>" class="btn btn-danger btn-xs vote vote-down">
 										<span class="glyphicon glyphicon-thumbs-down"></span>
 									</a><!--vote-->
 									<span class="current-score">
 										<?php echo $reply->VOTE ?>
 									</span>
-									<a href="" class="btn btn-success btn-xs vote vote-up">
+									<a href="<?php echo base_url('post/vote_up/'.$reply->POST_ID.'?return=post/view/'.$post->POST_ID) ?>" class="btn btn-success btn-xs vote vote-up">
 										<span class="glyphicon glyphicon-thumbs-up"></span>
 									</a><!--vote-->
 								<?php else: // hasn't logged in ?>

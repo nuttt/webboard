@@ -1,9 +1,6 @@
 <?php echo $header; ?>
 		<div class="row">
 			<div class="col-md-9" id="content-view">
-				<?php if($this->session->flashdata('alert')): ?>
-					<div class="alert alert-success"><?php echo $this->session->flashdata('alert'); ?></div>
-				<?php endif; ?>
 				<div class="thread">
 						<div class="row topic">
 							<div class="col-xs-1">
@@ -30,7 +27,9 @@
 										<a href="edit_content.php" class="tag yellow"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
 										<a href="" class="tag red"><span class="glyphicon glyphicon-trash"></span> Remove</a>
 									<?php endif ?>
-									<a href="" class="tag orange"><span class="glyphicon glyphicon-exclamation-sign"></span> Report</a>
+									<?php if(is_person($post->PERSON_ID)): ?>
+									<a href="<?php echo base_url('post/report/'.$post->POST_ID.'?return=post/view/'.$post->POST_ID) ?>" class="tag orange"><span class="glyphicon glyphicon-exclamation-sign"></span> Report</a>
+									<?php endif; ?>
 								</p>
 							</div>
 							<div class="col-xs-3 text-right">
@@ -57,10 +56,14 @@
 								<p class="info">
 									<a href="<?php echo base_url('person/profile/'.$reply->PERSON_ID); ?>" class="name"><strong><?php echo $reply->DISPLAY_NAME; ?></strong></a>
 									<span class="date"><?php echo $reply->TIME; ?></span>
+									<br>
 									<?php if(is_person($reply->PERSON_ID)||is_admin()||is_moderator($post->POST_ID)): ?>
 										<a href="edit_post.php" class="tag yellow"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
 										<a href="" class="tag red"><span class="glyphicon glyphicon-trash"></span> Remove</a>
 									<?php endif ?>
+									<?php if(is_person($reply->PERSON_ID)): ?>
+									<a href="<?php echo base_url('post/report/'.$reply->POST_ID.'?return=post/view/'.$post->POST_ID) ?>" class="tag orange"><span class="glyphicon glyphicon-exclamation-sign"></span> Report</a>
+									<?php endif; ?>
 								</p>
 							</div>
 							<div class="col-xs-6 text-right">
