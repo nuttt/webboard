@@ -44,7 +44,7 @@ function get_tags(){
 function get_mod_tags(){
 	$CI =& get_instance();
 	$CI->load->model('tag_model');
-	return $CI->tag_model->get_tags();	
+	return $CI->tag_model->get_mod_tags(get_person_id($CI));	
 }
 
 function get_tags_with_topic_num(){
@@ -94,7 +94,7 @@ function admin_login(){
   }
 }
 
-function admin_login(){
+function moderator_login(){
 	person_login();
   if(!is_moderator()){
   	redirect('/');
