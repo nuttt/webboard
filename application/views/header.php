@@ -54,6 +54,17 @@
 				</ul>
 			</li>
 			<?php endif; ?>
+			<?php if(false && is_moderator2()): ?>
+			<li class="dropdown">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown">Report Management <b class="caret"></b></a>
+				<ul class="dropdown-menu">
+				<?php $mod_tags = get_mod_tags(); ?>
+				<?php foreach($mod_tags as $tag): ?>
+					<li><a href="<?php echo base_url('mod/report/tag/'.$tag->TAG_ID); ?>"><?php echo $tag->NAME; ?></a></li>
+				<?php endforeach; ?>
+				</ul>
+			</li>
+			<?php endif; ?>
 		</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<?php if(isset($user) && $user): // show this to logged in user only ?>
