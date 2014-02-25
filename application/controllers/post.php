@@ -100,4 +100,27 @@ class Post extends CI_Controller {
 		$this->load->view('post/create', $data);
 
 	}
+
+	public function vote_up($post_id){
+		$this->load->model('vote_model');
+		$person_id = get_person_id($this);
+		$this->vote_model->vote_up($person_id, $post_id);
+		$this->session->set_flashdata('alert', 'Successfully up-voted post ID#'.$post_id);
+		redirect($this->input->get('return'));
+	}
+
+	public function vote_down($post_id){
+		$this->load->model('vote_model');
+		$person_id = get_person_id($this);
+		$this->vote_model->vote_down($person_id, $post_id);
+		$this->session->set_flashdata('alert', 'Successfully down-voted post ID#'.$post_id);
+		redirect($this->input->get('return'));
+	}
+
+	public function report($person_id, $post_id){
+		$this->load->model('report_model');
+		$this->report_model->add_report($person_id, $post_id);
+		$this->session->set_flashdata('alert', 'Successfully reported post ID#'.$post_id);
+		redirect($this->input->get('return'));
+	}
 }

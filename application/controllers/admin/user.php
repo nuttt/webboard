@@ -26,4 +26,26 @@ class User extends CI_Controller {
 		$this->session->set_flashdata('alert', 'Successfully removed user <strong>'.$person->DISPLAY_NAME.'</strong>');
 		redirect('admin/user');
 	}
+
+	public function tag($person_id){
+		$this->load->model('tag_model');
+
+	}
+
+	public function remove_tag($person_id, $tag_id){
+
+	}
+
+	public function to_moderator($person_id){
+
+	}
+
+	public function to_admin($person_id){
+
+	}
+
+	public function to_member($person_id){
+
+	}
+	
 }

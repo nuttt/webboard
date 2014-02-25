@@ -1,8 +1,6 @@
 <?php
 class Ban_model extends CI_Model {
 
-	var $attributes = "person_id, display_name, password, avatar, birthdate, twitter, facebook, email, to_char(joined_date,'DY DD-Mon-YYYY HH24:MI')AS joined";
-
 	function __construct(){
 		// Call the Model constructor
 		parent::__construct();
@@ -37,7 +35,6 @@ class Ban_model extends CI_Model {
 		$end_date = "to_date('".$ban_data['end_date']."', 'yyyy/mm/dd hh24:mi:ss')";
 		$q = "INSERT INTO BAN_LOG (START_DATE, END_DATE, ADMIN_ID, PERSON_ID) VALUES 
 				(".$start_date.", ".$end_date.", ".$ban_data['admin_id'].", ".$ban_data['person_id'].")";
-		// echo $q;
 		$this->db->query($q);
 	}
 
