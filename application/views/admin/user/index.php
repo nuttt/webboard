@@ -16,6 +16,7 @@
           </tr>
         </thead>
         <tbody>
+        
           <?php foreach($role_users as $user): ?>
             <tr>
               <td><?php echo $user->PERSON_ID; ?></td>

@@ -7,8 +7,6 @@ class Person extends CI_Controller {
 
 	function __construct(){
 		parent::__construct();
-		//session_start();
-		//person_login();
 		$this->header = get_header_data();
 		$this->load->model('person_model');
 		$this->load->model('post_model');

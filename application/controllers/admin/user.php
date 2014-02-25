@@ -32,16 +32,29 @@ class User extends CI_Controller {
 		if(!$this->person_model->is_moderator2($person_id)){
 			redirect('admin/user');
 		}
-		$data['tags'] = $this->tag_model->get_tags('name');
+		$data['tags'] = $this->tag_model->get_available_mod_tags($person_id);
 		$data['person'] = $this->person_model->get_person($person_id);
-		//$data['mod_tags'] = $this->tag_mode->get_mod_tags($person_id);
+		$data['mod_tags'] = $this->tag_model->get_mod_tags($person_id);
 		$data['header'] = $this->load->view('header', $this->header, TRUE);
 		$data['footer'] = $this->load->view('footer', $this->footer, TRUE);
 		$this->load->view('admin/user/tag', $data);
+	}
 
+	public function add_tag($person_id){
+		$this->load->model('tag_model');
+		$tag_id = $this->input->post('tag');
+		$person = $this->person_model->get_person($person_id);
+		$this->tag_model->add_mod_tag($person_id, $tag_id);
+		$this->session->set_flashdata('alert', 'Successfully addded tag to user <strong>'.$person->DISPLAY_NAME.'</strong>');
+		redirect('admin/user/tag/'.$person->PERSON_ID);
 	}
 
 	public function remove_tag($person_id, $tag_id){
+		$this->load->model('tag_model');
+		$person = $this->person_model->get_person($person_id);
+		$this->tag_model->remove_mod_tag($person_id, $tag_id);
+		$this->session->set_flashdata('alert', 'Successfully removed tag from user <strong>'.$person->DISPLAY_NAME.'</strong>');
+		redirect('admin/user/tag/'.$person->PERSON_ID);
 
 	}
 
