@@ -19,7 +19,7 @@
 					<div class="form-group">
 						<?php 
 						echo form_label('Password', 'password');
-						echo form_password('password', '', 'class="form-control" placeholder="Password"');
+						echo form_password('password', set_value('password'), 'class="form-control" placeholder="Password"');
 						?>
 					</div>
 					<button class="btn btn-lg btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-ok"></span> Sign in</button>

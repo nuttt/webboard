@@ -41,6 +41,12 @@ function get_tags(){
 	return $CI->tag_model->get_tags();	
 }
 
+function get_mod_tags(){
+	$CI =& get_instance();
+	$CI->load->model('tag_model');
+	return $CI->tag_model->get_tags();	
+}
+
 function get_tags_with_topic_num(){
 	$CI =& get_instance();
 	$CI->load->model('tag_model');

@@ -23,20 +23,24 @@
               <td><a href="mailto:<?php echo $user->EMAIL; ?>"><?php echo $user->EMAIL; ?></a></td>
               <td><?php echo $user->JOINED; ?></td>
               <td>
-                <a href="<?php echo base_url('person/profile/'.$user->PERSON_ID) ?>"><span class="glyphicon glyphicon-pencil"></span></a>
+                <a href="<?php echo base_url('person/profile/'.$user->PERSON_ID) ?>" data-toggle="tooltip" data-placement="top" title="Edit profile"><span class="glyphicon glyphicon-pencil"></span></a>
                 &nbsp;
-                <a href="<?php echo base_url('admin/ban/person/'.$user->PERSON_ID); ?>"><span class="glyphicon glyphicon-eye-close"></span></a>
+                <a href="<?php echo base_url('admin/ban/person/'.$user->PERSON_ID); ?>" data-toggle="tooltip" data-placement="top" title="Ban user"><span class="glyphicon glyphicon-eye-close"></span></a>
                 &nbsp;
-                <a href="<?php echo base_url('admin/user/remove/'.$user->PERSON_ID); ?>" class="remove"><span class="glyphicon glyphicon-trash"></span></a>
+                <a href="<?php echo base_url('admin/user/remove/'.$user->PERSON_ID); ?>" data-toggle="tooltip" data-placement="top" title="Remove user" class="remove"><span class="glyphicon glyphicon-trash"></span></a>
                 &nbsp;
                 <?php if($role != 'Members'): ?>
-                <a href="<?php echo base_url('admin/user/to_member/'.$user->PERSON_ID); ?>" title="Downgrade to Member"><span class="glyphicon glyphicon-minus"></span></a>
+                <a href="<?php echo base_url('admin/user/to_member/'.$user->PERSON_ID); ?>" data-toggle="tooltip" data-placement="top" title="Downgrade to Member"><span class="glyphicon glyphicon-minus"></span></a>
                 &nbsp;
                 <?php endif; if($role != 'Moderators'): ?>
-                <a href="<?php echo base_url('admin/user/to_moderator/'.$user->PERSON_ID); ?>" title="Upgrade to Moderator"><span class="glyphicon glyphicon-plus"></span></a>
+                <a href="<?php echo base_url('admin/user/to_moderator/'.$user->PERSON_ID); ?>" data-toggle="tooltip" data-placement="top" title="Upgrade to Moderator"><span class="glyphicon glyphicon-plus"></span></a>
                 &nbsp;
                 <?php endif; if($role != 'Administrators'): ?>
-                <a href="<?php echo base_url('admin/user/to_admin/'.$user->PERSON_ID); ?>" title="Upgrade to Admin"><span class="glyphicon glyphicon-star"></span></a>
+                <a href="<?php echo base_url('admin/user/to_admin/'.$user->PERSON_ID); ?>" data-toggle="tooltip" data-placement="top" title="Upgrade to Admin"><span class="glyphicon glyphicon-star"></span></a>
+                &nbsp;
+                <?php endif; if($role == 'Moderators'): ?>
+                <a href="<?php echo base_url('admin/user/tag/'.$user->PERSON_ID); ?>" data-toggle="tooltip" data-placement="top" title="Manage Tags"><span class="glyphicon glyphicon-th-list"></span></a>
+                &nbsp;                
                 <?php endif; ?>
               </td>
             </tr>
