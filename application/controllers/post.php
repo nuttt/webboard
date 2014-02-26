@@ -156,8 +156,8 @@ class Post extends CI_Controller {
 	
 
 	public function edit($post_id) {
-		$data['person_loggedin'] = get_user();
-		$data['login_url'] = base_url('auth?return='.uri_string());
+		person_login();
+
 		$data['post'] = $this->post_model->get_content($post_id);
 
 		$related_tags= $this->tag_model->get_related_tag_by_topic($post_id);
@@ -197,8 +197,8 @@ class Post extends CI_Controller {
 
 
 	public function edit_reply($post_id) {
-		$data['person_loggedin'] = get_user();
-		$data['login_url'] = base_url('auth?return='.uri_string());
+		person_login();
+
 		$data['reply'] = $this->post_model->get_reply_post($post_id);
 		$topic_id = $data['reply']->TOPIC_ID;
 		$data['post'] = $this->post_model->get_content($topic_id);

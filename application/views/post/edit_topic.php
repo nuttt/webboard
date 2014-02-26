@@ -21,25 +21,31 @@
 									<a href="" class="tag red"><span class="glyphicon glyphicon-trash"></span> Remove</a>
 								</p>
 							</div>
+
 						</div><!--topic-->
+						<?php if(validation_errors()): ?>
+							<div class="alert alert-danger">
+								<?php echo validation_errors(); ?>
+							</div>
+						<?php endif; ?>
 						<hr class="topic-line">
 						<div class="context">
 								<div class="form-group">
 									<?=form_label('Title <span class="red">*</span>', 'title')?>
-									<?=form_input('title', $post->TITLE, 'class="form-control" id="title" placeholder="Title"')?>
+									<?=form_input('title', set_value('title', $post->TITLE), 'class="form-control" id="title" placeholder="Title"')?>
 									<!-- <label for="title">Title <span class="red">*</span></label>
 									<input type="text" name="title" class="form-control" id="title" placeholder="Title" value="<?=$post->TITLE?>"> -->
 								</div>
 								<div class="form-group">
 									<?=form_label('Content <span class="red">*</span>', 'content')?>
-									<?=form_textarea('content', $post->CONTENT, 'class="form-control" id="post-content" cols="30" rows="10"')?>
+									<?=form_textarea('content', set_value('content', $post->CONTENT), 'class="form-control" id="post-content" cols="30" rows="10"')?>
 									<!-- <label for="content">Content <span class="red">*</span></label>
 									<textarea name="content" class="form-control" id="" cols="30" rows="10"><?=$post->CONTENT?></textarea> -->
 								</div>
 								<div class="form-group">
 									
 									<?=form_label('Tags <span class="red">*</span>', 'tag[]')?>
-									<?=form_multiselect('tag[]', $tags, $related_tags, 'class="form-control" id="tag-field"')?>
+									<?=form_multiselect('tag[]', $tags, set_value('tag[]', $related_tags), 'class="form-control" id="tag-field"')?>
 									<!-- <label for="tag">Tags <span class="red">*</span></label>
 									<input type="text" class="form-control" id="tag" value="Physics, Maths, Computer"> -->
 								</div>
