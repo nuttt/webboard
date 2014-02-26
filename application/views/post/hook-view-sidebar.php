@@ -28,7 +28,7 @@
 				
 				<div class="list-group">
 					<?php foreach ($related_tags as $related_tag): ?>
-						<a href="<?=base_url()?>post/tag/<?=$related_tag->TAG_ID?>" class="list-group-item"><span class="badge"><?php echo $related_tag->NUM ?></span><?php echo $related_tag->NAME ?></a>
+						<a href="<?php echo base_url('post/?sortby=&tag_filter='.$related_tag->NAME); ?>" class="list-group-item"><span class="badge"><?php echo $related_tag->NUM ?></span><?php echo $related_tag->NAME ?></a>
 					<?php endforeach ?>
 				</div>
 			</div><!--sidebar-->
