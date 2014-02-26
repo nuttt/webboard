@@ -65,10 +65,11 @@ class Auth extends CI_Controller {
 		$this->load->model('signup');
 		$this->load->library('form_validation');
 		$this->form_validation->set_rules('name', 'Username', 'trim|required|min_length[3]|max_length[45]|xss_clean|callback_username_check');
-		$this->form_validation->set_rules('facebook', 'Facebook', 'trim|required|xss_clean');
+		//$this->form_validation->set_rules('facebook', 'Facebook', 'trim|required|xss_clean');
 		$this->form_validation->set_rules('password', 'Password', 'trim|required|matches[password2]|min_length[8]|max_length[45]');
 		$this->form_validation->set_rules('password2', 'Password Confirmation', 'trim|required');
 		$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|callback_email_check');
+		$this->form_validation->set_rules('birthdate', 'Birthdate', 'required');
 		$this->form_validation->set_message('username_check','Member is already used!');
 		$this->form_validation->set_message('email_check','Email is already used!');
 

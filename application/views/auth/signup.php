@@ -13,11 +13,6 @@
  ?>
 		<div class="row">
 			<div class="col-md-9" id="content-view">
-					<?php if(validation_errors()): ?>
-						<div class="alert alert-danger">
-							<?php echo validation_errors(); ?>
-						</div>
-					<?php endif; ?>
 				<div class="thread">
 					<?php if($type == 'edit'): //case edit profile ?>
 						<div class="topic">
@@ -35,47 +30,52 @@
 						</div><!--topic-->
 					<?php endif; ?>
 					<hr class="topic-line">
+					<?php if(validation_errors()): ?>
+						<div class="alert alert-danger">
+							<?php echo validation_errors(); ?>
+						</div>
+					<?php endif; ?>
 					<div class="context">
 							<?php echo form_open_multipart(($type=='signup')?'auth/signup':'person/edit/' , array('class' => 'form-horizontal', 'role' => 'form')) ?>
 							<div class="form-group">
 								<?php 
-									echo form_label('Name', 'name', array('class' => 'col-sm-4 control-label'));
+									echo form_label('Name *', 'name', array('class' => 'col-sm-4 control-label'));
 								 ?>
 								<div class="col-sm-8">
 									<?php  
-										echo form_input('name', $profile->DISPLAY_NAME,'class="form-control" placeholder="Name"');
+										echo form_input('name', set_value('name', $profile->DISPLAY_NAME),'class="form-control" placeholder="Name"');
 									?> 	
 								</div>
 							</div><!--form-group-->
 
 							<div class="form-group">
-								<?php echo form_label('Email', 'email', array('class' => 'col-sm-4 control-label')) ?>
+								<?php echo form_label('Email *', 'email', array('class' => 'col-sm-4 control-label')) ?>
 								<div class="col-sm-8">
-									<?php echo form_input('email', $profile->EMAIL, 'class="form-control" placeholder="Email"'); ?>
+									<?php echo form_input('email', set_value('email', $profile->EMAIL), 'class="form-control" placeholder="Email"'); ?>
 								</div>
 							</div><!--form-group-->
 							<div class="form-group">
 								<?php echo form_label('Facebook', 'facebook', array('class' => 'col-sm-4 control-label')) ?>
 								<div class="col-sm-8">
-									<?php echo form_input('facebook', $profile->FACEBOOK, 'class="form-control" placeholder="Facebook"'); ?>
+									<?php echo form_input('facebook', set_value('facebook', $profile->FACEBOOK), 'class="form-control" placeholder="Facebook"'); ?>
 								</div>
 							</div><!--form-group-->
 							<div class="form-group">
 								<?php echo form_label('Twitter', 'twitter', array('class' => 'col-sm-4 control-label')) ?>
 								<div class="col-sm-8">
-									<?php echo form_input('twitter', $profile->TWITTER, 'class="form-control" placeholder="Twitter"'); ?>
+									<?php echo form_input('twitter', set_value('twitter', $profile->TWITTER), 'class="form-control" placeholder="Twitter"'); ?>
 								</div>
 							</div><!--form-group-->
 							<div class="form-group">
-								<?php echo form_label('Birthdate', 'birthdate', array('class' => 'col-sm-4 control-label')) ?>
+								<?php echo form_label('Birthdate *', 'birthdate', array('class' => 'col-sm-4 control-label')) ?>
 								<div class="col-sm-8">
-									<?php echo form_input(array('type' => 'date','name' => 'birthdate', 'class' => 'form-control', 'placeholder' => $profile->BIRTH, 'value' => $profile->BIRTH)); ?>
+									<?php echo form_input(array('type' => 'date','name' => 'birthdate', 'class' => 'form-control', 'placeholder' => $profile->BIRTH, 'value' => set_value('birthdate', $profile->BIRTH))); ?>
 								</div>
 							</div><!--form-group-->
 							<div class="form-group">
 								<?php echo form_label('Profile Picture', 'picture', array('class' => 'col-sm-4 control-label')) ?>
 								<div class="col-sm-8">
-									<?php echo form_input(array('type' => 'file', 'name' => 'picture', 'value' => '')) ?>
+									<?php echo form_input(array('type' => 'file', 'name' => 'picture', 'value' => set_value('picture'))); ?>
 									<!-- <input type="file"> -->	
 									<br>
 									<strong>Current Image:</strong>
@@ -83,22 +83,21 @@
 								</div>
 							</div><!--form-group-->
 							<div class="form-group">
-								<?php echo form_label('Password', 'password', array('class' => 'col-sm-4 control-label')) ?>
+								<?php echo form_label('Password *', 'password', array('class' => 'col-sm-4 control-label')) ?>
 								<div class="col-sm-8">
-									<?php echo form_input(array('type' => 'password', 'name' => 'password', 'class' => 'form-control', 'placeholder' => 'Enter your password')) ?>
+									<?php echo form_input(array('type' => 'password', 'value' => set_value('password'), 'name' => 'password', 'class' => 'form-control', 'placeholder' => 'Enter your password')) ?>
 									
 								</div>
 							</div><!--form-group-->
 							<div class="form-group">
-								<?php echo form_label('Confirm password', 'password2', array('class' => 'col-sm-4 control-label')) ?>
+								<?php echo form_label('Confirm password *', 'password2', array('class' => 'col-sm-4 control-label')) ?>
 								<div class="col-sm-8">
-									<?php echo form_input(array('type' => 'password','name' => 'password2', 'class' => 'form-control', 'placeholder' => '')) ?>
+									<?php echo form_input(array('type' => 'password', 'value' => set_value('password2'),'name' => 'password2', 'class' => 'form-control', 'placeholder' => '')) ?>
 								</div>
 							</div><!--form-group-->
 							<div class="form-group">
 								<div class="col-sm-offset-4 col-sm-8">
-
-									<button type="submit" class="btn btn-primary"><?php echo ($type=='signup')?'Signup!!!':'Edit' ?></button>
+									<button type="submit" class="btn btn-primary"><?php echo ($type=='signup')?'Register':'Edit' ?></button>
 								</div>
 							</div>
 						</form>

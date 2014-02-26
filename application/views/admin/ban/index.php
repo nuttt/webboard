@@ -1,6 +1,9 @@
 <?php echo $header; ?>
 		<div class="row">
 			<div class="col-md-9" id="content-view">
+				<?php if($this->session->flashdata('query')): ?>
+					<div class="alert"><?php echo $this->session->flashdata('query'); ?></div>
+				<?php endif; ?>
 				<?php if($this->session->flashdata('alert')): ?>
 					<div class="alert alert-success"><?php echo $this->session->flashdata('alert'); ?></div>
 				<?php endif; ?>

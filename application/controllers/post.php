@@ -23,7 +23,7 @@ class Post extends CI_Controller {
 		}
 		if(isset($_GET['tag_filter'])){ 
 			$data['tag_filter'] = $_GET['tag_filter'];
-			$data['Title'] = $_GET['tag_filter']; 
+			if($_GET['tag_filter']!='') $data['Title'] = $_GET['tag_filter']; 
 		}
 		$data['posts'] = $this->post_model->get_topics($data['sort_by'],$data['tag_filter']);
 		$data['header'] = $this->load->view('header', $this->header, TRUE);
@@ -87,8 +87,8 @@ class Post extends CI_Controller {
 		person_login();
 
 		$this->load->library('form_validation');
-		$this->form_validation->set_rules('title', 'Title', 'required');
-		$this->form_validation->set_rules('content', 'Content', 'required');
+		$this->form_validation->set_rules('title', 'Title', 'required|min_length[5]|max_length[256]');
+		$this->form_validation->set_rules('content', 'Content', 'required|min_length[10]|max_length[2000]');
 		$this->form_validation->set_rules('tag', 'Tag', 'required');
 
 		$person_id = $this->session->userdata('person_id');
@@ -148,14 +148,12 @@ class Post extends CI_Controller {
 		$this->session->set_flashdata('alert', 'Successfully reported post ID#'.$post_id);
 		redirect($this->input->get('return'));
 	}
+	
 	public function reply($topic_id, $reply_id){
 		$this->load->model('post_reply_model');
 		echo $this->post_reply_model->reply($_POST['content'], $this->session->userdata('person_id'), $topic_id, $reply_id);
 		redirect('post/view/'.$topic_id);
-		
-
 	}
-	
 
 	public function edit($post_id) {
 		person_login();
@@ -174,8 +172,8 @@ class Post extends CI_Controller {
 		}
 
 		$this->load->library('form_validation');
-		$this->form_validation->set_rules('title', 'Title', 'required');
-		$this->form_validation->set_rules('content', 'Content', 'required');
+		$this->form_validation->set_rules('title', 'Title', 'required|min_length[5]|max_length[256]');
+		$this->form_validation->set_rules('content', 'Content', 'required|min_length[10]|max_length[2000]');
 		$this->form_validation->set_rules('tag', 'Tag', 'required');
 
 		if($this->form_validation->run()) {
@@ -196,7 +194,6 @@ class Post extends CI_Controller {
 		$data['footer'] = $this->load->view('footer', $this->footer, TRUE);
 		$this->load->view('post/edit_topic', $data);
 	}
-
 
 	public function edit_reply($post_id) {
 		person_login();
