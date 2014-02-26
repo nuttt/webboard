@@ -152,4 +152,73 @@ class Post extends CI_Controller {
 		
 
 	}
+	
+
+	public function edit($post_id) {
+		$data['person_loggedin'] = get_user();
+		$data['login_url'] = base_url('auth?return='.uri_string());
+		$data['post'] = $this->post_model->get_content($post_id);
+
+		$related_tags= $this->tag_model->get_related_tag_by_topic($post_id);
+		foreach($related_tags as $related_tag) {
+			$data['related_tags'][] = $related_tag->TAG_ID;
+		}
+		
+		$tags = $this->tag_model->get_tags();
+		$data['tags'] = array();
+		foreach($tags as $tag) {
+			$data['tags'][$tag->TAG_ID] = $tag->NAME;
+		}
+
+		$this->load->library('form_validation');
+		$this->form_validation->set_rules('title', 'Title', 'required');
+		$this->form_validation->set_rules('content', 'Content', 'required');
+		$this->form_validation->set_rules('tag', 'Tag', 'required');
+
+		if($this->form_validation->run()) {
+			$post_data = array(
+				'title' => $this->input->post('title'),
+				'content' => $this->input->post('content'),
+				'tag' => $this->input->post('tag'),
+				'status' => 1,
+				'post_id' => $post_id
+			);
+
+			$post_id = $this->post_model->edit($post_data, 0);
+			// var_dump($post_data);
+			redirect(base_url('post/view/'.$post_id));
+		}
+
+		$data['header'] = $this->load->view('header', $this->header, TRUE);
+		$data['footer'] = $this->load->view('footer', $this->footer, TRUE);
+		$this->load->view('post/edit_topic', $data);
+	}
+
+
+	public function edit_reply($post_id) {
+		$data['person_loggedin'] = get_user();
+		$data['login_url'] = base_url('auth?return='.uri_string());
+		$data['reply'] = $this->post_model->get_reply_post($post_id);
+		$topic_id = $data['reply']->TOPIC_ID;
+		$data['post'] = $this->post_model->get_content($topic_id);
+		// var_dump($data['post']);
+
+		$this->load->library('form_validation');
+		$this->form_validation->set_rules('content', 'Content', 'required');
+
+		if($this->form_validation->run()) {
+			$post_data = array(
+				'content' => $this->input->post('content'),
+				'post_id' => $post_id
+			);
+
+			$this->post_model->edit($post_data, 1);
+			redirect(base_url('post/view/'.$topic_id));
+		}
+
+		$data['header'] = $this->load->view('header', $this->header, TRUE);
+		$data['footer'] = $this->load->view('footer', $this->footer, TRUE);
+		$this->load->view('post/edit_post', $data);
+	}
+
 }

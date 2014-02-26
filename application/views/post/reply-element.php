@@ -11,7 +11,7 @@
         <span class="date"><?php echo $reply->TIME; ?></span>
         <br>
         <?php if(is_person($reply->PERSON_ID)||is_admin()||is_moderator($post->POST_ID)): ?>
-          <a href="edit_post.php" class="tag yellow"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
+          <a href="<?php echo base_url('post/edit_reply/'.$reply->POST_ID); ?>" class="tag yellow"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
           <a href="" class="tag red"><span class="glyphicon glyphicon-trash"></span> Remove</a>
         <?php endif ?>
         <?php if(!is_person($reply->PERSON_ID)): ?>
