@@ -1,4 +1,3 @@
-
 								<?php if($person_loggedin): // user logged in ?>
 									<button type="button" data-reply="<?php echo $reply->POST_ID; ?>" class="inner-reply-btn btn btn-primary btn-xs">
 										<span class="glyphicon glyphicon-plus-sign"></span>
@@ -14,7 +13,7 @@
 										<span class="glyphicon glyphicon-thumbs-up"></span>
 									</a><!--vote-->
 								<?php else: // hasn't logged in ?>
-									<a href="<?php echo $login_url; ?>" class="inner-reply-btn btn btn-primary btn-xs">
+									<a href="<?php echo $login_url; ?>" class="btn btn-primary btn-xs">
 										<span class="glyphicon glyphicon-plus-sign"></span>
 										Reply
 									</a>

@@ -8,18 +8,8 @@
 			<?php echo form_open('post/edit_reply/'.$reply->POST_ID, array('role' => 'form')); ?>
 			<div class="col-md-9" id="content-view">
 				<div class="thread">
-						<div class="row topic">
-							<div class="col-xs-1">
-								<img src="<?=base_url()?>uploads/<?php echo $post->AVATAR; ?> " class="img-circle profile-pic left">
-							</div>
-							<div class="col-xs-11">
-								<h4>Editing Reply: <a href="<?php echo base_url('post/view/'.$post->POST_ID); ?>"><?=$post->TITLE?></a></h4>
-								<p class="info">
-									<!-- <a href="<?php echo base_url('person/profile/'.$post->PERSON_ID); ?>" class="name"><strong><?=$post->DISPLAY_NAME?></strong></a> -->
-									<!-- <span class="date"><?=$post->TIME?></span> -->
-									<a href="" class="tag red"><span class="glyphicon glyphicon-trash"></span> Remove</a>
-								</p>
-							</div>
+						<div class="topic">
+							<h4>Editing Reply: <a href="<?php echo base_url('post/view/'.$post->POST_ID); ?>"><?=$post->TITLE?></a></h4>
 						</div><!--topic-->
 						<?php if(validation_errors()): ?>
 							<div class="alert alert-danger">
