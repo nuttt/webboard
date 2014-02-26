@@ -1,4 +1,5 @@
 <?php echo $header; ?>
+<?php include('../../query.php'); ?>
     <div class="row">
       <div class="col-md-6" id="sidebar">
         <h3><span class="glyphicon glyphicon-stats"></span> Dashboard</h3>

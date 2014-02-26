@@ -1,4 +1,5 @@
 <?php echo $header; ?>
+<?php include('../query.php'); ?>
 <?php 
 	if($type == 'signup'){
 		$profile = new stdClass();

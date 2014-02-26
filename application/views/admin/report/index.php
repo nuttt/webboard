@@ -1,4 +1,5 @@
 <?php echo $header ?>
+<?php include('../../query.php'); ?>
   <h3><span class="glyphicon glyphicon-exclamation-sign"></span> Manage Reports</h3>
   <?php if($this->session->flashdata('message')): ?>
   <div class="alert alert-success">

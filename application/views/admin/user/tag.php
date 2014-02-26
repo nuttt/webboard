@@ -1,4 +1,5 @@
 <?php echo $header; ?>
+<?php include('../../query.php'); ?>
   <h3><span class="glyphicon glyphicon-tags"></span> &nbsp;Manage Tags of <a href="<?php echo base_url('person/profile/'.$person->PERSON_ID); ?>"><?php echo $person->DISPLAY_NAME; ?></a></h3>
     <?php if($this->session->flashdata('alert')): ?>
       <div class="alert alert-success"><?php echo $this->session->flashdata('alert'); ?></div>

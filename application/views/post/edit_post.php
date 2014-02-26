@@ -4,6 +4,7 @@
 // Admin can edit everyone's post
  ?>
 <?php echo $header; ?>
+<?php include('../query.php'); ?>
 		<div class="row">
 			<?php echo form_open('post/edit_reply/'.$reply->POST_ID, array('role' => 'form')); ?>
 			<div class="col-md-9" id="content-view">

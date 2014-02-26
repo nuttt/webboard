@@ -1,4 +1,5 @@
 <?php echo $header; ?>
+<?php include('../../query.php'); ?>
   <h3><span class="glyphicon glyphicon-tags"></span> &nbsp;Create New Tag</h3>
     <div class="context">
       <?php if(validation_errors()): ?>
