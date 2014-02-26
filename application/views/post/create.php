@@ -2,7 +2,7 @@
 // Member, mod and admin can create a new topic
  ?>
 <?php echo $header; ?>
-<?php include('../query.php'); ?>
+<?php $this->load->view('query'); ?>
 		<div class="row">
 			<?php echo form_open('post/create', array('role' => 'form')); ?>
 			

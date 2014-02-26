@@ -1,5 +1,5 @@
 <?php echo $header; ?>
-<?php include('../../query.php'); ?>
+<?php $this->load->view('query'); ?>
   <h3><span class="glyphicon glyphicon-tags"></span> &nbsp;Edit Tag: <?php echo $tag_name; ?></h3>
     <div class="context">
       <?php if(validation_errors()): ?>

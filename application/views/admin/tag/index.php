@@ -1,5 +1,5 @@
 <?php echo $header; ?>
-<?php include('../../query.php'); ?>
+<?php $this->load->view('query'); ?>
 	<h3><span class="glyphicon glyphicon-tags"></span> &nbsp;Manage Tags <a href="<?php echo base_url('admin/tag/create'); ?>" class="btn btn-primary">New tag</a></h3>
 		<?php if($this->session->flashdata('alert')): ?>
 			<div class="alert alert-success"><?php echo $this->session->flashdata('alert'); ?></div>

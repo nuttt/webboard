@@ -1,5 +1,5 @@
 <?php echo $header; ?>
-<?php include('../../query.php'); ?>
+<?php $this->load->view('query'); ?>
 <?php if($this->session->flashdata('alert')): ?>
   <div class="alert alert-success"><?php echo $this->session->flashdata('alert'); ?></div>
 <?php endif; ?>

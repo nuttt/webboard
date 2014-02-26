@@ -1,5 +1,5 @@
 <?php echo $header; ?>
-<?php include('../query.php'); ?>
+<?php $this->load->view('query'); ?>
 <?php 
 	if($type == 'signup'){
 		$profile = new stdClass();

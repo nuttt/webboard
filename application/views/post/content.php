@@ -1,5 +1,5 @@
 <?php echo $header; ?>
-<?php include('../query.php'); ?>
+<?php $this->load->view('query'); ?>
 		<div class="row">
 			<div class="col-md-9" id="content-view">
 				<div class="thread">

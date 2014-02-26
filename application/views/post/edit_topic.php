@@ -4,7 +4,7 @@
 // Admin can edit everyone's topic
  ?>
 <?php echo $header; ?>
-<?php include('../query.php'); ?>
+<?php $this->load->view('query'); ?>
 		<div class="row">
 			<?php echo form_open('post/edit/'.$post->POST_ID, array('role' => 'form')); ?>
 
