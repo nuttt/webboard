@@ -52,13 +52,21 @@
 					<span class="glyphicon glyphicon-floppy-disk"></span>
 					Update
 				</button>
-				<a href="content.php" type="button" class="create-btn btn btn-warning btn-lg btn-block">
+				<a onclick="history()" type="button" class="create-btn btn btn-warning btn-lg btn-block">
 					<span class="glyphicon glyphicon-arrow-left"></span>
 					Back
 				</a>
-				<h3>Guidelines</h3>
+				<h3>Post Guidelines</h3>
 				<div class="replies">
-					<p>Text goes here Text goes here Text goes here Text goes here Text goes here Text goes here Text goes here Text goes here Text goes here Text goes here Text goes here Text goes here Text goes here Text goes here  Text goes here Text goes here Text goes here Text goes here Text goes here Text goes here Text goes here   </p>
+					<p>Make sure you are posting constructive criticism, whether it's negative or positive. Contrary to what some people believe, developers do take feedback from here into account.</p>
+					<p>Please note that Administrators/Moderators reserve the right to change/edit/delete/move/merge any content at any time if they feel it is inappropriate or incorrectly categorized.</p>
+					<p>Do not post any topics/replies containing the following:</p>
+					<ul>
+						<li>Porn, inappropriate or offensive content, warez or leaked content or anything else not safe for work</li>
+						<li>Threats of violence or harassment, even as a joke</li>
+						<li>Racism, discrimination</li>
+						<li>Religious, political, and other “prone to huge arguments” threads</li>
+					</ul>
 				</div>
 			</div><!--sidebar-->
 			</form>
