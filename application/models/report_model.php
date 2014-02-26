@@ -9,6 +9,15 @@ class report_model extends CI_Model {
 		return $query->result();
 	}
 
+	function get_reports_by_tag($tag_id){
+		$q = "select distinct posted_by_person_id, posted_by, reporter_id, post_id, reported_date, status, root_topic_id, reporter_name, report_title
+from report_view 
+inner join topic_tag on report_view.root_topic_id = topic_tag.topic_id and tag_id = $tag_id";
+		$query = $this->db->query($q);
+		return $query->result();
+
+	}
+
 	function get_waiting_report($limit = '') {
 		// P1 is Reporter, P2 is 'Posted by'
 		if($limit) $limit = 'AND ROWNUM <= '.$limit;

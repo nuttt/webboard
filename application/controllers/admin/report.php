@@ -13,7 +13,8 @@ class Report extends CI_Controller {
 	public function index(){
 		$this->load->model('report_model');
 		$data['reports'] = $this->report_model->get_report();
-
+    $data['role'] = 'admin';
+    $data['return'] = '';
 		$data['header'] = $this->load->view('header', $this->header, TRUE);
 		$data['footer'] = $this->load->view('footer', $this->footer, TRUE);
 		$this->load->view('admin/report/index', $data);

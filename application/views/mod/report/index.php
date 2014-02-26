@@ -1,5 +1,5 @@
 <?php echo $header ?>
-  <h3><span class="glyphicon glyphicon-exclamation-sign"></span> Manage Reports</h3>
+  <h3><span class="glyphicon glyphicon-exclamation-sign"></span> Manage Reports in Tag <?php echo $tag_name; ?></h3>
   <?php if($this->session->flashdata('message')): ?>
   <div class="alert alert-success">
     <?php echo $this->session->flashdata('message'); ?>
@@ -28,7 +28,7 @@
             <td>
               <!-- change status of reports -->
               <?php if($report->STATUS == 'Waiting'): ?>
-                <a href="<?=base_url($role.'/report/handle/'.$report->REPORTER_ID.'/'.$report->POST_ID)?>"><span class="glyphicon glyphicon-ok"></span></a>
+                <a href="<?=base_url($role.'/report/handle/'.$report->REPORTER_ID.'/'.$report->POST_ID.$return)?>"><span class="glyphicon glyphicon-ok"></span></a>
               <?php endif; ?>
             </td>
           </tr>

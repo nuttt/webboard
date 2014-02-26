@@ -83,22 +83,29 @@ function is_moderator($topic_id){
 function person_login(){
 	$CI =& get_instance();
 	if(!$CI->session->userdata('person_id')){ // hasn't logged in
-    redirect('auth?return='.uri_string());
-  }
+		redirect('auth?return='.uri_string());
+	}
 }
 
 function admin_login(){
 	person_login();
-  if(!is_admin()){
-  	redirect('/');
-  }
+	if(!is_admin()){
+		redirect('/');
+	}
 }
 
 function moderator_login(){
 	person_login();
-  if(!is_moderator()){
-  	redirect('/');
-  }
+	if(!is_moderator2()){
+		redirect('/');
+	}
+}
+
+function moderator_admin_login(){
+	person_login();
+	if(!(is_moderator2() || is_admin())){
+		redirect('/');
+	}
 }
 
 function is_person($id){

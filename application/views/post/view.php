@@ -67,7 +67,7 @@
 
 <!-- leave this alone -->
 <div class="reply-form-original">
-	<form action="" method="POST">
+	<?php echo form_open('post/reply/'.$post->POST_ID.'/'.$post->POST_ID); ?>
 		<p><textarea name="content" class="form-control" rows="3"></textarea></p>
 		<div class="row">
 			<div class="col-sm-6">
@@ -77,7 +77,7 @@
 				<button type="submit" class="btn btn-primary submit-validate">Reply</button>
 			</div><!-- /.col-sm-6 -->
 		</div>
-	</form>
+	<?php echo form_close(); ?>
 </div><!--reply-form-->
 <script>
 $(function(){
