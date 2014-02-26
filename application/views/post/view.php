@@ -1,6 +1,11 @@
 <?php echo $header; ?>
 		<div class="row">
 			<div class="col-md-9" id="content-view">
+			  <?php if($this->session->flashdata('message')): ?>
+			  <div class="alert alert-success">
+			    <?php echo $this->session->flashdata('message'); ?>
+			  </div>
+			  <?php endif; ?>
 				<div class="thread">
 						<div class="row topic">
 							<div class="col-xs-9">
