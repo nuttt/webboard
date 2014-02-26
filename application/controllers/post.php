@@ -61,15 +61,17 @@ class Post extends CI_Controller {
 		// var_dump($data['replies'][$post_id]);
 
 		$data['reply_view'] = array();
-		foreach($data['replies'][$post_id] as $reply){
-			$rdata = array(
-				'replies' => $data['replies'],
-				'reply' => $reply,
-				'post' => $data['post'],
-				'person_loggedin' => $data['person_loggedin'],
-				'login_url' => $data['login_url']
-			);
-			$data['reply_view'][] = $this->load->view('post/reply-element', $rdata, TRUE);
+		if($data['replies']){
+			foreach($data['replies'][$post_id] as $reply){
+				$rdata = array(
+					'replies' => $data['replies'],
+					'reply' => $reply,
+					'post' => $data['post'],
+					'person_loggedin' => $data['person_loggedin'],
+					'login_url' => $data['login_url']
+				);
+				$data['reply_view'][] = $this->load->view('post/reply-element', $rdata, TRUE);
+			}
 		}
 
 

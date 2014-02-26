@@ -22,21 +22,15 @@
 								<div class="form-group">
 									<?=form_label('Title <span class="red">*</span>', 'title')?>
 									<?=form_input('title', set_value('title'), 'class="form-control" id="title" placeholder="Title"')?>
-									<!-- <label for="title">Title <span class="red">*</span></label>
-									<input type="text" class="form-control" id="title" placeholder="Title"> -->
 								</div>
 								<div class="form-group">
 									<?=form_label('Content <span class="red">*</span>', 'content')?>
 									<?=form_textarea('content', set_value('content'), 'class="form-control" id="post-content" cols="30" rows="10"')?>
-									<!-- <label for="content">Content <span class="red">*</span></label>
-									<textarea name="content" class="form-control" id="" cols="30" rows="10"></textarea> -->
 								</div>
 								<div class="form-group">
 
 									<?=form_label('Tags <span class="red">*</span>', 'tag[]')?>
-									<?=form_multiselect('tag[]', $tags, set_value('tag[]'), 'class="form-control" id="tag-field"')?>
-									<!-- <label for="tag">Tags <span class="red">*</span></label>
-									<input type="text" class="form-control" id="tag" placeholder="Tag1, Tag2, Tag3"> -->
+									<?=form_multiselect('tag[]', $tags, set_value('tag'), 'class="form-control" id="tag-field"')?>
 								</div>
 								<button type="submit" class="btn btn-primary">Create</button>
 						</div><!--context-->

@@ -92,6 +92,7 @@ class Person extends CI_Controller {
 					$person['AVATAR'] = $tmp['upload_data']['file_name'];
 					$co = $this->signup->edit_person($person_id,$person);
 					$success = true;
+					$this->session->set_flashdata('alert', 'Successfully updated profile.');
 					redirect('/');	
 				// }
 			//}
@@ -162,6 +163,7 @@ class Person extends CI_Controller {
 					$person['AVATAR'] = $tmp['upload_data']['file_name'];
 					$co = $this->signup->edit_person($person_id,$person);
 					$success = true;
+					$this->session->set_flashdata('alert', 'Successfully updated profile.');
 					redirect('/');	
 				// }
 			//}

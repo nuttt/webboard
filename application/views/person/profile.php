@@ -2,28 +2,24 @@
 		<div class="row">
 			<div class="col-md-9" id="content-view">
 				<div class="thread">
-					<div class="row topic">
-						<div class="col-xs-1">
-							<img src="<?=base_url()?>uploads/<?php echo $person->AVATAR; ?>" class="img-circle">
-						</div>
-						<div class="col-xs-9">
-							
-							<h4><?php echo $person->DISPLAY_NAME; ?></h4>
-							<p class="info">
-								<a href="mailto:<?php echo $person->EMAIL; ?>" class="name"><strong><?php echo $person->EMAIL ?></strong></a>
-								<span class="date">Joined since <?php echo $person->JOINED_DATE; ?></span>
-								<?php if(is_person($person->PERSON_ID) && !is_admin()): ?>
-									<a href="<?=base_url('person/edit')?>" class="tag yellow"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
-									<!-- for admin only -->
-								<?php endif ?>
-								<?php if(is_admin()): ?>
-								<a href="<?=base_url('person/edit_all/'.$person->PERSON_ID)?>" class="tag yellow"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
-								<a href="<?php echo base_url('admin/user/remove/'.$person->PERSON_ID); ?>" class="tag red remove"><span class="glyphicon glyphicon-trash"></span> Remove</a>
+
+					<div class="topic">
+						<img src=<?php echo base_url('uploads/'.$person->AVATAR);?> class="img-circle profile-pic left"> 
+						<h4><?php echo $person->DISPLAY_NAME; ?></h4>
+						<p class="info">
+							<a href="mailto:<?php echo $person->EMAIL; ?>" class="name"><strong><?php echo $person->EMAIL ?></strong></a>
+							<span class="date">Joined since <?php echo $person->JOINED_DATE; ?></span>
+							<?php if(is_person($person->PERSON_ID) && !is_admin()): ?>
+								<a href="<?=base_url('person/edit')?>" class="tag yellow"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
 								<!-- for admin only -->
-								<a href="<?php echo base_url('admin/ban/person/'.$person->PERSON_ID); ?>" class="tag orange"><span class="glyphicon glyphicon-remove"></span> Ban</a>
-								<?php endif ?>
-							</p>
-						</div>
+							<?php endif ?>
+							<?php if(is_admin()): ?>
+							<a href="<?=base_url('person/edit_all/'.$person->PERSON_ID)?>" class="tag yellow"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
+							<a href="<?php echo base_url('admin/user/remove/'.$person->PERSON_ID); ?>" class="tag red remove"><span class="glyphicon glyphicon-trash"></span> Remove</a>
+							<!-- for admin only -->
+							<a href="<?php echo base_url('admin/ban/person/'.$person->PERSON_ID); ?>" class="tag orange"><span class="glyphicon glyphicon-remove"></span> Ban</a>
+							<?php endif ?>
+						</p>
 					</div><!--topic-->
 					<div class="context">
 						<table class="table">

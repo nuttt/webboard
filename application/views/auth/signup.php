@@ -20,21 +20,14 @@
 					<?php endif; ?>
 				<div class="thread">
 					<?php if($type == 'edit'): //case edit profile ?>
-						<div class="row topic">
-							<div class="col-xs-1">
-								
-								<img src=<?php echo base_url('uploads/'.$profile->AVATAR);?> class="img-circle"> 
-							</div>
-							<div class="col-xs-9">
-								<h4>
-
-									<a href="member_profile.php"><?php echo $profile->DISPLAY_NAME ?></a></h4>
-								<p class="info">
-									<?php echo anchor('mailto:'.$profile->EMAIL, '<strong>'.$profile->EMAIL.'</strong>',array('class' => 'name') ) ?>
-									<!-- <a href="mailto:nuttt.p@gmail.com" class="name"><strong>nuttt.p@gmail.com</strong></a> -->
-									<span class="date">Joined since <?php echo $profile->JOINED ?></span>
-								</p>
-							</div>
+						<div class="topic">
+							<img src=<?php echo base_url('uploads/'.$profile->AVATAR);?> class="img-circle profile-pic left"> 
+							<h4><?php echo $profile->DISPLAY_NAME ?></h4>
+							<p class="info">
+								<?php echo anchor('mailto:'.$profile->EMAIL, '<strong>'.$profile->EMAIL.'</strong>',array('class' => 'name') ) ?>
+								<!-- <a href="mailto:nuttt.p@gmail.com" class="name"><strong>nuttt.p@gmail.com</strong></a> -->
+								<span class="date">Joined since <?php echo $profile->JOINED ?></span>
+							</p>
 						</div><!--topic-->
 					<?php else: ?>
 						<div class="topic">
@@ -86,7 +79,7 @@
 									<!-- <input type="file"> -->	
 									<br>
 									<strong>Current Image:</strong>
-									<img src=<?php echo base_url('uploads/'.$profile->AVATAR);?> class="img-circle"> 
+									<img src=<?php echo base_url('uploads/'.$profile->AVATAR);?> class="img-circle profile-pic"> 
 								</div>
 							</div><!--form-group-->
 							<div class="form-group">
