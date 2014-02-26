@@ -71,7 +71,8 @@ class Post extends CI_Controller {
 					'reply' => $reply,
 					'post' => $data['post'],
 					'person_loggedin' => $data['person_loggedin'],
-					'login_url' => $data['login_url']
+					'login_url' => $data['login_url'],
+					'topic_id' => $data['post']->POST_ID
 				);
 				$data['reply_view'][] = $this->load->view('post/reply-element', $rdata, TRUE);
 			}
@@ -221,6 +222,15 @@ class Post extends CI_Controller {
 		$data['header'] = $this->load->view('header', $this->header, TRUE);
 		$data['footer'] = $this->load->view('footer', $this->footer, TRUE);
 		$this->load->view('post/edit_post', $data);
+	}
+
+	function remove($topic_id, $post_id){
+		$this->post_model->remove($post_id);
+		if($topic_id != $post_id){
+			redirect(base_url('post/view/'.$topic_id));
+		} else {
+			redirect(base_url('post/'));
+		}
 	}
 
 }
