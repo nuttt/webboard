@@ -87,8 +87,8 @@ class Post extends CI_Controller {
 		person_login();
 
 		$this->load->library('form_validation');
-		$this->form_validation->set_rules('title', 'Title', 'required');
-		$this->form_validation->set_rules('content', 'Content', 'required');
+		$this->form_validation->set_rules('title', 'Title', 'required|min_length[5]|max_length[256]');
+		$this->form_validation->set_rules('content', 'Content', 'required|min_length[10]|max_length[2000]');
 		$this->form_validation->set_rules('tag', 'Tag', 'required');
 
 		$person_id = $this->session->userdata('person_id');
@@ -174,8 +174,8 @@ class Post extends CI_Controller {
 		}
 
 		$this->load->library('form_validation');
-		$this->form_validation->set_rules('title', 'Title', 'required');
-		$this->form_validation->set_rules('content', 'Content', 'required');
+		$this->form_validation->set_rules('title', 'Title', 'required|min_length[5]|max_length[256]');
+		$this->form_validation->set_rules('content', 'Content', 'required|min_length[10]|max_length[2000]');
 		$this->form_validation->set_rules('tag', 'Tag', 'required');
 
 		if($this->form_validation->run()) {

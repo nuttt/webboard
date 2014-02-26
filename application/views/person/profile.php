@@ -80,7 +80,7 @@
 						</div><!--helper-->
 						<?php if (count($topics)==0): ?>
 							<hr>
-							<p>No Post</p>
+							<h5 class="text-center">This user has no topic.</h5>
 						<?php endif ?>
 							
 						<?php foreach ($topics as $topic): ?>

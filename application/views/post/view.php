@@ -1,6 +1,14 @@
 <?php echo $header; ?>
 		<div class="row">
 			<div class="col-md-9" id="content-view">
+			  <?php if($this->session->flashdata('message')): ?>
+			  <div class="alert alert-success">
+			    <?php echo $this->session->flashdata('message'); ?>
+			  </div>
+			  <?php endif; ?>
+				<?php if($this->session->flashdata('alert')): ?>
+					<div class="alert alert-success"><?php echo $this->session->flashdata('alert'); ?></div>
+				<?php endif; ?>
 				<div class="thread">
 						<div class="row topic">
 							<div class="col-xs-9">
@@ -23,7 +31,7 @@
 									 ?>
 									 <?php if(is_person($post->PERSON_ID)||is_admin()||is_moderator($post->POST_ID)):  ?>
 										<a href="<?=base_url()?>post/edit/<?=$post->POST_ID?>" class="tag yellow"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
-										<a href="<?=base_url()?>post/remove/<?=$topic_id?>/<?=$post->POST_ID?>" class="tag red"><span class="glyphicon glyphicon-trash"></span> Remove</a>
+										<a href="<?=base_url()?>post/remove/<?=$post->POST_ID?>/<?=$post->POST_ID?>" class="tag red"><span class="glyphicon glyphicon-trash"></span> Remove</a>
 									<?php endif ?>
 									<?php if(!is_person($post->PERSON_ID)): ?>
 									<a href="<?php echo base_url('post/report/'.$post->POST_ID.'?return=post/view/'.$post->POST_ID) ?>" class="tag orange"><span class="glyphicon glyphicon-exclamation-sign"></span> Report</a>

@@ -1,6 +1,11 @@
 <?php echo $header; ?>
 		<div class="row">
 			<div class="col-md-9" id="content-list">
+			  <?php if($this->session->flashdata('message')): ?>
+			  <div class="alert alert-success">
+			    <?php echo $this->session->flashdata('message'); ?>
+			  </div>
+			  <?php endif; ?>
 				<?php if($this->session->flashdata('alert')): ?>
 					<div class="alert alert-success"><?php echo $this->session->flashdata('alert'); ?></div>
 				<?php endif; ?>

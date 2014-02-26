@@ -12,7 +12,7 @@
         <br>
         <?php if(is_person($reply->PERSON_ID)||is_admin()||is_moderator($post->POST_ID)): ?>
           <a href="<?php echo base_url('post/edit_reply/'.$reply->POST_ID); ?>" class="tag yellow"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
-          <a href="<?php echo base_url('post/remove/'.$topic_id.'/'.$reply->POST_ID); ?>" class="tag red"><span class="glyphicon glyphicon-trash"></span> Remove</a>
+          <a href="<?php echo base_url('post/remove/'.$post->POST_ID.'/'.$reply->POST_ID); ?>" class="tag red"><span class="glyphicon glyphicon-trash"></span> Remove</a>
         <?php endif ?>
         <?php if(!is_person($reply->PERSON_ID)): ?>
         <a href="<?php echo base_url('post/report/'.$reply->POST_ID.'?return=post/view/'.$post->POST_ID) ?>" class="tag orange"><span class="glyphicon glyphicon-exclamation-sign"></span> Report</a>
@@ -20,35 +20,7 @@
       </p>
     </div>
     <div class="col-xs-6 text-right">
-      <?php if($person_loggedin): // user logged in ?>
-        <button type="button" data-reply="<?php echo $reply->POST_ID; ?>" class="inner-reply-btn btn btn-primary btn-xs">
-          <span class="glyphicon glyphicon-plus-sign"></span>
-          Reply
-        </button>
-        <a href="" class="btn btn-danger btn-xs vote vote-down">
-          <span class="glyphicon glyphicon-thumbs-down"></span>
-        </a><!--vote-->
-        <span class="current-score">
-          <?php echo $reply->VOTE ?>
-        </span>
-        <a href="" class="btn btn-success btn-xs vote vote-up">
-          <span class="glyphicon glyphicon-thumbs-up"></span>
-        </a><!--vote-->
-      <?php else: // hasn't logged in ?>
-        <a href="<?php echo $login_url; ?>" class="inner-reply-btn btn btn-primary btn-xs">
-          <span class="glyphicon glyphicon-plus-sign"></span>
-          Reply
-        </a>
-        <a href="<?php echo $login_url; ?>" class="btn btn-danger btn-xs vote vote-down">
-          <span class="glyphicon glyphicon-thumbs-down"></span>
-        </a><!--vote-->
-        <span class="current-score">
-          <?php echo $reply->VOTE ?>
-        </span>
-        <a href="<?php echo $login_url; ?>" class="btn btn-success btn-xs vote vote-up">
-          <span class="glyphicon glyphicon-thumbs-up"></span>
-        </a><!--vote-->
-      <?php endif; ?>
+      <?php include('hook-vote.php'); ?>
     </div>
   </div><!--topic-->
   <?php
