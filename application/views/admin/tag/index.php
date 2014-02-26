@@ -22,7 +22,7 @@
 								&nbsp;
 								<a href="<?=base_url('admin/tag/delete/'.$tag->TAG_ID)?>" class="remove"><span class="glyphicon glyphicon-trash"></span></a>
 								&nbsp;
-								<a href="<?=base_url('post/tag/'.$tag->TAG_ID)?>"><span class="glyphicon glyphicon-eye-open"></span></a>
+								<a href="<?php echo base_url('post/?sortby=&tag_filter='.$tag->NAME); ?>"><span class="glyphicon glyphicon-eye-open"></span></a>
 							</td>
 						</tr>
 					<?php endforeach; ?>
