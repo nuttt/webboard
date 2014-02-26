@@ -53,7 +53,7 @@ class Post extends CI_Controller {
 		$data['person_loggedin'] = get_user();
 		$data['login_url'] = base_url('auth?return='.uri_string());
 		$data['post'] = $this->post_model->get_content($post_id);
-		if(!$post){
+		if(!$data['post']){
 			redirect('/');
 		}
 		$data['replies'] = $this->post_reply_model->get_nested_post_reply($post_id);
