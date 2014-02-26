@@ -44,6 +44,7 @@
 								<p class="info">
 									<a href="<?=base_url()?>person/profile/<?=$post->PERSON_ID?>" class="name"><strong><?=$post->DISPLAY_NAME?></strong></a>
 									<span class="date"><?=$post->TIME?></span>
+									<span class="date"><?php echo $post->VISIT; ?> views</span>
 									<?php 
 										// var_dump($posts->TAGS);
 										foreach ($post->TAGS as $tag):
@@ -60,17 +61,6 @@
 						</div><!--topic-->
 						<hr class="topic-line">
 					<?php endforeach; ?>
-					<div class="text-center">
-						<ul class="pagination">
-							<li class="disabled"><a href="#">&laquo;</a></li>
-							<li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
-							<li><a href="#">2</a></li>
-							<li><a href="#">3</a></li>
-							<li><a href="#">4</a></li>
-							<li><a href="#">5</a></li>
-							<li><a href="#">&raquo;</a></li>
-						</ul>
-					</div>
 				</div>
 			</div><!--content-->
 			<div class="col-md-3" id="sidebar">
@@ -95,7 +85,7 @@
 					$tags2 = get_tags_with_topic_num();
 					foreach($tags2 as $tag):
 				?>
-					<a href="post/tag/<?php echo $tag->TAG_ID; ?>" class="list-group-item"><span class="badge"><?php echo $tag->NUM; ?></span> <?php echo $tag->NAME; ?></a>
+					<a href="<?php echo base_url('post/?sortby=&tag_filter='.$tag->NAME); ?>" class="list-group-item"><span class="badge"><?php echo $tag->NUM; ?></span> <?php echo $tag->NAME; ?></a>
 				<?php endforeach; ?>
 				</div>
 			</div><!--sidebar-->

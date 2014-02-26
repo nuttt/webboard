@@ -13,7 +13,7 @@
 										// var_dump($posts->TAGS);
 										foreach ($post->TAGS as $tag):
 									 ?>
-											<a href="<?=base_url()?>post/tag/<?=$tag->TAG_ID?>" class="tag"><?php echo $tag->NAME; ?></a>
+											<a href="<?php echo base_url('post/?sortby=&tag_filter='.$tag->NAME); ?>" class="tag"><?php echo $tag->NAME; ?></a>
 									<?php endforeach; ?>
 									
 									<?php 

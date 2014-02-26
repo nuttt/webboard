@@ -30,7 +30,7 @@ class Post_model extends CI_Model {
 		}
 		$this->load->model('tag_model');
 		$this->load->model('post_reply_model');
-		$post_query = $this->db->query("SELECT PERSON.PERSON_ID, POST.POST_ID, to_char(POST.TIME,'DY DD-Mon-YYYY HH24:MI')AS TIME, POST_TOPIC.TITLE, PERSON.DISPLAY_NAME FROM POST INNER JOIN POST_TOPIC ON POST.POST_ID = POST_TOPIC.POST_ID INNER JOIN PERSON ON PERSON.PERSON_ID = POST.PERSON_ID ".$filter." ORDER BY ".$sort);
+		$post_query = $this->db->query("SELECT PERSON.PERSON_ID, POST.POST_ID, to_char(POST.TIME,'DY DD-Mon-YYYY HH24:MI')AS TIME, POST_TOPIC.TITLE, PERSON.DISPLAY_NAME, POST_TOPIC.VISIT FROM POST INNER JOIN POST_TOPIC ON POST.POST_ID = POST_TOPIC.POST_ID INNER JOIN PERSON ON PERSON.PERSON_ID = POST.PERSON_ID ".$filter." ORDER BY ".$sort);
 		$posts = $post_query->result();
 		foreach($posts as $post){
 			$post->TAGS = $this->tag_model->get_tag($post->POST_ID);
@@ -186,6 +186,11 @@ class Post_model extends CI_Model {
 		}
 
 		return $post_data['post_id'];
-	}
+	} 
 
+	function incVisit($topic_id){
+		$oldTopic=$this->db->query("SELECT VISIT FROM POST_TOPIC WHERE POST_ID = ".$topic_id)->first_row();
+		$newVisit = $oldTopic->VISIT+1;
+		$this->db->query("UPDATE POST_TOPIC set VISIT = ".$newVisit." WHERE POST_ID = ".$topic_id);
+	}
 }
