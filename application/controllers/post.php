@@ -53,14 +53,15 @@ class Post extends CI_Controller {
 		$data['person_loggedin'] = get_user();
 		$data['login_url'] = base_url('auth?return='.uri_string());
 		$data['post'] = $this->post_model->get_content($post_id);
+		if(!$post){
+			redirect('/');
+		}
 		$data['replies'] = $this->post_reply_model->get_nested_post_reply($post_id);
-		// $data['replies'] = $this->post_reply_model->get_post_reply($post_id);
 		$data['latest_replies'] = $this->post_reply_model->get_latest_reply(0);
 		$data['related_tags'] = $this->tag_model->get_related_tag_by_topic($post_id);
 		$data['header'] = $this->load->view('header', $this->header, TRUE);
 		$data['footer'] = $this->load->view('footer', $this->footer, TRUE);
 		$this->post_model->incVisit($post_id);
-		// var_dump($data['replies'][$post_id]);
 
 		$data['reply_view'] = array();
 		if($data['replies']){
