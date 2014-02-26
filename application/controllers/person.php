@@ -93,7 +93,7 @@ class Person extends CI_Controller {
 					$co = $this->signup->edit_person($person_id,$person);
 					$success = true;
 					$this->session->set_flashdata('alert', 'Successfully updated profile.');
-					redirect('/');	
+					redirect('person/profile/'.$person_id);	
 				// }
 			//}
 		}
@@ -164,7 +164,7 @@ class Person extends CI_Controller {
 					$co = $this->signup->edit_person($person_id,$person);
 					$success = true;
 					$this->session->set_flashdata('alert', 'Successfully updated profile.');
-					redirect('/');	
+					redirect('admin/user');	
 				// }
 			//}
 		}

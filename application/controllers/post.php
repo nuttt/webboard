@@ -148,14 +148,12 @@ class Post extends CI_Controller {
 		$this->session->set_flashdata('alert', 'Successfully reported post ID#'.$post_id);
 		redirect($this->input->get('return'));
 	}
+	
 	public function reply($topic_id, $reply_id){
 		$this->load->model('post_reply_model');
 		echo $this->post_reply_model->reply($_POST['content'], $this->session->userdata('person_id'), $topic_id, $reply_id);
 		redirect('post/view/'.$topic_id);
-		
-
 	}
-	
 
 	public function edit($post_id) {
 		person_login();
@@ -196,7 +194,6 @@ class Post extends CI_Controller {
 		$data['footer'] = $this->load->view('footer', $this->footer, TRUE);
 		$this->load->view('post/edit_topic', $data);
 	}
-
 
 	public function edit_reply($post_id) {
 		person_login();

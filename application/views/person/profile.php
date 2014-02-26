@@ -2,7 +2,6 @@
 		<div class="row">
 			<div class="col-md-9" id="content-view">
 				<div class="thread">
-
 					<div class="topic">
 						<img src=<?php echo base_url('uploads/'.$person->AVATAR);?> class="img-circle profile-pic left"> 
 						<h4><?php echo $person->DISPLAY_NAME; ?></h4>
