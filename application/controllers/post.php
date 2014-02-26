@@ -23,7 +23,7 @@ class Post extends CI_Controller {
 		}
 		if(isset($_GET['tag_filter'])){ 
 			$data['tag_filter'] = $_GET['tag_filter'];
-			$data['Title'] = $_GET['tag_filter']; 
+			if($_GET['tag_filter']!='') $data['Title'] = $_GET['tag_filter']; 
 		}
 		$data['posts'] = $this->post_model->get_topics($data['sort_by'],$data['tag_filter']);
 		$data['header'] = $this->load->view('header', $this->header, TRUE);

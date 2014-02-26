@@ -30,7 +30,12 @@ class Post_model extends CI_Model {
 		}
 		$this->load->model('tag_model');
 		$this->load->model('post_reply_model');
-		$post_query = $this->db->query("SELECT PERSON.PERSON_ID, POST.POST_ID, to_char(POST.TIME,'DY DD-Mon-YYYY HH24:MI')AS TIME, POST_TOPIC.TITLE, PERSON.DISPLAY_NAME, POST_TOPIC.VISIT FROM POST INNER JOIN POST_TOPIC ON POST.POST_ID = POST_TOPIC.POST_ID INNER JOIN PERSON ON PERSON.PERSON_ID = POST.PERSON_ID ".$filter." ORDER BY ".$sort);
+		$post_query = $this->db->query("SELECT PERSON.PERSON_ID, POST.POST_ID, to_char(POST.TIME,'DY DD-Mon-YYYY HH24:MI') AS TIME, POST_TOPIC.TITLE, PERSON.DISPLAY_NAME, POST_TOPIC.VISIT, V.VOTE 
+										FROM POST INNER JOIN POST_TOPIC ON POST.POST_ID = POST_TOPIC.POST_ID 
+										INNER JOIN PERSON ON PERSON.PERSON_ID = POST.PERSON_ID
+										LEFT JOIN ( SELECT sum(VOTES.STATUS) AS VOTE, VOTES.POST_ID
+													From VOTES
+													Group By VOTES.POST_ID) V ON V.POST_ID=POST.POST_ID ".$filter." ORDER BY ".$sort);
 		$posts = $post_query->result();
 		foreach($posts as $post){
 			$post->TAGS = $this->tag_model->get_tag($post->POST_ID);
