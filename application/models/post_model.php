@@ -202,6 +202,7 @@ class Post_model extends CI_Model {
 		where post_id not in (select post_id from post_topic)
 		and post_id not in (select post_id from post_reply)";
 		$this->db->query($rm_query);
+		$this->session->set_flashdata('message', 'Your post was deleted.');
 
 	}
 
