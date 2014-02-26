@@ -21,11 +21,16 @@
 								</p>
 							</div>
 						</div><!--topic-->
+						<?php if(validation_errors()): ?>
+							<div class="alert alert-danger">
+								<?php echo validation_errors(); ?>
+							</div>
+						<?php endif; ?>
 						<hr class="topic-line">
 						<div class="context">
 								<div class="form-group">
 									<?=form_label('Content <span class="red">*</span>', 'content')?>
-									<?=form_textarea('content', $reply->CONTENT, 'class="form-control" id="post-content" cols="30" rows="10"')?>
+									<?=form_textarea('content', set_value('content', $reply->CONTENT), 'class="form-control" id="post-content" cols="30" rows="10"')?>
 									<!-- <label for="content">Content <span class="red">*</span></label>
 									<textarea name="content" class="form-control" id="" cols="30" rows="10">WYSIWYG</textarea> -->
 								</div>
