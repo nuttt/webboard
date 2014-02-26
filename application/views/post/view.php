@@ -6,6 +6,9 @@
 			    <?php echo $this->session->flashdata('message'); ?>
 			  </div>
 			  <?php endif; ?>
+				<?php if($this->session->flashdata('alert')): ?>
+					<div class="alert alert-success"><?php echo $this->session->flashdata('alert'); ?></div>
+				<?php endif; ?>
 				<div class="thread">
 						<div class="row topic">
 							<div class="col-xs-9">
