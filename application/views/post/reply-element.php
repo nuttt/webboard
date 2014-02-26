@@ -4,10 +4,8 @@
   </div><!--context-->
   <hr class="topic-line">
   <div class="row topic">
-    <div class="col-xs-1">
-      <img src="<?php echo base_url('uploads/'.$reply->AVATAR); ?>" class="img-circle">
-    </div>
-    <div class="col-xs-5">
+    <div class="col-xs-6">
+      <img src="<?php echo base_url('uploads/'.$reply->AVATAR); ?>" class="img-circle profile-pic left">
       <p class="info">
         <a href="<?php echo base_url('person/profile/'.$reply->PERSON_ID); ?>" class="name"><strong><?php echo $reply->DISPLAY_NAME; ?></strong></a>
         <span class="date"><?php echo $reply->TIME; ?></span>

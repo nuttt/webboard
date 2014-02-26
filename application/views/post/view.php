@@ -3,10 +3,8 @@
 			<div class="col-md-9" id="content-view">
 				<div class="thread">
 						<div class="row topic">
-							<div class="col-xs-1">
-								<img src="<?=base_url()?>uploads/<?php echo $post->AVATAR; ?> " class="img-circle">
-							</div>
-							<div class="col-xs-8">
+							<div class="col-xs-9">
+								<img src="<?=base_url()?>uploads/<?php echo $post->AVATAR; ?> "  class="img-circle profile-pic left">
 								<h4><a href="<?=base_url()?>post/view/<?=$post->POST_ID?>"><?php echo $post->TITLE; ?></a></h4>
 								<p class="info">
 									<a href="<?=base_url()?>person/profile/<?=$post->PERSON_ID?>" class="name"><strong><?php echo $post->DISPLAY_NAME; ?></strong></a>
