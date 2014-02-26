@@ -12,7 +12,7 @@
         <br>
         <?php if(is_person($reply->PERSON_ID)||is_admin()||is_moderator($post->POST_ID)): ?>
           <a href="<?php echo base_url('post/edit_reply/'.$reply->POST_ID); ?>" class="tag yellow"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
-          <a href="" class="tag red"><span class="glyphicon glyphicon-trash"></span> Remove</a>
+          <a href="<?php echo base_url('post/remove/'.$topic_id.'/'.$reply->POST_ID); ?>" class="tag red"><span class="glyphicon glyphicon-trash"></span> Remove</a>
         <?php endif ?>
         <?php if(!is_person($reply->PERSON_ID)): ?>
         <a href="<?php echo base_url('post/report/'.$reply->POST_ID.'?return=post/view/'.$post->POST_ID) ?>" class="tag orange"><span class="glyphicon glyphicon-exclamation-sign"></span> Report</a>
@@ -60,7 +60,8 @@
           'reply' => $reply,
           'post' => $post,
           'person_loggedin' => $person_loggedin,
-          'login_url' => $login_url
+          'login_url' => $login_url,
+          'topic_id' => $topic_id
         );
         echo $this->load->view('post/reply-element', $rdata, TRUE);
         //$reply_view[] = $this->load->view('post/reply-element', $rdata, TRUE);

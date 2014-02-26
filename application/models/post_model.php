@@ -193,4 +193,16 @@ class Post_model extends CI_Model {
 		$newVisit = $oldTopic->VISIT+1;
 		$this->db->query("UPDATE POST_TOPIC set VISIT = ".$newVisit." WHERE POST_ID = ".$topic_id);
 	}
+
+	function remove($post_id){
+		$rm_query = "DELETE FROM POST WHERE POST_ID=".$post_id;
+		$this->db->query($rm_query);
+
+		$cleanup_query = "delete from post
+		where post_id not in (select post_id from post_topic)
+		and post_id not in (select post_id from post_reply)";
+		$this->db->query($rm_query);
+
+	}
+
 }
