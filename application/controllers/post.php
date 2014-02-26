@@ -71,7 +71,9 @@ class Post extends CI_Controller {
 			);
 			$data['reply_view'][] = $this->load->view('post/reply-element', $rdata, TRUE);
 		}
-
+		if(isset($_GET['report'])){ 
+			$data['report'] = $_GET['report']; 
+		}
 
 		$this->load->view('post/view', $data);
 	}

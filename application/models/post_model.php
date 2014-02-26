@@ -154,5 +154,25 @@ class Post_model extends CI_Model {
 
 		return $post_id;
 	}
+	//type 0:topic 1:reply
+	function edit($post_data,$type){
+		$q_post = "UPDATE POST 
+					SET CONTENT = '".$post_data['content']."',
+						TIME = systimestamp, 
+						STATUS = ".$post_data['status']."
+						WHERE POST_ID = ".$post_data['post_id'];
+		$this->db->query($q_post);
+		if ($type == 0) {
+			$this->db->query("UPDATE POST_TOPIC
+								SET TITLE = '".$post_date['title']);
+			$this->db->query("DELETE FROM TOPIC_TAG WHERE TOPIC_ID = ".$post->data['post_id']);
+			foreach($post_data['tag'] as $tag) {
+				echo $q_topic_tag =  "INSERT INTO TOPIC_TAG (TOPIC_ID, TAG_ID) values ($post_id, ".$tag.")";
+				$this->db->query($q_topic_tag);
+			}
+		}
+
+		return $post_id;
+	} 
 
 }
