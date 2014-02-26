@@ -57,7 +57,7 @@ class Post extends CI_Controller {
 		$data['related_tags'] = $this->tag_model->get_related_tag_by_topic($post_id);
 		$data['header'] = $this->load->view('header', $this->header, TRUE);
 		$data['footer'] = $this->load->view('footer', $this->footer, TRUE);
-
+		$this->post_model->incVisit($post_id);
 		// var_dump($data['replies'][$post_id]);
 
 		$data['reply_view'] = array();
@@ -74,7 +74,6 @@ class Post extends CI_Controller {
 		if(isset($_GET['report'])){ 
 			$data['report'] = $_GET['report']; 
 		}
-
 		$this->load->view('post/view', $data);
 	}
 

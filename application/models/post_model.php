@@ -171,8 +171,12 @@ class Post_model extends CI_Model {
 				$this->db->query($q_topic_tag);
 			}
 		}
-
 		return $post_id;
 	} 
 
+	function incVisit($topic_id){
+		$oldTopic=$this->db->query("SELECT VISIT FROM POST_TOPIC WHERE POST_ID = ".$topic_id)->first_row();
+		$newVisit = $oldTopic->VISIT+1;
+		$this->db->query("UPDATE POST_TOPIC set VISIT = ".$newVisit);
+	}
 }
